@@ -126,6 +126,37 @@
         .sub-tasks { list-style: none; margin-top: 1rem; }
         .sub-tasks li { font-size: 12px; color: var(--text-secondary); padding: 8px 0; display: flex; align-items: center; gap: 10px; border-bottom: 1px solid rgba(255,255,255,0.03); }
         .sub-tasks li i { color: var(--accent-emerald); font-size: 11px; }
+		.sub-tasks-container {
+		    margin-top: 10px;
+		    padding-top: 10px;
+		    border-top: 1px solid rgba(255,255,255,0.1);
+		    text-align: left;
+		    width: 100%;
+		}
+		
+		.sub-task {
+		    font-size: 11px;
+		    color: #a0a0a0;
+		    margin-bottom: 4px;
+		    display: flex;
+		    align-items: center;
+		}
+		
+		.sub-task span {
+		    background: rgba(255,255,255,0.05);
+		    padding: 1px 4px;
+		    border-radius: 3px;
+		    margin-right: 6px;
+		    color: var(--accent-glow);
+		    font-family: monospace;
+		}
+		
+		.tree-node {
+		    min-height: 150px; /* Garante altura para os cards com muitas tarefas */
+		    display: flex;
+		    flex-direction: column;
+		    justify-content: space-between;
+		}
     </style>
 </head>
 <body>
@@ -147,33 +178,115 @@
         </div>
     </nav>
 
-    <main id="macro" class="content-area active">
-        <div class="macro-viewport" id="viewport">
-            <div class="zoom-controls">
-                <button class="z-btn" onclick="zoom(0.1)"><i class="fa-solid fa-plus"></i></button>
-                <button class="z-btn" onclick="zoom(-0.1)"><i class="fa-solid fa-minus"></i></button>
-                <button class="z-btn" onclick="resetZoom()"><i class="fa-solid fa-arrows-to-dot"></i></button>
+<main id="macro" class="content-area active">
+    <div class="macro-viewport" id="viewport">
+        <div class="zoom-controls">
+            <button class="z-btn" onclick="zoom(0.1)"><i class="fa-solid fa-plus"></i></button>
+            <button class="z-btn" onclick="zoom(-0.1)"><i class="fa-solid fa-minus"></i></button>
+            <button class="z-btn" onclick="resetZoom()"><i class="fa-solid fa-arrows-to-dot"></i></button>
+        </div>
+
+        <div id="macro-canvas">
+            <div class="tree-node root" style="border: 2px solid var(--accent-glow); width: 450px; margin-bottom: 40px;">
+                <div class="node-id">NÍVEL 0 - ÉPICO</div>
+                <div style="font-weight: 800; font-size: 18px;">INTEGRAÇÃO PSC SAFEWEB</div>
+                <span class="time-macro" style="margin-top:15px">ESFORÇO TOTAL: 37,0 du</span>
             </div>
-            <div id="macro-canvas">
-                <div class="tree-node root" style="border: 2px solid var(--accent-glow); width: 350px; margin-bottom: 20px;">
-                    <div class="node-id">NÍVEL 0 - ÉPICO</div>
-                    <div style="font-weight: 800; font-size: 18px;">INTEGRAÇÃO PSC SAFEWEB</div>
-                    <span class="time-macro" style="margin-top:15px">ESFORÇO TOTAL: 37,0 du</span>
+
+            <div class="tree-level" style="align-items: flex-start;">
+                
+                <div class="tree-node">
+                    <div class="node-id">PB-01</div>
+                    <div style="font-weight: 700; color: var(--accent-glow);">BASE TÉCNICA</div>
+                    <div class="sub-tasks-container">
+                        <div class="sub-task"><span>01.1</span> Checklist Endpoints</div>
+                        <div class="sub-task"><span>01.2</span> Postman Env</div>
+                        <div class="sub-task"><span>01.3</span> Guia de Teste</div>
+                    </div>
+                    <span class="time-macro">Σ 2,0 du</span>
                 </div>
 
-                <div class="tree-level">
-                    <div class="tree-node"><div class="node-id">PB-01</div><div style="font-weight: 700;">BASE TÉCNICA</div><span class="time-macro">Σ 2,0 du</span></div>
-                    <div class="tree-node"><div class="node-id">PB-02</div><div style="font-weight: 700;">PERSISTÊNCIA</div><span class="time-macro">Σ 4,0 du</span></div>
-                    <div class="tree-node"><div class="node-id">PB-03</div><div style="font-weight: 700;">CLIENT HTTP</div><span class="time-macro">Σ 3,0 du</span></div>
-                    <div class="tree-node"><div class="node-id">PB-04</div><div style="font-weight: 700;">FLUXO QRCODE</div><span class="time-macro">Σ 7,0 du</span></div>
-                    <div class="tree-node" style="border-left: 3px solid var(--accent-purple);"><div class="node-id">PB-05</div><div style="font-weight: 700;">FLUXO CA</div><span class="time-macro">Σ 6,0 du</span></div>
-                    <div class="tree-node"><div class="node-id">PB-06</div><div style="font-weight: 700;">ASSINATURAS</div><span class="time-macro">Σ 9,0 du</span></div>
-                    <div class="tree-node"><div class="node-id">PB-07</div><div style="font-weight: 700;">VALIDAÇÃO</div><span class="time-macro">Σ 2,0 du</span></div>
-                    <div class="tree-node" style="border-color: var(--accent-emerald);"><div class="node-id">PB-08</div><div style="font-weight: 700;">TESTES FINAIS</div><span class="time-macro">Σ 4,0 du</span></div>
+                <div class="tree-node">
+                    <div class="node-id">PB-02</div>
+                    <div style="font-weight: 700; color: var(--accent-glow);">PERSISTÊNCIA</div>
+                    <div class="sub-tasks-container">
+                        <div class="sub-task"><span>02.1</span> Modelo Dados</div>
+                        <div class="sub-task"><span>02.2</span> Cifragem Token</div>
+                        <div class="sub-task"><span>02.3</span> DAO Sessão</div>
+                    </div>
+                    <span class="time-macro">Σ 4,0 du</span>
+                </div>
+
+                <div class="tree-node">
+                    <div class="node-id">PB-03</div>
+                    <div style="font-weight: 700; color: var(--accent-glow);">CLIENT HTTP</div>
+                    <div class="sub-tasks-container">
+                        <div class="sub-task"><span>03.1</span> Impl. Client PSC</div>
+                        <div class="sub-task"><span>03.2</span> Tratamento Erro</div>
+                        <div class="sub-task"><span>03.3</span> Logs Seguros</div>
+                    </div>
+                    <span class="time-macro">Σ 3,0 du</span>
+                </div>
+
+                <div class="tree-node">
+                    <div class="node-id">PB-04</div>
+                    <div style="font-weight: 700; color: var(--accent-glow);">FLUXO QRCODE</div>
+                    <div class="sub-tasks-container">
+                        <div class="sub-task"><span>04.1</span> Authorize PKCE</div>
+                        <div class="sub-task"><span>04.2</span> Code → Token</div>
+                        <div class="sub-task"><span>04.3</span> UI jQuery</div>
+                    </div>
+                    <span class="time-macro">Σ 7,0 du</span>
+                </div>
+
+                <div class="tree-node" style="border-left: 3px solid var(--accent-purple);">
+                    <div class="node-id">PB-05</div>
+                    <div style="font-weight: 700; color: var(--accent-purple);">FLUXO CA</div>
+                    <div class="sub-tasks-container">
+                        <div class="sub-task"><span>05.1</span> Identificador CA</div>
+                        <div class="sub-task"><span>05.3</span> pwd_authorize</div>
+                        <div class="sub-task"><span>05.4</span> UI jQuery</div>
+                    </div>
+                    <span class="time-macro">Σ 6,0 du</span>
+                </div>
+
+                <div class="tree-node">
+                    <div class="node-id">PB-06</div>
+                    <div style="font-weight: 700; color: var(--accent-glow);">ASSINATURAS</div>
+                    <div class="sub-tasks-container">
+                        <div class="sub-task"><span>06.1</span> RAW/CMS</div>
+                        <div class="sub-task"><span>06.2</span> Políticas ICP</div>
+                        <div class="sub-task"><span>06.3</span> PAdES Pipeline</div>
+                        <div class="sub-task"><span>06.4</span> Cert-Info</div>
+                        <div class="sub-task"><span>06.5</span> User Discovery</div>
+                    </div>
+                    <span class="time-macro">Σ 9,0 du</span>
+                </div>
+
+                <div class="tree-node">
+                    <div class="node-id">PB-07</div>
+                    <div style="font-weight: 700; color: var(--accent-glow);">VALIDAÇÃO</div>
+                    <div class="sub-tasks-container">
+                        <div class="sub-task"><span>07.1</span> Client Token</div>
+                        <div class="sub-task"><span>07.2</span> Verify Server</div>
+                    </div>
+                    <span class="time-macro">Σ 2,0 du</span>
+                </div>
+
+                <div class="tree-node" style="border-color: var(--accent-emerald);">
+                    <div class="node-id">PB-08</div>
+                    <div style="font-weight: 700; color: var(--accent-emerald);">TESTES FINAIS</div>
+                    <div class="sub-tasks-container">
+                        <div class="sub-task"><span>08.1</span> Matriz Testes</div>
+                        <div class="sub-task"><span>08.2</span> Execução/Evidência</div>
+                        <div class="sub-task"><span>08.3</span> Hotfixes</div>
+                    </div>
+                    <span class="time-macro">Σ 4,0 du</span>
                 </div>
             </div>
         </div>
-    </main>
+    </div>
+</main>
 
 <main id="micro" class="content-area">
     <div class="micro-container" style="max-width: 1100px; margin: 0 auto; padding: 20px;">
