@@ -812,7 +812,90 @@
 					</p>
 				</div>
 			</div>
-		
+			<div style="padding: 2.5rem;">
+			    <h2 style="margin-bottom: 2rem; color: var(--accent-glow); font-size: 26px; border-bottom: 1px solid var(--border-glass); padding-bottom: 15px;">
+			        Visão do Projeto: Transformação da Assinatura Digital
+			    </h2>
+			
+			    <div style="margin-bottom: 3.5rem;">
+			        <h3 style="color: #ef4444; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 10px; font-size: 18px;">
+			            <i class="fa-solid fa-circle-xmark"></i> Cenário Atual (Sem SafeID/PSC)
+			        </h3>
+			        
+			        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.5rem;">
+			            <div style="background: rgba(239, 68, 68, 0.05); border: 1px solid rgba(239, 68, 68, 0.15); padding: 20px; border-radius: 12px;">
+			                <b style="color: var(--text-primary); display: block; margin-bottom: 8px; font-size: 14px;">Certificado Local (A1/A3)</b>
+			                <p style="font-size: 12px; color: var(--text-secondary); line-height: 1.6;">
+			                    Dependência total da máquina do usuário. <br>
+			                    <span style="color: #f87171;"><b>Dores:</b> Suporte alto com drivers/Java, falhas de navegador e experiência ruim para times remotos.</span>
+			                </p>
+			            </div>
+			            <div style="background: rgba(239, 68, 68, 0.05); border: 1px solid rgba(239, 68, 68, 0.15); padding: 20px; border-radius: 12px;">
+			                <b style="color: var(--text-primary); display: block; margin-bottom: 8px; font-size: 14px;">Assinatura Manual Externa</b>
+			                <p style="font-size: 12px; color: var(--text-secondary); line-height: 1.6;">
+			                    Gera PDF, envia para outra ferramenta e aguarda retorno.<br>
+			                    <span style="color: #f87171;"><b>Dores:</b> Ciclo lento, risco de versões erradas e perda de rastreabilidade.</span>
+			                </p>
+			            </div>
+			            <div style="background: rgba(239, 68, 68, 0.05); border: 1px solid rgba(239, 68, 68, 0.15); padding: 20px; border-radius: 12px;">
+			                <b style="color: var(--text-primary); display: block; margin-bottom: 8px; font-size: 14px;">Validação Fraca/Inexistente</b>
+			                <p style="font-size: 12px; color: var(--text-secondary); line-height: 1.6;">
+			                    Confiança cega no arquivo ou validação manual externa.<br>
+			                    <span style="color: #f87171;"><b>Dores:</b> Risco de fraude/adulteração e impossibilidade de automação.</span>
+			                </p>
+			            </div>
+			        </div>
+			        <p style="margin-top: 15px; font-size: 13px; color: #ef4444; font-style: italic; text-align: center;">
+			            Resultado: Processo lento, dependente de hardware e com baixa capacidade de auditoria.
+			        </p>
+			    </div>
+			
+			    <div style="margin-bottom: 2rem;">
+			        <h3 style="color: var(--accent-emerald); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 10px; font-size: 18px;">
+			            <i class="fa-solid fa-circle-check"></i> Com Integração SafeID/PSC (Estado Futuro)
+			        </h3>
+			
+			        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2rem;">
+			            <div style="background: rgba(16, 185, 129, 0.05); border: 1px solid rgba(16, 185, 129, 0.15); padding: 20px; border-radius: 12px;">
+			                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+			                    <i class="fa-solid fa-qrcode" style="color: var(--accent-emerald);"></i>
+			                    <b style="color: var(--text-primary); font-size: 14px;">QRCode (OAuth + PKCE)</b>
+			                </div>
+			                <p style="font-size: 12px; color: var(--text-secondary);">Autorização via celular que gera token de usuário. Onboarding simples e fim da dependência de arquivos locais.</p>
+			            </div>
+			            <div style="background: rgba(16, 185, 129, 0.05); border: 1px solid rgba(16, 185, 129, 0.15); padding: 20px; border-radius: 12px;">
+			                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+			                    <i class="fa-solid fa-shield-halved" style="color: var(--accent-emerald);"></i>
+			                    <b style="color: var(--text-primary); font-size: 14px;">CA (Aplicação Confiável)</b>
+			                </div>
+			                <p style="font-size: 12px; color: var(--text-secondary);">Uso recorrente via <code>authorize-ca</code> + <code>pwd_authorize</code>. UX fluida para assinaturas frequentes.</p>
+			            </div>
+			        </div>
+			
+			        <div style="background: rgba(255, 255, 255, 0.02); border: 1px solid var(--border-glass); padding: 25px; border-radius: 15px;">
+			            <h4 style="color: var(--accent-glow); margin-bottom: 15px; font-size: 15px; text-transform: uppercase; letter-spacing: 1px;">Diferenciais que otimizam o fluxo ponta a ponta:</h4>
+			            
+			            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; font-size: 13px;">
+			                <ul style="list-style: none; padding: 0; color: var(--text-secondary);">
+			                    <li style="margin-bottom: 12px;">
+			                        <b style="color: var(--text-primary);">• Assinatura no Servidor:</b> Padronização total, eliminando variações de ambiente e reduzindo suporte técnico.
+			                    </li>
+			                    <li style="margin-bottom: 12px;">
+			                        <b style="color: var(--text-primary);">• Pipeline PAdES Completo:</b> Fluxo <code>start/apply/finish</code> permite automatizar o posicionamento de carimbos visuais.
+			                    </li>
+			                </ul>
+			                <ul style="list-style: none; padding: 0; color: var(--text-secondary);">
+			                    <li style="margin-bottom: 12px;">
+			                        <b style="color: var(--text-primary);">• Validação Server-Side (Verify):</b> Trava de qualidade automática (Valid/Invalid) antes de qualquer publicação ou protocolo.
+			                    </li>
+			                    <li style="margin-bottom: 12px;">
+			                        <b style="color: var(--text-primary);">• Auditoria e Rastreabilidade:</b> Monitoramento centralizado de cada operação via wrapper dedicado.
+			                    </li>
+			                </ul>
+			            </div>
+			        </div>
+			    </div>
+			</div>
             <div style="padding: 2.5rem;">
 				<h2 style="margin-bottom: 1.5rem; color: var(--accent-glow); font-size: 24px; border-bottom: 1px solid var(--border-glass); padding-bottom: 10px;">
 					SafeID (PSC SafeWeb) — Estimativa Desenvolvimento + Testes
