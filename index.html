@@ -389,7 +389,463 @@
 				</tr>
 			</tbody>
 		</table>
-       <div style="padding: 0 2.5rem 2.5rem 2.5rem;">
+		<div class="activity-card">
+            <div class="card-header">
+                <div>
+                    <div class="node-id">BACKLOG: PB-01</div>
+                    <div style="font-weight: 800; font-size: 18px; color: var(--text-primary);">Base Técnica & Contrato de Integração</div>
+                </div>
+                <div style="color: var(--accent-glow); font-weight: 800; font-size: 12px; letter-spacing: 1px;">INICIAL / SETUP</div>
+            </div>
+
+            <p style="font-size: 13px; color: var(--text-secondary); margin-bottom: 15px;">
+                Consolidação da malha de comunicação técnica, mapeamento de segurança (Bearer vs Client Credentials) e setup do ambiente de testes via Postman para validação de endpoints SafeWeb v0.
+            </p>
+
+            <div style="margin-bottom: 20px; padding: 12px; background: rgba(255,255,255,0.03); border-radius: 8px;">
+                <h4 style="font-size: 13px; color: var(--accent-glow); margin-bottom: 8px;">PB-01.1 — Checklist de Endpoints e Fluxos (0,5 du)</h4>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                    <div>
+                        <span style="font-size: 11px; font-weight: 700; color: var(--text-primary); text-transform: uppercase;">Ações DEV:</span>
+                        <ul class="sub-tasks">
+                            <li><i class="fa-solid fa-caret-right"></i> Mapear fluxos sequenciais <b>A → B → C</b> para QRCode e CA.</li>
+                            <li><i class="fa-solid fa-caret-right"></i> Segregar chamadas por tipo de Token.</li>
+                            <li><i class="fa-solid fa-caret-right"></i> Definir triggers para UI/jQuery.</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <span style="font-size: 11px; font-weight: 700; color: var(--text-primary); text-transform: uppercase;">Ações QA:</span>
+                        <ul class="sub-tasks">
+                            <li><i class="fa-solid fa-caret-right"></i> Validar conformidade com a documentação SafeWeb.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="tech-spec" style="margin-top: 10px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.05);">
+                    <b>Entrega:</b> Matriz de Endpoints | <b>Critério:</b> Cobertura de 100% dos 13 endpoints.
+                </div>
+            </div>
+
+            <div style="margin-bottom: 20px; padding: 12px; background: rgba(255,255,255,0.03); border-radius: 8px;">
+                <h4 style="font-size: 13px; color: var(--accent-glow); margin-bottom: 8px;">PB-01.2 — Coleção Postman & Environments (1,0 du)</h4>
+                <p style="font-size: 12px; color: var(--text-secondary); margin-bottom: 10px;">Setup de automação para testes de integração pré-desenvolvimento.</p>
+                <ul class="sub-tasks" style="columns: 2;">
+                    <li><i class="fa-solid fa-vial"></i> Pasta 01: QRCode Flow</li>
+                    <li><i class="fa-solid fa-vial"></i> Pasta 02: CA (Confiável)</li>
+                    <li><i class="fa-solid fa-vial"></i> Pasta 03: Signatures</li>
+                    <li><i class="fa-solid fa-vial"></i> Pasta 04: Discovery</li>
+                    <li><i class="fa-solid fa-vial"></i> Pasta 05: Verify</li>
+                    <li><i class="fa-solid fa-vial"></i> Pasta 99: Negativos</li>
+                </ul>
+                <div class="tech-spec" style="margin-top: 10px; font-size: 11px;">
+                    <b>Variáveis:</b> base_url, client_id, client_secret, identifierCA, state, code_verifier.
+                </div>
+            </div>
+
+            <div style="padding: 12px; background: rgba(255,255,255,0.03); border-radius: 8px;">
+                <h4 style="font-size: 13px; color: var(--accent-glow); margin-bottom: 8px;">PB-01.3 — Guia Rápido "Como Testar" (0,5 du)</h4>
+                <ul class="sub-tasks">
+                    <li><i class="fa-solid fa-book-open"></i> Ordem de execução para novos membros.</li>
+                    <li><i class="fa-solid fa-book-open"></i> Evidências: Print Request/Response.</li>
+                    <li><i class="fa-solid fa-book-open"></i> Catálogo de erros comuns: 401, State Mismatch.</li>
+                </ul>
+            </div>
+
+            <div class="card-meta" style="margin-top: auto; padding-top: 15px; border-top: 1px solid var(--border-glass); display: flex; justify-content: space-between; align-items: center;">
+                <div><span class="tag tag-dev" style="background: rgba(16, 185, 129, 0.1); color: var(--accent-emerald);">VALIDAÇÃO: POSTMAN GREEN</span></div>
+                <div style="text-align: right;">
+                    <span style="font-size: 11px; font-family: monospace; color: var(--text-secondary);">OWNER: QA + DEV</span>
+                    <div style="font-size: 14px; font-weight: 800; color: var(--text-primary);">Σ 2,0 du</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="activity-card" style="border-top-color: var(--accent-purple)">
+            <div class="card-header">
+                <div>
+                    <div class="node-id">SECURITY: PB-02</div>
+                    <div style="font-weight: 800; font-size: 18px; color: var(--text-primary);">Armazenamento Seguro & Persistência</div>
+                </div>
+                <div style="color: var(--accent-purple); font-weight: 800; font-size: 12px; letter-spacing: 1px;">CRÍTICO / BACKEND</div>
+            </div>
+
+            <p style="font-size: 13px; color: var(--text-secondary); margin-bottom: 15px;">
+                Arquitetura de dados para suporte ao handshake OAuth e custódia protegida de tokens de longa duração.
+            </p>
+
+            <div style="margin-bottom: 20px; padding: 12px; background: rgba(255,255,255,0.03); border-radius: 8px;">
+                <h4 style="font-size: 13px; color: var(--accent-glow); margin-bottom: 8px;">PB-02.1 — Definição do Modelo de Persistência (1,0 du)</h4>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                    <div>
+                        <span style="font-size: 11px; font-weight: 700; color: var(--text-primary); text-transform: uppercase;">Entidades (DEV):</span>
+                        <ul class="sub-tasks">
+                            <li><i class="fa-solid fa-database"></i> <b>Sessão QR:</b> state, verifier, empresa.</li>
+                            <li><i class="fa-solid fa-database"></i> <b>Sessão CA:</b> identifierCA, expiration.</li>
+                            <li><i class="fa-solid fa-database"></i> <b>Token Store:</b> ciphertext, expires_at.</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <span style="font-size: 11px; font-weight: 700; color: var(--text-primary); text-transform: uppercase;">Lógica:</span>
+                        <ul class="sub-tasks">
+                            <li><i class="fa-solid fa-code-branch"></i> Estados: Conectado, Expirado, Revogado.</li>
+                            <li><i class="fa-solid fa-clock"></i> TTL anti-CSRF.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin-bottom: 20px; padding: 12px; background: rgba(255,255,255,0.03); border-radius: 8px;">
+                <h4 style="font-size: 13px; color: var(--accent-glow); margin-bottom: 8px;">PB-02.2 — Cifragem AES-256 em Repouso (1,0 du)</h4>
+                <ul class="sub-tasks">
+                    <li><i class="fa-solid fa-shield-halved"></i> <code>encryptToken()</code> / <code>decryptToken()</code> no Service.</li>
+                    <li><i class="fa-solid fa-key"></i> <b>AES-256-GCM</b> com IV único e tag.</li>
+                    <li><i class="fa-solid fa-eye-slash"></i> Sanitização: Zero tokens em claro em logs.</li>
+                </ul>
+            </div>
+
+            <div style="padding: 12px; background: rgba(255,255,255,0.03); border-radius: 8px;">
+                <h4 style="font-size: 13px; color: var(--accent-glow); margin-bottom: 8px;">PB-02.3 — Finder / DAO e Camada de Acesso (2,0 du)</h4>
+                <ul class="sub-tasks">
+                    <li><i class="fa-solid fa-filter"></i> <code>findSessionByState()</code>.</li>
+                    <li><i class="fa-solid fa-check-to-slot"></i> <code>findActiveTokenByEmpresa()</code>.</li>
+                    <li><i class="fa-solid fa-broom"></i> Rotina de limpeza de states consumidos.</li>
+                </ul>
+            </div>
+
+            <div class="card-meta" style="margin-top: auto; padding-top: 15px; border-top: 1px solid var(--border-glass); display: flex; justify-content: space-between; align-items: center;">
+                <div><span class="tag tag-dev" style="background: rgba(139, 92, 246, 0.1); color: var(--accent-purple);">STATUS: DATA ARCHITECTURE OK</span></div>
+                <div style="text-align: right;">
+                    <span style="font-size: 11px; font-family: monospace; color: var(--text-secondary);">OWNER: BACKEND DEV</span>
+                    <div style="font-size: 14px; font-weight: 800; color: var(--text-primary);">Σ 4,0 du</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="activity-card" style="border-top-color: var(--accent-glow)">
+            <div class="card-header">
+                <div>
+                    <div class="node-id">CORE: PB-03</div>
+                    <div style="font-weight: 800; font-size: 18px; color: var(--text-primary);">Cliente HTTP PSC & Erros</div>
+                </div>
+                <div style="color: var(--accent-glow); font-weight: 800; font-size: 12px; letter-spacing: 1px;">MIDDLEWARE / INFRA</div>
+            </div>
+
+            <p style="font-size: 13px; color: var(--text-secondary); margin-bottom: 15px;">
+                Camada de comunicação resiliente garantindo normalização de exceções e logs auditáveis.
+            </p>
+
+            <div style="margin-bottom: 20px; padding: 12px; background: rgba(255,255,255,0.03); border-radius: 8px;">
+                <h4 style="font-size: 13px; color: var(--accent-glow); margin-bottom: 8px;">PB-03.1 — HTTP Client Base (1,5 du)</h4>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                    <div>
+                        <span style="font-size: 11px; font-weight: 700; color: var(--text-primary); text-transform: uppercase;">Implementação:</span>
+                        <ul class="sub-tasks">
+                            <li><i class="fa-solid fa-network-wired"></i> Wrapper Guzzle/cURL.</li>
+                            <li><i class="fa-solid fa-code"></i> JSON & Form-urlencoded.</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <span style="font-size: 11px; font-weight: 700; color: var(--text-primary); text-transform: uppercase;">Políticas:</span>
+                        <ul class="sub-tasks">
+                            <li><i class="fa-solid fa-rotate-right"></i> Retry para 429/5xx.</li>
+                            <li><i class="fa-solid fa-file-code"></i> Validar integridade JSON.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin-bottom: 20px; padding: 12px; background: rgba(255,255,255,0.03); border-radius: 8px;">
+                <h4 style="font-size: 13px; color: var(--accent-glow); margin-bottom: 8px;">PB-03.2 — Normalização de Erros (1,0 du)</h4>
+                <ul class="sub-tasks" style="columns: 2;">
+                    <li><i class="fa-solid fa-shield-virus"></i> <code>PSC_UNAVAILABLE</code></li>
+                    <li><i class="fa-solid fa-user-slash"></i> <code>PSC_USER_DENIED</code></li>
+                    <li><i class="fa-solid fa-key"></i> <code>PSC_UNAUTHORIZED</code></li>
+                    <li><i class="fa-solid fa-triangle-exclamation"></i> <code>INVALID_STATE</code></li>
+                </ul>
+            </div>
+
+            <div style="padding: 12px; background: rgba(255,255,255,0.03); border-radius: 8px;">
+                <h4 style="font-size: 13px; color: var(--accent-glow); margin-bottom: 8px;">PB-03.3 — Logs Seguros (0,5 du)</h4>
+                <ul class="sub-tasks">
+                    <li><i class="fa-solid fa-eye-slash"></i> Filtro Regex contra vazamento de secrets.</li>
+                    <li><i class="fa-solid fa-fingerprint"></i> correlation-id em todas as requisições.</li>
+                </ul>
+            </div>
+
+            <div class="card-meta" style="margin-top: auto; padding-top: 15px; border-top: 1px solid var(--border-glass); display: flex; justify-content: space-between; align-items: center;">
+                <div><span class="tag tag-dev" style="background: rgba(59, 130, 246, 0.1); color: var(--accent-glow);">STATUS: RESILIENCE ACTIVE</span></div>
+                <div style="text-align: right;">
+                    <span style="font-size: 11px; font-family: monospace; color: var(--text-secondary);">OWNER: DEV + QA</span>
+                    <div style="font-size: 14px; font-weight: 800; color: var(--text-primary);">Σ 3,0 du</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="activity-card" style="border-top-color: var(--accent-glow)">
+            <div class="card-header">
+                <div>
+                    <div class="node-id">FEATURE: PB-04</div>
+                    <div style="font-weight: 800; font-size: 18px; color: var(--text-primary);">Fluxo QRCode (OAuth + PKCE)</div>
+                </div>
+                <div style="color: var(--accent-glow); font-weight: 800; font-size: 12px; letter-spacing: 1px;">P0 / CRÍTICO</div>
+            </div>
+
+            <p style="font-size: 13px; color: var(--text-secondary); margin-bottom: 15px;">
+                Handshake de autorização principal via PKCE (RFC 7636).
+            </p>
+
+            <div style="margin-bottom: 20px; padding: 12px; background: rgba(255,255,255,0.03); border-radius: 8px;">
+                <h4 style="font-size: 13px; color: var(--accent-glow); margin-bottom: 8px;">PB-04.1 — Inicialização & PKCE (2,0 du)</h4>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                    <div>
+                        <span style="font-size: 11px; font-weight: 700; color: var(--text-primary); text-transform: uppercase;">Lógica:</span>
+                        <ul class="sub-tasks">
+                            <li><i class="fa-solid fa-shield-halved"></i> <code>code_verifier</code> (64 chars).</li>
+                            <li><i class="fa-solid fa-fingerprint"></i> <code>code_challenge</code> (S256).</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <span style="font-size: 11px; font-weight: 700; color: var(--text-primary); text-transform: uppercase;">Ação:</span>
+                        <ul class="sub-tasks">
+                            <li><i class="fa-solid fa-link"></i> Persistir verifier/state.</li>
+                            <li><i class="fa-solid fa-paper-plane"></i> Redirect para /authorize.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin-bottom: 20px; padding: 12px; background: rgba(255,255,255,0.03); border-radius: 8px;">
+                <h4 style="font-size: 13px; color: var(--accent-glow); margin-bottom: 8px;">PB-04.2 — Callback & Persistência (3,0 du)</h4>
+                <ul class="sub-tasks" style="columns: 2;">
+                    <li><i class="fa-solid fa-code-pull-request"></i> Validar state CSRF.</li>
+                    <li><i class="fa-solid fa-exchange-alt"></i> POST /token com verifier.</li>
+                    <li><i class="fa-solid fa-lock"></i> Cifrar Access Token.</li>
+                    <li><i class="fa-solid fa-ban"></i> Tratar <code>user_denied</code>.</li>
+                </ul>
+            </div>
+
+            <div style="padding: 12px; background: rgba(255,255,255,0.03); border-radius: 8px;">
+                <h4 style="font-size: 13px; color: var(--accent-glow); margin-bottom: 8px;">PB-04.3 — UI Hub Certificado (2,0 du)</h4>
+                <ul class="sub-tasks">
+                    <li><i class="fa-solid fa-layer-group"></i> Componente jQuery para estados dinâmicos.</li>
+                    <li><i class="fa-solid fa-toggle-off"></i> Ação "Revogar Acesso" local.</li>
+                </ul>
+            </div>
+
+            <div class="card-meta" style="margin-top: auto; padding-top: 15px; border-top: 1px solid var(--border-glass); display: flex; justify-content: space-between; align-items: center;">
+                <div><span class="tag tag-dev" style="background: rgba(16, 185, 129, 0.1); color: var(--accent-emerald);">STATUS: OAUTH CORE READY</span></div>
+                <div style="text-align: right;">
+                    <span style="font-size: 11px; font-family: monospace; color: var(--text-secondary);">RESP: DEV + QA</span>
+                    <div style="font-size: 14px; font-weight: 800; color: var(--text-primary);">Σ 7,0 du</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="activity-card" style="border-top-color: var(--accent-purple)">
+            <div class="card-header">
+                <div>
+                    <div class="node-id">FEATURE: PB-05</div>
+                    <div style="font-weight: 800; font-size: 18px; color: var(--text-primary);">Fluxo CA (Aplicação Confiável)</div>
+                </div>
+                <div style="color: var(--accent-purple); font-weight: 800; font-size: 12px; letter-spacing: 1px;">S2S / SEGURANÇA</div>
+            </div>
+
+            <p style="font-size: 13px; color: var(--text-secondary); margin-bottom: 15px;">
+                Trusted App flow para tokens de longa duração (7-30 dias).
+            </p>
+
+            <div style="margin-bottom: 20px; padding: 12px; background: rgba(255,255,255,0.03); border-radius: 8px;">
+                <h4 style="font-size: 13px; color: var(--accent-glow); margin-bottom: 8px;">PB-05.1 & 5.2 — Handshake CA & Identifier (2,5 du)</h4>
+                <ul class="sub-tasks">
+                    <li><i class="fa-solid fa-server"></i> POST <code>/authorize-ca</code> (JSON).</li>
+                    <li><i class="fa-solid fa-inbox"></i> Capturar <code>identifierCA</code> e <code>serialNumber</code>.</li>
+                </ul>
+            </div>
+
+            <div style="margin-bottom: 20px; padding: 12px; background: rgba(255,255,255,0.03); border-radius: 8px;">
+                <h4 style="font-size: 13px; color: var(--accent-glow); margin-bottom: 8px;">PB-05.3 — Token por Credencial (2,0 du)</h4>
+                <ul class="sub-tasks">
+                    <li><i class="fa-solid fa-link-slash"></i> <code>password = identifierCA + senha_usuario</code>.</li>
+                    <li><i class="fa-solid fa-file-import"></i> <code>POST /pwd_authorize</code>.</li>
+                </ul>
+            </div>
+
+            <div style="padding: 12px; background: rgba(255,255,255,0.03); border-radius: 8px;">
+                <h4 style="font-size: 13px; color: var(--accent-glow); margin-bottom: 8px;">PB-05.4 — UX/UI Fluxo CA (1,5 du)</h4>
+                <ul class="sub-tasks">
+                    <li><i class="fa-solid fa-keyboard"></i> Modal de Senha com disclaimer.</li>
+                    <li><i class="fa-solid fa-sliders"></i> Seletor de Lifetime PF (7d) / PJ (30d).</li>
+                </ul>
+            </div>
+
+            <div class="card-meta" style="margin-top: auto; padding-top: 15px; border-top: 1px solid var(--border-glass); display: flex; justify-content: space-between; align-items: center;">
+                <div><span class="tag tag-dev" style="background: rgba(139, 92, 246, 0.1); color: var(--accent-purple);">STATUS: TRUSTED FLOW</span></div>
+                <div style="text-align: right;">
+                    <span style="font-size: 11px; font-family: monospace; color: var(--text-secondary);">RESP: BACKEND + QA</span>
+                    <div style="font-size: 14px; font-weight: 800; color: var(--text-primary);">Σ 6,0 du</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="activity-card" style="border-top-color: var(--accent-glow)">
+            <div class="card-header">
+                <div>
+                    <div class="node-id">CORE: PB-06</div>
+                    <div style="font-weight: 800; font-size: 18px; color: var(--text-primary);">Assinaturas & Integração Full</div>
+                </div>
+                <div style="color: var(--accent-glow); font-weight: 800; font-size: 12px; letter-spacing: 1px;">CORE / BUSINESS</div>
+            </div>
+
+            <p style="font-size: 13px; color: var(--text-secondary); margin-bottom: 15px;">
+                Motor de execução de assinaturas digitais e consulta de titularidade.
+            </p>
+
+            <div style="margin-bottom: 20px; padding: 12px; background: rgba(255,255,255,0.03); border-radius: 8px;">
+                <h4 style="font-size: 13px; color: var(--accent-glow); margin-bottom: 8px;">PB-06.1 & 6.2 — Hashes & ICP-Brasil (4,0 du)</h4>
+                <ul class="sub-tasks">
+                    <li><i class="fa-solid fa-signature"></i> <code>assinarHashes()</code>: RAW/CMS e multi-hash.</li>
+                    <li><i class="fa-solid fa-gavel"></i> Políticas AD-RB e AD-RT via <code>signature-icp</code>.</li>
+                </ul>
+            </div>
+
+            <div style="margin-bottom: 20px; padding: 12px; background: rgba(255,255,255,0.03); border-radius: 8px;">
+                <h4 style="font-size: 13px; color: var(--accent-glow); margin-bottom: 8px;">PB-06.3 — Pipeline PAdES (3,0 du)</h4>
+                <ul class="sub-tasks" style="columns: 2;">
+                    <li><i class="fa-solid fa-file-pdf"></i> Start: Upload.</li>
+                    <li><i class="fa-solid fa-stamp"></i> Apply: Carimbo.</li>
+                    <li><i class="fa-solid fa-flag-checkered"></i> Finish: PDF.</li>
+                </ul>
+            </div>
+
+            <div style="padding: 12px; background: rgba(255,255,255,0.03); border-radius: 8px;">
+                <h4 style="font-size: 13px; color: var(--accent-glow); margin-bottom: 8px;">PB-06.4 & 6.5 — Consultas & Discovery (2,0 du)</h4>
+                <ul class="sub-tasks">
+                    <li><i class="fa-solid fa-address-card"></i> Certificate Info (Nome/E-mail na UI).</li>
+                    <li><i class="fa-solid fa-magnifying-glass-location"></i> User Discovery (Consulta via App Token).</li>
+                </ul>
+            </div>
+
+            <div class="card-meta" style="margin-top: auto; padding-top: 15px; border-top: 1px solid var(--border-glass); display: flex; justify-content: space-between; align-items: center;">
+                <div><span class="tag tag-dev" style="background: rgba(16, 185, 129, 0.1); color: var(--accent-emerald);">STATUS: CORE READY</span></div>
+                <div style="text-align: right;">
+                    <span style="font-size: 11px; font-family: monospace; color: var(--text-secondary);">RESP: DEV + QA</span>
+                    <div style="font-size: 14px; font-weight: 800; color: var(--text-primary);">Σ 9,0 du</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="activity-card" style="border-top-color: var(--accent-glow)">
+            <div class="card-header">
+                <div>
+                    <div class="node-id">BACKEND: PB-07</div>
+                    <div style="font-weight: 800; font-size: 18px; color: var(--text-primary);">App Token & Validação Server-side</div>
+                </div>
+                <div style="color: var(--accent-glow); font-weight: 800; font-size: 12px; letter-spacing: 1px;">S2S / INTEGRITY</div>
+            </div>
+
+            <div style="margin-bottom: 20px; padding: 12px; background: rgba(255,255,255,0.03); border-radius: 8px;">
+                <h4 style="font-size: 13px; color: var(--accent-glow); margin-bottom: 8px;">PB-07.1 — Client Token (0,5 du)</h4>
+                <ul class="sub-tasks">
+                    <li><i class="fa-solid fa-key"></i> <code>grant_type=client_credentials</code>.</li>
+                    <li><i class="fa-solid fa-database"></i> Cache de Token da Aplicação.</li>
+                </ul>
+            </div>
+
+            <div style="padding: 12px; background: rgba(255,255,255,0.03); border-radius: 8px;">
+                <h4 style="font-size: 13px; color: var(--accent-glow); margin-bottom: 8px;">PB-07.2 — Verificação de Assinaturas (1,5 du)</h4>
+                <ul class="sub-tasks">
+                    <li><i class="fa-solid fa-file-shield"></i> Chamar <code>POST /signature_verify</code>.</li>
+                    <li><i class="fa-solid fa-code-branch"></i> Status: Valid / Invalid / Indeterminate.</li>
+                </ul>
+            </div>
+
+            <div class="card-meta" style="margin-top: auto; padding-top: 15px; border-top: 1px solid var(--border-glass); display: flex; justify-content: space-between; align-items: center;">
+                <div><span class="tag tag-dev" style="background: rgba(59, 130, 246, 0.1); color: var(--accent-glow);">STATUS: ENGINE READY</span></div>
+                <div style="text-align: right;">
+                    <span style="font-size: 11px; font-family: monospace; color: var(--text-secondary);">RESP: BACKEND DEV</span>
+                    <div style="font-size: 14px; font-weight: 800; color: var(--text-primary);">Σ 2,0 du</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="activity-card" style="border-top-color: var(--accent-emerald)">
+            <div class="card-header">
+                <div>
+                    <div class="node-id">QA & STABILIZATION: PB-08</div>
+                    <div style="font-weight: 800; font-size: 18px; color: var(--text-primary);">Testes Homolog & Ajustes Finais</div>
+                </div>
+                <div style="color: var(--accent-emerald); font-weight: 800; font-size: 12px; letter-spacing: 1px;">FINAL / GREENLIGHT</div>
+            </div>
+
+            <p style="font-size: 13px; color: var(--text-secondary); margin-bottom: 15px;">
+                Ciclo de homologação rigorosa e captura de evidências técnicas para auditoria.
+            </p>
+
+            <div style="margin-bottom: 20px; padding: 12px; background: rgba(255,255,255,0.03); border-radius: 8px;">
+                <h4 style="font-size: 13px; color: var(--accent-glow); margin-bottom: 8px;">PB-08.1 — Matriz de Testes (1,0 du)</h4>
+                <ul class="sub-tasks">
+                    <li><i class="fa-solid fa-list-check"></i> Cenários: QR, CA, PAdES, Negativos.</li>
+                    <li><i class="fa-solid fa-bug"></i> Negativos: Denied, State Mismatch, Expired.</li>
+                </ul>
+            </div>
+
+            <div style="margin-bottom: 20px; padding: 12px; background: rgba(255,255,255,0.03); border-radius: 8px;">
+                <h4 style="font-size: 13px; color: var(--accent-glow); margin-bottom: 8px;">PB-08.2 — Execução & Evidências (2,0 du)</h4>
+                <ul class="sub-tasks">
+                    <li><i class="fa-solid fa-camera-retro"></i> Prints de Request/Response + payloads.</li>
+                    <li><i class="fa-solid fa-ticket"></i> Bug Tracking de contrato/parsing.</li>
+                </ul>
+            </div>
+
+            <div style="padding: 12px; background: rgba(255,255,255,0.03); border-radius: 8px;">
+                <h4 style="font-size: 13px; color: var(--accent-glow); margin-bottom: 8px;">PB-08.3 — Correções & Estabilização (1,0 du)</h4>
+                <ul class="sub-tasks">
+                    <li><i class="fa-solid fa-wrench"></i> Fixes de encoding e instabilidades de UX.</li>
+                    <li><i class="fa-solid fa-circle-check"></i> Reexecução Postman "Verde".</li>
+                </ul>
+            </div>
+
+            <div class="card-meta" style="margin-top: auto; padding-top: 15px; border-top: 1px solid var(--border-glass); display: flex; justify-content: space-between; align-items: center;">
+                <div><span class="tag tag-dev" style="background: rgba(16, 185, 129, 0.1); color: var(--accent-emerald);">STATUS: READY FOR GO-LIVE</span></div>
+                <div style="text-align: right;">
+                    <span style="font-size: 11px; font-family: monospace; color: var(--text-secondary);">RESP: QA + DEV</span>
+                    <div style="font-size: 14px; font-weight: 800; color: var(--text-primary);">Σ 4,0 du</div>
+                </div>
+            </div>
+        </div>
+	</div>
+</main>
+
+<main id="tasks" class="content-area">
+	 <style>
+        /* Ajustes específicos para a grid de tarefas detalhadas */
+        .activities-grid {
+            display: grid;
+            /* Força duas colunas, mas permite 1 em telas pequenas (mobile/tablet) */
+            grid-template-columns: repeat(auto-fit, minmax(800px, 1fr));
+            gap: 2rem;
+            align-items: start;
+        }
+
+        @media (max-width: 1024px) {
+            .activities-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .activity-card {
+            height: 100%; /* Mantém os cards alinhados se houver pouco conteúdo */
+            display: flex;
+            flex-direction: column;
+			margin-bottom: 15px;	
+        }
+
+        /* Prevenção de quebra de layout por conteúdo longo */
+        .sub-tasks {
+            word-wrap: break-word;
+        }
+    </style>
+    <div class="activities-grid">
+<div style="padding: 0 2.5rem 2.5rem 2.5rem;">
 			<div class="activity-card" style="border-top-color: var(--accent-glow); background: rgba(255,255,255,0.01); border: 1px solid var(--border-glass); padding: 25px; border-radius: 15px;">
 				
 				<div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px;">
@@ -1099,462 +1555,7 @@
 			</div>
 		</div>
     </div>
-</main>
-
-<main id="tasks" class="content-area">
-    <style>
-        /* Ajustes específicos para a grid de tarefas detalhadas */
-        .activities-grid {
-            display: grid;
-            /* Força duas colunas, mas permite 1 em telas pequenas (mobile/tablet) */
-            grid-template-columns: repeat(auto-fit, minmax(480px, 1fr));
-            gap: 2rem;
-            align-items: start;
-        }
-
-        @media (max-width: 1024px) {
-            .activities-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .activity-card {
-            height: 100%; /* Mantém os cards alinhados se houver pouco conteúdo */
-            display: flex;
-            flex-direction: column;
-        }
-
-        /* Prevenção de quebra de layout por conteúdo longo */
-        .sub-tasks {
-            word-wrap: break-word;
-        }
-    </style>
-
-    <div class="activities-grid">
-
-        <div class="activity-card">
-            <div class="card-header">
-                <div>
-                    <div class="node-id">BACKLOG: PB-01</div>
-                    <div style="font-weight: 800; font-size: 18px; color: var(--text-primary);">Base Técnica & Contrato de Integração</div>
-                </div>
-                <div style="color: var(--accent-glow); font-weight: 800; font-size: 12px; letter-spacing: 1px;">INICIAL / SETUP</div>
-            </div>
-
-            <p style="font-size: 13px; color: var(--text-secondary); margin-bottom: 15px;">
-                Consolidação da malha de comunicação técnica, mapeamento de segurança (Bearer vs Client Credentials) e setup do ambiente de testes via Postman para validação de endpoints SafeWeb v0.
-            </p>
-
-            <div style="margin-bottom: 20px; padding: 12px; background: rgba(255,255,255,0.03); border-radius: 8px;">
-                <h4 style="font-size: 13px; color: var(--accent-glow); margin-bottom: 8px;">PB-01.1 — Checklist de Endpoints e Fluxos (0,5 du)</h4>
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
-                    <div>
-                        <span style="font-size: 11px; font-weight: 700; color: var(--text-primary); text-transform: uppercase;">Ações DEV:</span>
-                        <ul class="sub-tasks">
-                            <li><i class="fa-solid fa-caret-right"></i> Mapear fluxos sequenciais <b>A → B → C</b> para QRCode e CA.</li>
-                            <li><i class="fa-solid fa-caret-right"></i> Segregar chamadas por tipo de Token.</li>
-                            <li><i class="fa-solid fa-caret-right"></i> Definir triggers para UI/jQuery.</li>
-                        </ul>
-                    </div>
-                    <div>
-                        <span style="font-size: 11px; font-weight: 700; color: var(--text-primary); text-transform: uppercase;">Ações QA:</span>
-                        <ul class="sub-tasks">
-                            <li><i class="fa-solid fa-caret-right"></i> Validar conformidade com a documentação SafeWeb.</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="tech-spec" style="margin-top: 10px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.05);">
-                    <b>Entrega:</b> Matriz de Endpoints | <b>Critério:</b> Cobertura de 100% dos 13 endpoints.
-                </div>
-            </div>
-
-            <div style="margin-bottom: 20px; padding: 12px; background: rgba(255,255,255,0.03); border-radius: 8px;">
-                <h4 style="font-size: 13px; color: var(--accent-glow); margin-bottom: 8px;">PB-01.2 — Coleção Postman & Environments (1,0 du)</h4>
-                <p style="font-size: 12px; color: var(--text-secondary); margin-bottom: 10px;">Setup de automação para testes de integração pré-desenvolvimento.</p>
-                <ul class="sub-tasks" style="columns: 2;">
-                    <li><i class="fa-solid fa-vial"></i> Pasta 01: QRCode Flow</li>
-                    <li><i class="fa-solid fa-vial"></i> Pasta 02: CA (Confiável)</li>
-                    <li><i class="fa-solid fa-vial"></i> Pasta 03: Signatures</li>
-                    <li><i class="fa-solid fa-vial"></i> Pasta 04: Discovery</li>
-                    <li><i class="fa-solid fa-vial"></i> Pasta 05: Verify</li>
-                    <li><i class="fa-solid fa-vial"></i> Pasta 99: Negativos</li>
-                </ul>
-                <div class="tech-spec" style="margin-top: 10px; font-size: 11px;">
-                    <b>Variáveis:</b> base_url, client_id, client_secret, identifierCA, state, code_verifier.
-                </div>
-            </div>
-
-            <div style="padding: 12px; background: rgba(255,255,255,0.03); border-radius: 8px;">
-                <h4 style="font-size: 13px; color: var(--accent-glow); margin-bottom: 8px;">PB-01.3 — Guia Rápido "Como Testar" (0,5 du)</h4>
-                <ul class="sub-tasks">
-                    <li><i class="fa-solid fa-book-open"></i> Ordem de execução para novos membros.</li>
-                    <li><i class="fa-solid fa-book-open"></i> Evidências: Print Request/Response.</li>
-                    <li><i class="fa-solid fa-book-open"></i> Catálogo de erros comuns: 401, State Mismatch.</li>
-                </ul>
-            </div>
-
-            <div class="card-meta" style="margin-top: auto; padding-top: 15px; border-top: 1px solid var(--border-glass); display: flex; justify-content: space-between; align-items: center;">
-                <div><span class="tag tag-dev" style="background: rgba(16, 185, 129, 0.1); color: var(--accent-emerald);">VALIDAÇÃO: POSTMAN GREEN</span></div>
-                <div style="text-align: right;">
-                    <span style="font-size: 11px; font-family: monospace; color: var(--text-secondary);">OWNER: QA + DEV</span>
-                    <div style="font-size: 14px; font-weight: 800; color: var(--text-primary);">Σ 2,0 du</div>
-                </div>
-            </div>
-        </div>
-
-        <div class="activity-card" style="border-top-color: var(--accent-purple)">
-            <div class="card-header">
-                <div>
-                    <div class="node-id">SECURITY: PB-02</div>
-                    <div style="font-weight: 800; font-size: 18px; color: var(--text-primary);">Armazenamento Seguro & Persistência</div>
-                </div>
-                <div style="color: var(--accent-purple); font-weight: 800; font-size: 12px; letter-spacing: 1px;">CRÍTICO / BACKEND</div>
-            </div>
-
-            <p style="font-size: 13px; color: var(--text-secondary); margin-bottom: 15px;">
-                Arquitetura de dados para suporte ao handshake OAuth e custódia protegida de tokens de longa duração.
-            </p>
-
-            <div style="margin-bottom: 20px; padding: 12px; background: rgba(255,255,255,0.03); border-radius: 8px;">
-                <h4 style="font-size: 13px; color: var(--accent-glow); margin-bottom: 8px;">PB-02.1 — Definição do Modelo de Persistência (1,0 du)</h4>
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
-                    <div>
-                        <span style="font-size: 11px; font-weight: 700; color: var(--text-primary); text-transform: uppercase;">Entidades (DEV):</span>
-                        <ul class="sub-tasks">
-                            <li><i class="fa-solid fa-database"></i> <b>Sessão QR:</b> state, verifier, empresa.</li>
-                            <li><i class="fa-solid fa-database"></i> <b>Sessão CA:</b> identifierCA, expiration.</li>
-                            <li><i class="fa-solid fa-database"></i> <b>Token Store:</b> ciphertext, expires_at.</li>
-                        </ul>
-                    </div>
-                    <div>
-                        <span style="font-size: 11px; font-weight: 700; color: var(--text-primary); text-transform: uppercase;">Lógica:</span>
-                        <ul class="sub-tasks">
-                            <li><i class="fa-solid fa-code-branch"></i> Estados: Conectado, Expirado, Revogado.</li>
-                            <li><i class="fa-solid fa-clock"></i> TTL anti-CSRF.</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <div style="margin-bottom: 20px; padding: 12px; background: rgba(255,255,255,0.03); border-radius: 8px;">
-                <h4 style="font-size: 13px; color: var(--accent-glow); margin-bottom: 8px;">PB-02.2 — Cifragem AES-256 em Repouso (1,0 du)</h4>
-                <ul class="sub-tasks">
-                    <li><i class="fa-solid fa-shield-halved"></i> <code>encryptToken()</code> / <code>decryptToken()</code> no Service.</li>
-                    <li><i class="fa-solid fa-key"></i> <b>AES-256-GCM</b> com IV único e tag.</li>
-                    <li><i class="fa-solid fa-eye-slash"></i> Sanitização: Zero tokens em claro em logs.</li>
-                </ul>
-            </div>
-
-            <div style="padding: 12px; background: rgba(255,255,255,0.03); border-radius: 8px;">
-                <h4 style="font-size: 13px; color: var(--accent-glow); margin-bottom: 8px;">PB-02.3 — Finder / DAO e Camada de Acesso (2,0 du)</h4>
-                <ul class="sub-tasks">
-                    <li><i class="fa-solid fa-filter"></i> <code>findSessionByState()</code>.</li>
-                    <li><i class="fa-solid fa-check-to-slot"></i> <code>findActiveTokenByEmpresa()</code>.</li>
-                    <li><i class="fa-solid fa-broom"></i> Rotina de limpeza de states consumidos.</li>
-                </ul>
-            </div>
-
-            <div class="card-meta" style="margin-top: auto; padding-top: 15px; border-top: 1px solid var(--border-glass); display: flex; justify-content: space-between; align-items: center;">
-                <div><span class="tag tag-dev" style="background: rgba(139, 92, 246, 0.1); color: var(--accent-purple);">STATUS: DATA ARCHITECTURE OK</span></div>
-                <div style="text-align: right;">
-                    <span style="font-size: 11px; font-family: monospace; color: var(--text-secondary);">OWNER: BACKEND DEV</span>
-                    <div style="font-size: 14px; font-weight: 800; color: var(--text-primary);">Σ 4,0 du</div>
-                </div>
-            </div>
-        </div>
-
-        <div class="activity-card" style="border-top-color: var(--accent-glow)">
-            <div class="card-header">
-                <div>
-                    <div class="node-id">CORE: PB-03</div>
-                    <div style="font-weight: 800; font-size: 18px; color: var(--text-primary);">Cliente HTTP PSC & Erros</div>
-                </div>
-                <div style="color: var(--accent-glow); font-weight: 800; font-size: 12px; letter-spacing: 1px;">MIDDLEWARE / INFRA</div>
-            </div>
-
-            <p style="font-size: 13px; color: var(--text-secondary); margin-bottom: 15px;">
-                Camada de comunicação resiliente garantindo normalização de exceções e logs auditáveis.
-            </p>
-
-            <div style="margin-bottom: 20px; padding: 12px; background: rgba(255,255,255,0.03); border-radius: 8px;">
-                <h4 style="font-size: 13px; color: var(--accent-glow); margin-bottom: 8px;">PB-03.1 — HTTP Client Base (1,5 du)</h4>
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
-                    <div>
-                        <span style="font-size: 11px; font-weight: 700; color: var(--text-primary); text-transform: uppercase;">Implementação:</span>
-                        <ul class="sub-tasks">
-                            <li><i class="fa-solid fa-network-wired"></i> Wrapper Guzzle/cURL.</li>
-                            <li><i class="fa-solid fa-code"></i> JSON & Form-urlencoded.</li>
-                        </ul>
-                    </div>
-                    <div>
-                        <span style="font-size: 11px; font-weight: 700; color: var(--text-primary); text-transform: uppercase;">Políticas:</span>
-                        <ul class="sub-tasks">
-                            <li><i class="fa-solid fa-rotate-right"></i> Retry para 429/5xx.</li>
-                            <li><i class="fa-solid fa-file-code"></i> Validar integridade JSON.</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <div style="margin-bottom: 20px; padding: 12px; background: rgba(255,255,255,0.03); border-radius: 8px;">
-                <h4 style="font-size: 13px; color: var(--accent-glow); margin-bottom: 8px;">PB-03.2 — Normalização de Erros (1,0 du)</h4>
-                <ul class="sub-tasks" style="columns: 2;">
-                    <li><i class="fa-solid fa-shield-virus"></i> <code>PSC_UNAVAILABLE</code></li>
-                    <li><i class="fa-solid fa-user-slash"></i> <code>PSC_USER_DENIED</code></li>
-                    <li><i class="fa-solid fa-key"></i> <code>PSC_UNAUTHORIZED</code></li>
-                    <li><i class="fa-solid fa-triangle-exclamation"></i> <code>INVALID_STATE</code></li>
-                </ul>
-            </div>
-
-            <div style="padding: 12px; background: rgba(255,255,255,0.03); border-radius: 8px;">
-                <h4 style="font-size: 13px; color: var(--accent-glow); margin-bottom: 8px;">PB-03.3 — Logs Seguros (0,5 du)</h4>
-                <ul class="sub-tasks">
-                    <li><i class="fa-solid fa-eye-slash"></i> Filtro Regex contra vazamento de secrets.</li>
-                    <li><i class="fa-solid fa-fingerprint"></i> correlation-id em todas as requisições.</li>
-                </ul>
-            </div>
-
-            <div class="card-meta" style="margin-top: auto; padding-top: 15px; border-top: 1px solid var(--border-glass); display: flex; justify-content: space-between; align-items: center;">
-                <div><span class="tag tag-dev" style="background: rgba(59, 130, 246, 0.1); color: var(--accent-glow);">STATUS: RESILIENCE ACTIVE</span></div>
-                <div style="text-align: right;">
-                    <span style="font-size: 11px; font-family: monospace; color: var(--text-secondary);">OWNER: DEV + QA</span>
-                    <div style="font-size: 14px; font-weight: 800; color: var(--text-primary);">Σ 3,0 du</div>
-                </div>
-            </div>
-        </div>
-
-        <div class="activity-card" style="border-top-color: var(--accent-glow)">
-            <div class="card-header">
-                <div>
-                    <div class="node-id">FEATURE: PB-04</div>
-                    <div style="font-weight: 800; font-size: 18px; color: var(--text-primary);">Fluxo QRCode (OAuth + PKCE)</div>
-                </div>
-                <div style="color: var(--accent-glow); font-weight: 800; font-size: 12px; letter-spacing: 1px;">P0 / CRÍTICO</div>
-            </div>
-
-            <p style="font-size: 13px; color: var(--text-secondary); margin-bottom: 15px;">
-                Handshake de autorização principal via PKCE (RFC 7636).
-            </p>
-
-            <div style="margin-bottom: 20px; padding: 12px; background: rgba(255,255,255,0.03); border-radius: 8px;">
-                <h4 style="font-size: 13px; color: var(--accent-glow); margin-bottom: 8px;">PB-04.1 — Inicialização & PKCE (2,0 du)</h4>
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
-                    <div>
-                        <span style="font-size: 11px; font-weight: 700; color: var(--text-primary); text-transform: uppercase;">Lógica:</span>
-                        <ul class="sub-tasks">
-                            <li><i class="fa-solid fa-shield-halved"></i> <code>code_verifier</code> (64 chars).</li>
-                            <li><i class="fa-solid fa-fingerprint"></i> <code>code_challenge</code> (S256).</li>
-                        </ul>
-                    </div>
-                    <div>
-                        <span style="font-size: 11px; font-weight: 700; color: var(--text-primary); text-transform: uppercase;">Ação:</span>
-                        <ul class="sub-tasks">
-                            <li><i class="fa-solid fa-link"></i> Persistir verifier/state.</li>
-                            <li><i class="fa-solid fa-paper-plane"></i> Redirect para /authorize.</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <div style="margin-bottom: 20px; padding: 12px; background: rgba(255,255,255,0.03); border-radius: 8px;">
-                <h4 style="font-size: 13px; color: var(--accent-glow); margin-bottom: 8px;">PB-04.2 — Callback & Persistência (3,0 du)</h4>
-                <ul class="sub-tasks" style="columns: 2;">
-                    <li><i class="fa-solid fa-code-pull-request"></i> Validar state CSRF.</li>
-                    <li><i class="fa-solid fa-exchange-alt"></i> POST /token com verifier.</li>
-                    <li><i class="fa-solid fa-lock"></i> Cifrar Access Token.</li>
-                    <li><i class="fa-solid fa-ban"></i> Tratar <code>user_denied</code>.</li>
-                </ul>
-            </div>
-
-            <div style="padding: 12px; background: rgba(255,255,255,0.03); border-radius: 8px;">
-                <h4 style="font-size: 13px; color: var(--accent-glow); margin-bottom: 8px;">PB-04.3 — UI Hub Certificado (2,0 du)</h4>
-                <ul class="sub-tasks">
-                    <li><i class="fa-solid fa-layer-group"></i> Componente jQuery para estados dinâmicos.</li>
-                    <li><i class="fa-solid fa-toggle-off"></i> Ação "Revogar Acesso" local.</li>
-                </ul>
-            </div>
-
-            <div class="card-meta" style="margin-top: auto; padding-top: 15px; border-top: 1px solid var(--border-glass); display: flex; justify-content: space-between; align-items: center;">
-                <div><span class="tag tag-dev" style="background: rgba(16, 185, 129, 0.1); color: var(--accent-emerald);">STATUS: OAUTH CORE READY</span></div>
-                <div style="text-align: right;">
-                    <span style="font-size: 11px; font-family: monospace; color: var(--text-secondary);">RESP: DEV + QA</span>
-                    <div style="font-size: 14px; font-weight: 800; color: var(--text-primary);">Σ 7,0 du</div>
-                </div>
-            </div>
-        </div>
-
-        <div class="activity-card" style="border-top-color: var(--accent-purple)">
-            <div class="card-header">
-                <div>
-                    <div class="node-id">FEATURE: PB-05</div>
-                    <div style="font-weight: 800; font-size: 18px; color: var(--text-primary);">Fluxo CA (Aplicação Confiável)</div>
-                </div>
-                <div style="color: var(--accent-purple); font-weight: 800; font-size: 12px; letter-spacing: 1px;">S2S / SEGURANÇA</div>
-            </div>
-
-            <p style="font-size: 13px; color: var(--text-secondary); margin-bottom: 15px;">
-                Trusted App flow para tokens de longa duração (7-30 dias).
-            </p>
-
-            <div style="margin-bottom: 20px; padding: 12px; background: rgba(255,255,255,0.03); border-radius: 8px;">
-                <h4 style="font-size: 13px; color: var(--accent-glow); margin-bottom: 8px;">PB-05.1 & 5.2 — Handshake CA & Identifier (2,5 du)</h4>
-                <ul class="sub-tasks">
-                    <li><i class="fa-solid fa-server"></i> POST <code>/authorize-ca</code> (JSON).</li>
-                    <li><i class="fa-solid fa-inbox"></i> Capturar <code>identifierCA</code> e <code>serialNumber</code>.</li>
-                </ul>
-            </div>
-
-            <div style="margin-bottom: 20px; padding: 12px; background: rgba(255,255,255,0.03); border-radius: 8px;">
-                <h4 style="font-size: 13px; color: var(--accent-glow); margin-bottom: 8px;">PB-05.3 — Token por Credencial (2,0 du)</h4>
-                <ul class="sub-tasks">
-                    <li><i class="fa-solid fa-link-slash"></i> <code>password = identifierCA + senha_usuario</code>.</li>
-                    <li><i class="fa-solid fa-file-import"></i> <code>POST /pwd_authorize</code>.</li>
-                </ul>
-            </div>
-
-            <div style="padding: 12px; background: rgba(255,255,255,0.03); border-radius: 8px;">
-                <h4 style="font-size: 13px; color: var(--accent-glow); margin-bottom: 8px;">PB-05.4 — UX/UI Fluxo CA (1,5 du)</h4>
-                <ul class="sub-tasks">
-                    <li><i class="fa-solid fa-keyboard"></i> Modal de Senha com disclaimer.</li>
-                    <li><i class="fa-solid fa-sliders"></i> Seletor de Lifetime PF (7d) / PJ (30d).</li>
-                </ul>
-            </div>
-
-            <div class="card-meta" style="margin-top: auto; padding-top: 15px; border-top: 1px solid var(--border-glass); display: flex; justify-content: space-between; align-items: center;">
-                <div><span class="tag tag-dev" style="background: rgba(139, 92, 246, 0.1); color: var(--accent-purple);">STATUS: TRUSTED FLOW</span></div>
-                <div style="text-align: right;">
-                    <span style="font-size: 11px; font-family: monospace; color: var(--text-secondary);">RESP: BACKEND + QA</span>
-                    <div style="font-size: 14px; font-weight: 800; color: var(--text-primary);">Σ 6,0 du</div>
-                </div>
-            </div>
-        </div>
-
-        <div class="activity-card" style="border-top-color: var(--accent-glow)">
-            <div class="card-header">
-                <div>
-                    <div class="node-id">CORE: PB-06</div>
-                    <div style="font-weight: 800; font-size: 18px; color: var(--text-primary);">Assinaturas & Integração Full</div>
-                </div>
-                <div style="color: var(--accent-glow); font-weight: 800; font-size: 12px; letter-spacing: 1px;">CORE / BUSINESS</div>
-            </div>
-
-            <p style="font-size: 13px; color: var(--text-secondary); margin-bottom: 15px;">
-                Motor de execução de assinaturas digitais e consulta de titularidade.
-            </p>
-
-            <div style="margin-bottom: 20px; padding: 12px; background: rgba(255,255,255,0.03); border-radius: 8px;">
-                <h4 style="font-size: 13px; color: var(--accent-glow); margin-bottom: 8px;">PB-06.1 & 6.2 — Hashes & ICP-Brasil (4,0 du)</h4>
-                <ul class="sub-tasks">
-                    <li><i class="fa-solid fa-signature"></i> <code>assinarHashes()</code>: RAW/CMS e multi-hash.</li>
-                    <li><i class="fa-solid fa-gavel"></i> Políticas AD-RB e AD-RT via <code>signature-icp</code>.</li>
-                </ul>
-            </div>
-
-            <div style="margin-bottom: 20px; padding: 12px; background: rgba(255,255,255,0.03); border-radius: 8px;">
-                <h4 style="font-size: 13px; color: var(--accent-glow); margin-bottom: 8px;">PB-06.3 — Pipeline PAdES (3,0 du)</h4>
-                <ul class="sub-tasks" style="columns: 2;">
-                    <li><i class="fa-solid fa-file-pdf"></i> Start: Upload.</li>
-                    <li><i class="fa-solid fa-stamp"></i> Apply: Carimbo.</li>
-                    <li><i class="fa-solid fa-flag-checkered"></i> Finish: PDF.</li>
-                </ul>
-            </div>
-
-            <div style="padding: 12px; background: rgba(255,255,255,0.03); border-radius: 8px;">
-                <h4 style="font-size: 13px; color: var(--accent-glow); margin-bottom: 8px;">PB-06.4 & 6.5 — Consultas & Discovery (2,0 du)</h4>
-                <ul class="sub-tasks">
-                    <li><i class="fa-solid fa-address-card"></i> Certificate Info (Nome/E-mail na UI).</li>
-                    <li><i class="fa-solid fa-magnifying-glass-location"></i> User Discovery (Consulta via App Token).</li>
-                </ul>
-            </div>
-
-            <div class="card-meta" style="margin-top: auto; padding-top: 15px; border-top: 1px solid var(--border-glass); display: flex; justify-content: space-between; align-items: center;">
-                <div><span class="tag tag-dev" style="background: rgba(16, 185, 129, 0.1); color: var(--accent-emerald);">STATUS: CORE READY</span></div>
-                <div style="text-align: right;">
-                    <span style="font-size: 11px; font-family: monospace; color: var(--text-secondary);">RESP: DEV + QA</span>
-                    <div style="font-size: 14px; font-weight: 800; color: var(--text-primary);">Σ 9,0 du</div>
-                </div>
-            </div>
-        </div>
-
-        <div class="activity-card" style="border-top-color: var(--accent-glow)">
-            <div class="card-header">
-                <div>
-                    <div class="node-id">BACKEND: PB-07</div>
-                    <div style="font-weight: 800; font-size: 18px; color: var(--text-primary);">App Token & Validação Server-side</div>
-                </div>
-                <div style="color: var(--accent-glow); font-weight: 800; font-size: 12px; letter-spacing: 1px;">S2S / INTEGRITY</div>
-            </div>
-
-            <div style="margin-bottom: 20px; padding: 12px; background: rgba(255,255,255,0.03); border-radius: 8px;">
-                <h4 style="font-size: 13px; color: var(--accent-glow); margin-bottom: 8px;">PB-07.1 — Client Token (0,5 du)</h4>
-                <ul class="sub-tasks">
-                    <li><i class="fa-solid fa-key"></i> <code>grant_type=client_credentials</code>.</li>
-                    <li><i class="fa-solid fa-database"></i> Cache de Token da Aplicação.</li>
-                </ul>
-            </div>
-
-            <div style="padding: 12px; background: rgba(255,255,255,0.03); border-radius: 8px;">
-                <h4 style="font-size: 13px; color: var(--accent-glow); margin-bottom: 8px;">PB-07.2 — Verificação de Assinaturas (1,5 du)</h4>
-                <ul class="sub-tasks">
-                    <li><i class="fa-solid fa-file-shield"></i> Chamar <code>POST /signature_verify</code>.</li>
-                    <li><i class="fa-solid fa-code-branch"></i> Status: Valid / Invalid / Indeterminate.</li>
-                </ul>
-            </div>
-
-            <div class="card-meta" style="margin-top: auto; padding-top: 15px; border-top: 1px solid var(--border-glass); display: flex; justify-content: space-between; align-items: center;">
-                <div><span class="tag tag-dev" style="background: rgba(59, 130, 246, 0.1); color: var(--accent-glow);">STATUS: ENGINE READY</span></div>
-                <div style="text-align: right;">
-                    <span style="font-size: 11px; font-family: monospace; color: var(--text-secondary);">RESP: BACKEND DEV</span>
-                    <div style="font-size: 14px; font-weight: 800; color: var(--text-primary);">Σ 2,0 du</div>
-                </div>
-            </div>
-        </div>
-
-        <div class="activity-card" style="border-top-color: var(--accent-emerald)">
-            <div class="card-header">
-                <div>
-                    <div class="node-id">QA & STABILIZATION: PB-08</div>
-                    <div style="font-weight: 800; font-size: 18px; color: var(--text-primary);">Testes Homolog & Ajustes Finais</div>
-                </div>
-                <div style="color: var(--accent-emerald); font-weight: 800; font-size: 12px; letter-spacing: 1px;">FINAL / GREENLIGHT</div>
-            </div>
-
-            <p style="font-size: 13px; color: var(--text-secondary); margin-bottom: 15px;">
-                Ciclo de homologação rigorosa e captura de evidências técnicas para auditoria.
-            </p>
-
-            <div style="margin-bottom: 20px; padding: 12px; background: rgba(255,255,255,0.03); border-radius: 8px;">
-                <h4 style="font-size: 13px; color: var(--accent-glow); margin-bottom: 8px;">PB-08.1 — Matriz de Testes (1,0 du)</h4>
-                <ul class="sub-tasks">
-                    <li><i class="fa-solid fa-list-check"></i> Cenários: QR, CA, PAdES, Negativos.</li>
-                    <li><i class="fa-solid fa-bug"></i> Negativos: Denied, State Mismatch, Expired.</li>
-                </ul>
-            </div>
-
-            <div style="margin-bottom: 20px; padding: 12px; background: rgba(255,255,255,0.03); border-radius: 8px;">
-                <h4 style="font-size: 13px; color: var(--accent-glow); margin-bottom: 8px;">PB-08.2 — Execução & Evidências (2,0 du)</h4>
-                <ul class="sub-tasks">
-                    <li><i class="fa-solid fa-camera-retro"></i> Prints de Request/Response + payloads.</li>
-                    <li><i class="fa-solid fa-ticket"></i> Bug Tracking de contrato/parsing.</li>
-                </ul>
-            </div>
-
-            <div style="padding: 12px; background: rgba(255,255,255,0.03); border-radius: 8px;">
-                <h4 style="font-size: 13px; color: var(--accent-glow); margin-bottom: 8px;">PB-08.3 — Correções & Estabilização (1,0 du)</h4>
-                <ul class="sub-tasks">
-                    <li><i class="fa-solid fa-wrench"></i> Fixes de encoding e instabilidades de UX.</li>
-                    <li><i class="fa-solid fa-circle-check"></i> Reexecução Postman "Verde".</li>
-                </ul>
-            </div>
-
-            <div class="card-meta" style="margin-top: auto; padding-top: 15px; border-top: 1px solid var(--border-glass); display: flex; justify-content: space-between; align-items: center;">
-                <div><span class="tag tag-dev" style="background: rgba(16, 185, 129, 0.1); color: var(--accent-emerald);">STATUS: READY FOR GO-LIVE</span></div>
-                <div style="text-align: right;">
-                    <span style="font-size: 11px; font-family: monospace; color: var(--text-secondary);">RESP: QA + DEV</span>
-                    <div style="font-size: 14px; font-weight: 800; color: var(--text-primary);">Σ 4,0 du</div>
-                </div>
-            </div>
-        </div>
+        
 
     </div>
 </main>
