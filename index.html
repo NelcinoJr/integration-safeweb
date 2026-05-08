@@ -2010,6 +2010,713 @@
 						</p>
 					</div>
 				</div>
+				<div style="padding: 2.5rem; background: var(--bg-card); border-radius: 15px; border: 1px solid var(--border-glass); margin-bottom: 2rem;">
+    
+					<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; border-bottom: 1px solid var(--border-glass); padding-bottom: 1rem;">
+						<h2 style="color: var(--text-primary); margin: 0; font-size: 22px;">EAP extremamente detalhada — matriz gestão (subset focado)</h2>
+						<span style="background: var(--accent-glow); color: #000; padding: 4px 12px; border-radius: 20px; font-weight: 800; font-size: 11px;">SUBTOTAL: 19,5 du</span>
+					</div>
+
+					<p style="color: var(--text-secondary); font-size: 14px; margin-bottom: 1.5rem; line-height: 1.6;">
+						Esta secção replica a matriz que você definiu (IDs, DU, entregas, protocolo de validação) e expande cada linha com especificação operacional para <b>DEV</b>, <b>QA</b> e <b>referência técnica</b>.
+					</p>
+
+					<ul style="color: var(--text-secondary); font-size: 13px; margin-bottom: 2rem; padding-left: 1.5rem; line-height: 1.8;">
+						<li><b>Somatório desta matriz:</b> 19,5 du (subconjunto do plano completo de 37 du).</li>
+						<li><b>Inventário único das 26 atividades (tabela + DU):</b> secção Inventário mestre.</li>
+						<li><b>Mesmo nível de detalhe para as outras 15 atividades:</b> secção EAP complementar — formato fechado (17,5 du). 19,5 + 17,5 = 37 du.</li>
+					</ul>
+
+					<div style="overflow-x: auto;">
+						<table style="width: 100%; border-collapse: collapse; color: var(--text-primary); font-size: 12px; border: 1px solid var(--border-glass);">
+							<thead>
+								<tr style="background: rgba(255, 255, 255, 0.03); text-align: left;">
+									<th style="padding: 12px; border: 1px solid var(--border-glass); color: var(--accent-glow);">ID</th>
+									<th style="padding: 12px; border: 1px solid var(--border-glass); color: var(--accent-glow);">Requisito técnico / atividade específica</th>
+									<th style="padding: 12px; border: 1px solid var(--border-glass); color: var(--accent-glow); text-align: center;">DU</th>
+									<th style="padding: 12px; border: 1px solid var(--border-glass); color: var(--accent-glow);">Especificação de entrega (artefato)</th>
+									<th style="padding: 12px; border: 1px solid var(--border-glass); color: var(--accent-glow);">Protocolo de validação</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td style="padding: 10px; border: 1px solid var(--border-glass); font-weight: bold;">PB-01.1</td>
+									<td style="padding: 10px; border: 1px solid var(--border-glass);">Mapeamento de Endpoints e Fluxos QRCode & CA Flow | Token User vs App</td>
+									<td style="padding: 10px; border: 1px solid var(--border-glass); text-align: center;">0,5</td>
+									<td style="padding: 10px; border: 1px solid var(--border-glass);">Matriz de chamadas PSC vinculada a endpoints internos do app cliente.</td>
+									<td style="padding: 10px; border: 1px solid var(--border-glass);">DDA (Document Design Analysis) aprovado.</td>
+								</tr>
+								<tr>
+									<td style="padding: 10px; border: 1px solid var(--border-glass); font-weight: bold;">PB-01.2</td>
+									<td style="padding: 10px; border: 1px solid var(--border-glass);">Collection Postman & Environments Variables: base_url, client_secret, state</td>
+									<td style="padding: 10px; border: 1px solid var(--border-glass); text-align: center;">1,0</td>
+									<td style="padding: 10px; border: 1px solid var(--border-glass);">Collection JSON com pastas segmentadas e scripts de pré-requisito.</td>
+									<td style="padding: 10px; border: 1px solid var(--border-glass);">Execução bem-sucedida de fluxo ponta a ponta via Postman.</td>
+								</tr>
+								<tr>
+									<td style="padding: 10px; border: 1px solid var(--border-glass); font-weight: bold;">PB-02.2</td>
+									<td style="padding: 10px; border: 1px solid var(--border-glass);">Cifragem AES-256-GCM Crypto Service Layer | Auth Tag | IV único</td>
+									<td style="padding: 10px; border: 1px solid var(--border-glass); text-align: center;">1,0</td>
+									<td style="padding: 10px; border: 1px solid var(--border-glass);">Utilitário de criptografia simétrica para proteção de tokens no MySQL.</td>
+									<td style="padding: 10px; border: 1px solid var(--border-glass);">Roundtrip de decifragem com erro forçado em chave inválida.</td>
+								</tr>
+								<tr>
+									<td style="padding: 10px; border: 1px solid var(--border-glass); font-weight: bold;">PB-02.3</td>
+									<td style="padding: 10px; border: 1px solid var(--border-glass);">Camada Finder/DAO (Persistence) ORM: CodeIgniter | Entity: PscAccessTokens</td>
+									<td style="padding: 10px; border: 1px solid var(--border-glass); text-align: center;">2,0</td>
+									<td style="padding: 10px; border: 1px solid var(--border-glass);">Métodos de busca por state, empresa e validação de expiração.</td>
+									<td style="padding: 10px; border: 1px solid var(--border-glass);">Integração SQL validada sem exposição de tokens em claro.</td>
+								</tr>
+								<tr>
+									<td style="padding: 10px; border: 1px solid var(--border-glass); font-weight: bold;">PB-03.1</td>
+									<td style="padding: 10px; border: 1px solid var(--border-glass);">PSC HTTP Client Wrapper Headers: Bearer Auth | JSON & Form Parsing</td>
+									<td style="padding: 10px; border: 1px solid var(--border-glass); text-align: center;">1,5</td>
+									<td style="padding: 10px; border: 1px solid var(--border-glass);">Classe de comunicação centralizada com tratamento de timeouts.</td>
+									<td style="padding: 10px; border: 1px solid var(--border-glass);">Logs inspecionados garantindo zero vazamento de segredos.</td>
+								</tr>
+								<tr>
+									<td style="padding: 10px; border: 1px solid var(--border-glass); font-weight: bold;">PB-04.1</td>
+									<td style="padding: 10px; border: 1px solid var(--border-glass);">Handshake PKCE (Authorize) S256 Challenge | Code Verifier (RFC 7636)</td>
+									<td style="padding: 10px; border: 1px solid var(--border-glass); text-align: center;">2,0</td>
+									<td style="padding: 10px; border: 1px solid var(--border-glass);">Endpoint de geração de segredos e redirecionamento dinâmico.</td>
+									<td style="padding: 10px; border: 1px solid var(--border-glass);">Sucesso no redirecionamento para o Authorize PSC.</td>
+								</tr>
+								<tr>
+									<td style="padding: 10px; border: 1px solid var(--border-glass); font-weight: bold;">PB-04.2</td>
+									<td style="padding: 10px; border: 1px solid var(--border-glass);">OAuth Callback & Token Exchange Grant: authorization_code | State Validation</td>
+									<td style="padding: 10px; border: 1px solid var(--border-glass); text-align: center;">3,0</td>
+									<td style="padding: 10px; border: 1px solid var(--border-glass);">Controller receptor de code/state com conversão para access_token.</td>
+									<td style="padding: 10px; border: 1px solid var(--border-glass);">Teste de negação (User Denied) e State Mismatch.</td>
+								</tr>
+								<tr>
+									<td style="padding: 10px; border: 1px solid var(--border-glass); font-weight: bold;">PB-05.3</td>
+									<td style="padding: 10px; border: 1px solid var(--border-glass);">Flow CA: pwd_authorize Password: identifierCA + senhaCertificado</td>
+									<td style="padding: 10px; border: 1px solid var(--border-glass); text-align: center;">2,0</td>
+									<td style="padding: 10px; border: 1px solid var(--border-glass);">Lógica de concatenação e troca de credencial por token de sessão.</td>
+									<td style="padding: 10px; border: 1px solid var(--border-glass);">Assinatura bem-sucedida usando token CA.</td>
+								</tr>
+								<tr>
+									<td style="padding: 10px; border: 1px solid var(--border-glass); font-weight: bold;">PB-06.3</td>
+									<td style="padding: 10px; border: 1px solid var(--border-glass);">Pipeline PAdES (Digital Signature) Methods: start / apply / finish / info</td>
+									<td style="padding: 10px; border: 1px solid var(--border-glass); text-align: center;">3,0</td>
+									<td style="padding: 10px; border: 1px solid var(--border-glass);">Implementação de fluxo multi-etapa para PDF com carimbo visual.</td>
+									<td style="padding: 10px; border: 1px solid var(--border-glass);">Geração de PDF assinado íntegro e validável no Adobe Reader.</td>
+								</tr>
+								<tr>
+									<td style="padding: 10px; border: 1px solid var(--border-glass); font-weight: bold;">PB-07.2</td>
+									<td style="padding: 10px; border: 1px solid var(--border-glass);">Server-Side Signature Verify Bearer: App Token | Result: Valid/Invalid</td>
+									<td style="padding: 10px; border: 1px solid var(--border-glass); text-align: center;">1,5</td>
+									<td style="padding: 10px; border: 1px solid var(--border-glass);">Validação de integridade de arquivos usando credenciais de aplicação.</td>
+									<td style="padding: 10px; border: 1px solid var(--border-glass);">Controle de fluxo baseado no status da assinatura.</td>
+								</tr>
+								<tr>
+									<td style="padding: 10px; border: 1px solid var(--border-glass); font-weight: bold;">PB-08.2</td>
+									<td style="padding: 10px; border: 1px solid var(--border-glass);">Evidências e Homologação Final Regression Suite | Security Audit</td>
+									<td style="padding: 10px; border: 1px solid var(--border-glass); text-align: center;">2,0</td>
+									<td style="padding: 10px; border: 1px solid var(--border-glass);">Relatório consolidado de testes e amostras de logs (Grep Test).</td>
+									<td style="padding: 10px; border: 1px solid var(--border-glass);">Aprovação 100% da matriz de testes obrigatórios.</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<div style="margin-bottom: 40px; border-left: 4px solid var(--accent-glow); padding-left: 20px;">
+					<h3 style="color: var(--text-primary); font-size: 18px; margin-bottom: 15px;">PB-01.1 — Mapeamento de endpoints e fluxos (QRCode & CA) | Token User vs App — 0,5 du</h3>
+					
+					<div style="background: rgba(255,255,255,0.02); padding: 15px; border-radius: 8px; border: 1px solid var(--border-glass); margin-bottom: 20px;">
+						<p style="font-size: 13px; color: var(--text-secondary);"><b>Objetivo:</b> fechar o “contrato de integração” antes de codificar em massa: qual chamada PSC, em que ordem, com qual token (titular vs aplicação) e qual rota interna do ContaÁgil corresponde.</p>
+					</div>
+
+					<h4 style="color: var(--accent-glow); font-size: 14px; margin-bottom: 10px;">Entrega formal (artefato): matriz (planilha ou Markdown) com colunas mínimas:</h4>
+					<table class="micro-table" style="width: 100%; font-size: 11px; margin-bottom: 20px; border-collapse: collapse;">
+						<thead>
+							<tr style="background: rgba(255,255,255,0.05); text-align: left;">
+								<th style="padding: 8px; border: 1px solid var(--border-glass);">#</th>
+								<th style="padding: 8px; border: 1px solid var(--border-glass);">Fluxo</th>
+								<th style="padding: 8px; border: 1px solid var(--border-glass);">Passo</th>
+								<th style="padding: 8px; border: 1px solid var(--border-glass);">Método</th>
+								<th style="padding: 8px; border: 1px solid var(--border-glass);">Path PSC (relativo)</th>
+								<th style="padding: 8px; border: 1px solid var(--border-glass);">Auth header/body</th>
+								<th style="padding: 8px; border: 1px solid var(--border-glass);">Endpoint interno CI</th>
+								<th style="padding: 8px; border: 1px solid var(--border-glass);">Observações</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td style="padding: 8px; border: 1px solid var(--border-glass);">...</td>
+								<td style="padding: 8px; border: 1px solid var(--border-glass);">QRCode</td>
+								<td style="padding: 8px; border: 1px solid var(--border-glass);">1</td>
+								<td style="padding: 8px; border: 1px solid var(--border-glass);">GET</td>
+								<td style="padding: 8px; border: 1px solid var(--border-glass);">/oauth/authorize</td>
+								<td style="padding: 8px; border: 1px solid var(--border-glass); text-align: center;">— (browser)</td>
+								<td style="padding: 8px; border: 1px solid var(--border-glass);">GET /.../conectar_qrcode</td>
+								<td style="padding: 8px; border: 1px solid var(--border-glass);">PKCE na query</td>
+							</tr>
+							<tr>
+								<td style="padding: 8px; border: 1px solid var(--border-glass);">...</td>
+								<td style="padding: 8px; border: 1px solid var(--border-glass);">QRCode</td>
+								<td style="padding: 8px; border: 1px solid var(--border-glass);">2</td>
+								<td style="padding: 8px; border: 1px solid var(--border-glass);">POST</td>
+								<td style="padding: 8px; border: 1px solid var(--border-glass);">/oauth/token</td>
+								<td style="padding: 8px; border: 1px solid var(--border-glass);">form + client_secret</td>
+								<td style="padding: 8px; border: 1px solid var(--border-glass);">GET /.../callback</td>
+								<td style="padding: 8px; border: 1px solid var(--border-glass);">code_verifier</td>
+							</tr>
+							<tr>
+								<td style="padding: 8px; border: 1px solid var(--border-glass);">...</td>
+								<td style="padding: 8px; border: 1px solid var(--border-glass);">CA</td>
+								<td style="padding: 8px; border: 1px solid var(--border-glass);">1</td>
+								<td style="padding: 8px; border: 1px solid var(--border-glass);">POST</td>
+								<td style="padding: 8px; border: 1px solid var(--border-glass);">/oauth/authorize-ca</td>
+								<td style="padding: 8px; border: 1px solid var(--border-glass);">JSON</td>
+								<td style="padding: 8px; border: 1px solid var(--border-glass);">POST /.../ca/iniciar</td>
+								<td style="padding: 8px; border: 1px solid var(--border-glass);">state</td>
+							</tr>
+							<tr>
+								<td style="padding: 8px; border: 1px solid var(--border-glass);">...</td>
+								<td style="padding: 8px; border: 1px solid var(--border-glass);">Assinatura</td>
+								<td style="padding: 8px; border: 1px solid var(--border-glass);">n</td>
+								<td style="padding: 8px; border: 1px solid var(--border-glass);">POST</td>
+								<td style="padding: 8px; border: 1px solid var(--border-glass);">/oauth/signature</td>
+								<td style="padding: 8px; border: 1px solid var(--border-glass);">Bearer user</td>
+								<td style="padding: 8px; border: 1px solid var(--border-glass);">POST /.../assinar/hash</td>
+								<td style="padding: 8px; border: 1px solid var(--border-glass);">...</td>
+							</tr>
+							<tr>
+								<td style="padding: 8px; border: 1px solid var(--border-glass);">...</td>
+								<td style="padding: 8px; border: 1px solid var(--border-glass);">Verify</td>
+								<td style="padding: 8px; border: 1px solid var(--border-glass);">n</td>
+								<td style="padding: 8px; border: 1px solid var(--border-glass);">POST</td>
+								<td style="padding: 8px; border: 1px solid var(--border-glass);">/oauth/signature_verify</td>
+								<td style="padding: 8px; border: 1px solid var(--border-glass);">Bearer app</td>
+								<td style="padding: 8px; border: 1px solid var(--border-glass);">POST /.../validar</td>
+								<td style="padding: 8px; border: 1px solid var(--border-glass);">não misturar tokens</td>
+							</tr>
+						</tbody>
+					</table>
+
+					<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; font-size: 12px;">
+						<div style="background: rgba(0,0,0,0.2); padding: 15px; border-radius: 8px;">
+							<b style="color: var(--text-primary);">Passos DEV (0,5 du):</b>
+							<ul style="color: var(--text-secondary); margin-top: 8px; padding-left: 15px;">
+								<li>Listar endpoints PSC obrigatórios do escopo (authorize, token, authorize-ca, pwd_authorize, signature, signature-icp, pades…, discovery, info, user-discovery, client_token, signature_verify, certificate-info).</li>
+								<li>Para cada endpoint, classificar: Bearer titular vs client_id/secret no body vs form app token.</li>
+								<li>Desenhar dois swimlanes: fluxo QRCode e fluxo CA até “token válido”.</li>
+								<li>Marcar pontos de persistência: onde grava state, code_verifier, identifierCA, token cifrado.</li>
+								<li>Submeter matriz para revisão (DDA).</li>
+							</ul>
+						</div>
+						<div style="background: rgba(0,0,0,0.2); padding: 15px; border-radius: 8px;">
+							<b style="color: var(--accent-emerald);">Protocolo de validação (DDA aprovado):</b>
+							<ul style="color: var(--text-secondary); margin-top: 8px; padding-left: 15px;">
+								<li>Reunião ou comentário assíncrono com arquiteto/líder (ou 2º par) com checklist:</li>
+								<li>- Fluxo QRCode completo na matriz</li>
+								<li>- Fluxo CA completo na matriz</li>
+								<li>- Separação user token vs app token sem ambiguidade</li>
+								<li>- Callback e retornos CA mapeados</li>
+								<li><b>DoD:</b> matriz versionada no repo (docs/SAFEID_ENDPOINT_MATRIX.md ou anexo na collection).</li>
+								<li><b>Riscos:</b> misturar Bearer na verify; esquecer redirect_uri idêntico entre authorize e token.</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+
+				<hr style="border: 0; border-top: 1px solid var(--border-glass); margin: 40px 0;">
+
+				<div style="margin-bottom: 40px; border-left: 4px solid var(--accent-glow); padding-left: 20px;">
+					<h3 style="color: var(--text-primary); font-size: 18px; margin-bottom: 15px;">PB-01.2 — Collection Postman & environments — 1,0 du</h3>
+					
+					<div style="background: rgba(255,255,255,0.02); padding: 15px; border-radius: 8px; border: 1px solid var(--border-glass); margin-bottom: 20px;">
+						<p style="font-size: 13px; color: var(--text-secondary);"><b>Objetivo:</b> um único pacote reprodutível para homolog (e opcional prod) com variáveis sensíveis fora do JSON commitado quando política exigir.</p>
+					</div>
+
+					<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; font-size: 12px;">
+						<div>
+							<b style="color: var(--text-primary);">Entrega formal (artefato):</b>
+							<ul style="color: var(--text-secondary); margin-top: 8px; padding-left: 15px;">
+								<li>SafeID_PSC.postman_collection.json</li>
+								<li>SafeID_homolog.postman_environment.json (e opcional SafeID_prod...)</li>
+								<li>Pastas: 01-QRCODE, 02-CA, 03-PADES, 04-SIGNATURE, 05-CONSULTA, 06-APP_TOKEN_VERIFY, 99-NEGATIVOS</li>
+								<li>Pre-request scripts onde fizer sentido: renovar access_token_app se expirado; propagar state UUID; salvar code manualmente após redirect (limitação Postman vs browser).</li>
+							</ul>
+							
+							<b style="color: var(--text-primary); display: block; margin-top: 15px;">Passos QA (principal):</b>
+							<ul style="color: var(--text-secondary); margin-top: 8px; padding-left: 15px;">
+								<li>Importar collection + environment.</li>
+								<li>Executar pasta 01-QRCODE até obter access_token_user (com apoio browser para authorize).</li>
+								<li>Executar 03-PADES pipeline completo.</li>
+								<li>Executar 06-APP_TOKEN_VERIFY com client_token + signature_verify.</li>
+							</ul>
+						</div>
+						<div>
+							<b style="color: var(--text-primary);">Variáveis mínimas do environment:</b>
+							<code style="display: block; background: #000; padding: 10px; border-radius: 6px; font-size: 11px; line-height: 1.5; color: var(--accent-glow); margin-top: 8px;">
+								base_url, client_id, client_secret, redirect_uri<br>
+								code_verifier, code_challenge, state<br>
+								auth_code (preenchido após redirect manual)<br>
+								access_token_user, access_token_app<br>
+								expires_at_user, expires_at_app<br>
+								identifierCA, document_id (PAdES)<br>
+								certificate_alias (se usado)
+							</code>
+
+							<b style="color: var(--text-primary); display: block; margin-top: 15px;">Protocolo de validação:</b>
+							<ul style="color: var(--text-secondary); margin-top: 8px; padding-left: 15px;">
+								<li>E2E Postman: pelo menos um fluxo: token user → signature OU PAdES finish → arquivo válido.</li>
+								<li>Evidência: export de run (Newman HTML) ou prints por pasta com status 200 e campos-chave.</li>
+								<li><b>Riscos:</b> segredos commitados; usar .env.postman local ou Secret Manager conforme política da empresa.</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				
+				<div style="margin-bottom: 40px; border-left: 4px solid var(--accent-glow); padding-left: 20px;">
+					<h3 style="color: var(--text-primary); font-size: 18px; margin-bottom: 15px;">PB-02.2 — Cifragem AES-256-GCM (IV único + auth tag) — 1,0 du</h3>
+					
+					<div style="background: rgba(255,255,255,0.02); padding: 15px; border-radius: 8px; border: 1px solid var(--border-glass); margin-bottom: 20px;">
+						<p style="font-size: 13px; color: var(--text-secondary);"><b>Objetivo:</b> garantir confidencialidade e integridade do <code>access_token</code> (e opcionalmente de campos sensíveis) em repouso no MySQL.</p>
+					</div>
+
+					<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; font-size: 12px; margin-bottom: 20px;">
+						<div style="background: rgba(0,0,0,0.2); padding: 15px; border-radius: 8px;">
+							<b style="color: var(--accent-glow);">Especificação técnica (referência):</b>
+							<ul style="color: var(--text-secondary); margin-top: 8px; padding-left: 15px; line-height: 1.6;">
+								<li><b>Algoritmo:</b> AES-256-GCM (via <code>openssl_encrypt</code> / <code>openssl_decrypt</code> no PHP 7.4+).</li>
+								<li><b>IV/nonce:</b> 12 bytes aleatório <b>único</b> por operação.</li>
+								<li><b>Auth tag:</b> 16 bytes (128-bit) conforme GCM.</li>
+								<li><b>Formato:</b> <code>base64( IV || ciphertext || tag )</code> ou JSON <code>{"iv","tag","ct"}</code>.</li>
+								<li><b>Chave:</b> derivada de <code>PSC_TOKEN_ENCRYPTION_KEY</code> (32 bytes).</li>
+							</ul>
+						</div>
+						<div style="background: rgba(0,0,0,0.2); padding: 15px; border-radius: 8px;">
+							<b style="color: var(--accent-emerald);">Protocolo de validação:</b>
+							<ul style="color: var(--text-secondary); margin-top: 8px; padding-left: 15px; line-height: 1.6;">
+								<li><i class="fa-solid fa-check" style="color: var(--accent-emerald);"></i> Encrypt → decrypt → igual ao original.</li>
+								<li><i class="fa-solid fa-check" style="color: var(--accent-emerald);"></i> Chave inválida → falha controlada (sem stack trace).</li>
+								<li><i class="fa-solid fa-check" style="color: var(--accent-emerald);"></i> IV repetido rejeitado em Code Review.</li>
+							</ul>
+						</div>
+					</div>
+
+					<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; font-size: 12px;">
+						<div>
+							<b style="color: var(--text-primary);">Passos DEV:</b>
+							<ul style="color: var(--text-secondary); margin-top: 8px; padding-left: 15px;">
+								<li>Implementar <code>encryptPlaintext(string $plain): string</code> e <code>decryptCiphertext(string $stored): string</code>.</li>
+								<li>Garantir exceção clara se tag inválida / ciphertext adulterado.</li>
+								<li>Unit test ou script CLI: roundtrip.</li>
+								<li>Proibir uso fora do Service de certificado PSC.</li>
+							</ul>
+						</div>
+						<div>
+							<b style="color: var(--text-primary);">Passos QA:</b>
+							<ul style="color: var(--text-secondary); margin-top: 8px; padding-left: 15px;">
+								<li>Teste negativo: ciphertext com último byte alterado → decrypt falha.</li>
+								<li>Teste negativo: chave errada no environment → decrypt falha.</li>
+								<li>Verificar dump SQL: campo não contém Bearer nem JWT-like em claro.</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+
+				<hr style="border: 0; border-top: 1px solid var(--border-glass); margin: 40px 0;">
+
+				<div style="margin-bottom: 40px; border-left: 4px solid var(--accent-glow); padding-left: 20px;">
+					<h3 style="color: var(--text-primary); font-size: 18px; margin-bottom: 15px;">PB-02.3 — Finder/DAO PscAccessTokens (CodeIgniter) — 2,0 du</h3>
+					
+					<div style="background: rgba(255,255,255,0.02); padding: 15px; border-radius: 8px; border: 1px solid var(--border-glass); margin-bottom: 20px;">
+						<p style="font-size: 13px; color: var(--text-secondary);"><b>Objetivo:</b> única porta de leitura/escrita de tokens/sessão no banco, alinhada à arquitetura Finder.</p>
+					</div>
+
+					<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; font-size: 12px; margin-bottom: 20px;">
+						<div style="background: rgba(0,0,0,0.2); padding: 15px; border-radius: 8px;">
+							<b style="color: var(--accent-glow);">Entidade lógica PscAccessTokens:</b>
+							<p style="color: var(--text-secondary); margin-top: 5px; font-family: monospace; font-size: 10px; line-height: 1.4;">
+								id, empresa_id, usuario_id<br>
+								access_token_ciphertext (TEXT)<br>
+								token_type, scope, expires_at (DATETIME)<br>
+								authorized_identification, identification_type<br>
+								revoked_at NULL, created_at, updated_at<br>
+								connection_kind ENUM: QRCODE | CA
+							</p>
+						</div>
+						<div style="background: rgba(0,0,0,0.2); padding: 15px; border-radius: 8px;">
+							<b style="color: var(--accent-glow);">Sessão PKCE (psc_oauth_sessions):</b>
+							<p style="color: var(--text-secondary); margin-top: 5px; font-family: monospace; font-size: 10px; line-height: 1.4;">
+								state, code_verifier, status,<br>
+								expires_at, empresa_id
+							</p>
+						</div>
+					</div>
+
+					<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; font-size: 12px;">
+						<div>
+							<b style="color: var(--text-primary);">Métodos Finder obrigatórios:</b>
+							<ul style="color: var(--text-secondary); margin-top: 8px; padding-left: 15px; font-family: monospace; list-style: none;">
+								<li>• findSessionByState(string $state)</li>
+								<li>• saveSessionPkce(...)</li>
+								<li>• markSessionConsumed(...)</li>
+								<li>• saveAccessTokenCiphertext(...)</li>
+								<li>• findActiveTokenByEmpresa(...)</li>
+								<li>• revokeTokenLocal(int $id)</li>
+								<li>• isExpired(Token $t): bool</li>
+							</ul>
+						</div>
+						<div>
+							<b style="color: var(--accent-emerald);">Protocolo de validação:</b>
+							<ul style="color: var(--text-secondary); margin-top: 8px; padding-left: 15px;">
+								<li><i class="fa-solid fa-database" style="color: var(--accent-emerald);"></i> SQL em homolog com token cifrado apenas.</li>
+								<li><i class="fa-solid fa-bug-slash" style="color: var(--accent-emerald);"></i> Nenhum endpoint de debug retorna token em claro.</li>
+								<li><i class="fa-solid fa-lock" style="color: var(--accent-emerald);"></i> Revogação local impede uso mesmo se PSC aceitar.</li>
+							</ul>
+						</div>
+					</div>
+
+					<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; font-size: 12px; margin-top: 20px;">
+						<div>
+							<b style="color: var(--text-primary);">Passos DEV:</b>
+							<ul style="color: var(--text-secondary); margin-top: 8px; padding-left: 15px;">
+								<li>Criar/ajustar migration SQL.</li>
+								<li>Models espelhando tabelas.</li>
+								<li>Finders com SQL parametrizado.</li>
+								<li>Garantir que SELECT nunca vai para log em modo debug com token decifrado.</li>
+							</ul>
+						</div>
+						<div>
+							<b style="color: var(--text-primary);">Passos QA:</b>
+							<ul style="color: var(--text-secondary); margin-top: 8px; padding-left: 15px;">
+								<li>Teste integração: inserir token cifrado “fake” + ler via Finder + deletar.</li>
+								<li>Grep no código do módulo por <code>access_token</code> em logs.</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div style="margin-bottom: 40px; border-left: 4px solid var(--accent-glow); padding-left: 20px;">
+					<h3 style="color: var(--text-primary); font-size: 18px; margin-bottom: 15px;">PB-03.1 — PSC HTTP Client Wrapper — 1,5 du</h3>
+					
+					<div style="background: rgba(255,255,255,0.02); padding: 15px; border-radius: 8px; border: 1px solid var(--border-glass); margin-bottom: 20px;">
+						<p style="font-size: 13px; color: var(--text-secondary);"><b>Objetivo:</b> centralizar toda comunicação HTTP com PSC numa classe (ex.: <code>PscSafeWebClient</code>), eliminando curl espalhado.</p>
+					</div>
+
+					<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; font-size: 12px; margin-bottom: 20px;">
+						<div style="background: rgba(0,0,0,0.2); padding: 15px; border-radius: 8px;">
+							<b style="color: var(--accent-glow);">Requisitos funcionais:</b>
+							<ul style="color: var(--text-secondary); margin-top: 8px; padding-left: 15px; line-height: 1.6;">
+								<li><b>Métodos:</b> <code>getJson</code>, <code>postJson</code>, <code>postForm</code>, <code>getBinaryOrText</code>.</li>
+								<li><b>Timeouts:</b> configuráveis (connect_timeout, timeout).</li>
+								<li><b>Auth:</b> injeção de <code>Authorization: Bearer</code> opcional.</li>
+								<li><b>Parsing:</b> Parse JSON com erro se corpo inválido.</li>
+								<li><b>Erros:</b> normalização de HTTP code em exceção de domínio.</li>
+							</ul>
+						</div>
+						<div style="background: rgba(0,0,0,0.2); padding: 15px; border-radius: 8px;">
+							<b style="color: var(--accent-emerald);">Protocolo de validação:</b>
+							<ul style="color: var(--text-secondary); margin-top: 8px; padding-left: 15px; line-height: 1.6;">
+								<li><i class="fa-solid fa-check" style="color: var(--accent-emerald);"></i> Pelo menos 3 chamadas reais (token, signature ou pades start, certificate-info) passando pelo wrapper.</li>
+								<li><i class="fa-solid fa-shield-halved" style="color: var(--accent-emerald);"></i> Logs inspecionados: <b>zero vazamento</b>.</li>
+							</ul>
+						</div>
+					</div>
+
+					<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; font-size: 12px;">
+						<div>
+							<b style="color: var(--text-primary);">Passos DEV:</b>
+							<ul style="color: var(--text-secondary); margin-top: 8px; padding-left: 15px;">
+								<li>Implementar wrapper usando o HTTP stack já usado no app (cURL nativo / library existente).</li>
+								<li>Mascarar segredos em qualquer dump de exceção.</li>
+								<li>Adicionar <code>X-Request-Id</code> ou correlation interno opcional.</li>
+							</ul>
+						</div>
+						<div>
+							<b style="color: var(--text-primary);">Passos QA:</b>
+							<ul style="color: var(--text-secondary); margin-top: 8px; padding-left: 15px;">
+								<li>Rodar suite Postman contra homolog enquanto observa logs do PHP.</li>
+								<li>Buscar nos logs: <code>client_secret</code>, <code>Bearer ey</code>, <code>code_verifier</code> — deve dar <b>zero</b> ocorrências.</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div style="margin-bottom: 40px; border-left: 4px solid var(--accent-glow); padding-left: 20px;">
+					<h3 style="color: var(--text-primary); font-size: 18px; margin-bottom: 15px;">PB-04.1 — Handshake PKCE S256 + redirect authorize — 2,0 du</h3>
+					
+					<div style="background: rgba(255,255,255,0.02); padding: 15px; border-radius: 8px; border: 1px solid var(--border-glass); margin-bottom: 20px;">
+						<p style="font-size: 13px; color: var(--text-secondary);"><b>Objetivo:</b> implementar RFC 7636 corretamente antes de qualquer UI complexa.</p>
+					</div>
+
+					<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; font-size: 12px; margin-bottom: 20px;">
+						<div style="background: rgba(0,0,0,0.2); padding: 15px; border-radius: 8px;">
+							<b style="color: var(--accent-glow);">Lógica do Handshake:</b>
+							<ul style="color: var(--text-secondary); margin-top: 8px; padding-left: 15px; line-height: 1.6; list-style: none;">
+								<li>• <b>verifier:</b> string aleatória de alta entropia.</li>
+								<li>• <b>challenge:</b> <code>BASE64URL(SHA256(verifier))</code>.</li>
+								<li>• <b>method:</b> S256 (Obrigatório).</li>
+							</ul>
+						</div>
+						<div style="background: rgba(0,0,0,0.2); padding: 15px; border-radius: 8px;">
+							<b style="color: var(--accent-emerald);">Protocolo de validação:</b>
+							<ul style="color: var(--text-secondary); margin-top: 8px; padding-left: 15px; line-height: 1.6;">
+								<li><i class="fa-solid fa-check" style="color: var(--accent-emerald);"></i> Redirect efetivo para domínio PSC com query completa.</li>
+								<li><i class="fa-solid fa-check" style="color: var(--accent-emerald);"></i> <code>state</code> armazenado bate com callback (PB-04.2).</li>
+							</ul>
+						</div>
+					</div>
+
+					<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; font-size: 12px;">
+						<div>
+							<b style="color: var(--text-primary);">Passos DEV:</b>
+							<ul style="color: var(--text-secondary); margin-top: 8px; padding-left: 15px;">
+								<li>Gerar <code>code_verifier</code> (tamanho/charset conforme RFC / doc PSC).</li>
+								<li>Calcular <code>code_challenge = BASE64URL(SHA256(verifier))</code> sem padding.</li>
+								<li>Gerar <code>state</code> criptograficamente seguro.</li>
+								<li>Persistir sessão com <code>state</code> + <code>verifier</code> + metadados.</li>
+								<li>Montar URL <code>GET {base}/oauth/authorize?...</code> e responder 302 ao browser.</li>
+							</ul>
+						</div>
+						<div>
+							<b style="color: var(--text-primary);">Passos QA:</b>
+							<ul style="color: var(--text-secondary); margin-top: 8px; padding-left: 15px;">
+								<li>Inspecionar URL gerada: presença de <code>code_challenge_method=S256</code>.</li>
+								<li>Tentar replay: reusar URL antiga deve falhar ou ser rejeitado por sessão expirada (definir TTL da sessão).</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+
+				<hr style="border: 0; border-top: 1px solid var(--border-glass); margin: 40px 0;">
+
+				<div style="margin-bottom: 40px; border-left: 4px solid var(--accent-glow); padding-left: 20px;">
+					<h3 style="color: var(--text-primary); font-size: 18px; margin-bottom: 15px;">PB-04.2 — Callback OAuth + token exchange — 3,0 du</h3>
+					
+					<div style="background: rgba(255,255,255,0.02); padding: 15px; border-radius: 8px; border: 1px solid var(--border-glass); margin-bottom: 20px;">
+						<p style="font-size: 13px; color: var(--text-secondary);"><b>Objetivo:</b> fechar o OAuth <code>authorization_code</code> com validação forte de <code>state</code> e tratamento de negação.</p>
+					</div>
+
+					<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; font-size: 12px; margin-bottom: 20px;">
+						<div style="background: rgba(0,0,0,0.2); padding: 15px; border-radius: 8px;">
+							<b style="color: var(--accent-glow);">Casos de Teste (QA):</b>
+							<ul style="color: var(--text-secondary); margin-top: 8px; padding-left: 15px; line-height: 1.6;">
+								<li>• <b>Sucesso:</b> code válido → token gravado → status "conectado".</li>
+								<li>• <b>Negação:</b> <code>user_denied</code> → sem token persistido.</li>
+								<li>• <b>Segurança:</b> <code>state</code> adulterado → erro controlado.</li>
+								<li>• <b>Protocolo:</b> code reusado → erro PSC esperado.</li>
+							</ul>
+						</div>
+						<div style="background: rgba(0,0,0,0.2); padding: 15px; border-radius: 8px;">
+							<b style="color: var(--accent-emerald);">Protocolo de validação:</b>
+							<ul style="color: var(--text-secondary); margin-top: 8px; padding-left: 15px; line-height: 1.6;">
+								<li><i class="fa-solid fa-print" style="color: var(--accent-emerald);"></i> Três cenários acima com evidência (print ou log de teste).</li>
+								<li><i class="fa-solid fa-shield-halved" style="color: var(--accent-emerald);"></i> <b>Nenhum token em log</b>.</li>
+							</ul>
+						</div>
+					</div>
+
+					<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; font-size: 12px;">
+						<div>
+							<b style="color: var(--text-primary);">Passos DEV:</b>
+							<ul style="color: var(--text-secondary); margin-top: 8px; padding-left: 15px;">
+								<li>Rota callback: ler <code>code</code>, <code>state</code>, <code>error</code>.</li>
+								<li>Se <code>error=user_denied</code>: fluxo amigável + encerrar sessão sem chamar token.</li>
+								<li>Validar <code>state</code>: carregar sessão; se mismatch → abortar.</li>
+								<li><code>POST /oauth/token</code> com <code>application/x-www-form-urlencoded</code>.</li>
+								<li>Receber JSON, cifrar <code>access_token</code>, persistir <code>expires_at</code> calculado.</li>
+								<li>Opcional: chamar <code>certificate-info</code> logo após sucesso.</li>
+								<li>Redirecionar para página de sucesso/erro com flash message.</li>
+							</ul>
+						</div>
+						<div>
+							<b style="color: var(--text-primary);">Passos QA:</b>
+							<ul style="color: var(--text-secondary); margin-top: 8px; padding-left: 15px;">
+								<li>Executar fluxo feliz e validar persistência cifrada no banco.</li>
+								<li>Forçar erro de state para validar interrupção do handshake.</li>
+								<li>Validar se a flash message de erro é amigável ao usuário final.</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div style="margin-bottom: 40px; border-left: 4px solid var(--accent-glow); padding-left: 20px;">
+					<h3 style="color: var(--text-primary); font-size: 18px; margin-bottom: 15px;">PB-05.3 — CA: pwd_authorize com identifierCA + senha — 2,0 du</h3>
+					
+					<div style="background: rgba(255,255,255,0.02); padding: 15px; border-radius: 8px; border: 1px solid var(--border-glass); margin-bottom: 20px;">
+						<p style="font-size: 13px; color: var(--text-secondary);"><b>Objetivo:</b> implementar a regra exata da doc PSC para o campo <code>password</code>.</p>
+					</div>
+
+					<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; font-size: 12px; margin-bottom: 20px;">
+						<div style="background: rgba(0,0,0,0.2); padding: 15px; border-radius: 8px;">
+							<b style="color: var(--accent-glow);">Lógica de Construção:</b>
+							<p style="color: var(--text-secondary); margin-top: 8px; font-family: monospace; font-size: 11px;">
+								password = concat(identifierCA, senhaCertificado)
+							</p>
+							<ul style="color: var(--text-secondary); margin-top: 8px; padding-left: 15px; line-height: 1.6;">
+								<li>Sem espaços extras.</li>
+								<li>Recebimento apenas via POST server-side.</li>
+								<li>Validar contra exemplos oficiais do PSC.</li>
+							</ul>
+						</div>
+						<div style="background: rgba(0,0,0,0.2); padding: 15px; border-radius: 8px;">
+							<b style="color: var(--accent-emerald);">Protocolo de validação:</b>
+							<ul style="color: var(--text-secondary); margin-top: 8px; padding-left: 15px; line-height: 1.6;">
+								<li><i class="fa-solid fa-check" style="color: var(--accent-emerald);"></i> Assinatura bem-sucedida com token obtido via CA.</li>
+								<li><i class="fa-solid fa-file-signature" style="color: var(--accent-emerald);"></i> Evidência: Postman + App Logs.</li>
+							</ul>
+						</div>
+					</div>
+
+					<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; font-size: 12px;">
+						<div>
+							<b style="color: var(--text-primary);">Passos DEV:</b>
+							<ul style="color: var(--text-secondary); margin-top: 8px; padding-left: 15px;">
+								<li>Após <code>authorize-ca</code>, persistir identifierCA + serialNumber + expirationDate.</li>
+								<li>Montar string de senha concatenada conforme regra.</li>
+								<li>Chamar <code>POST /oauth/pwd_authorize</code> (JSON) com grant_type=password.</li>
+								<li>Persistir token seguindo o padrão de cifra do fluxo QRCode.</li>
+							</ul>
+						</div>
+						<div>
+							<b style="color: var(--text-primary);">Passos QA:</b>
+							<ul style="color: var(--text-secondary); margin-top: 8px; padding-left: 15px;">
+								<li>Sucesso: token CA assina signature com 1 hash.</li>
+								<li>Senha errada: erro tratado, sem vazar se CPF existe.</li>
+								<li>identifierCA expirado: retorno de erro claro.</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+
+				<hr style="border: 0; border-top: 1px solid var(--border-glass); margin: 40px 0;">
+
+				<div style="margin-bottom: 40px; border-left: 4px solid var(--accent-glow); padding-left: 20px;">
+					<h3 style="color: var(--text-primary); font-size: 18px; margin-bottom: 15px;">PB-06.3 — Pipeline PAdES start / apply / finish / info — 3,0 du</h3>
+					
+					<div style="background: rgba(255,255,255,0.02); padding: 15px; border-radius: 8px; border: 1px solid var(--border-glass); margin-bottom: 20px;">
+						<p style="font-size: 13px; color: var(--text-secondary);"><b>Objetivo:</b> fluxo multi-etapa completo para PDF com carimbo visual.</p>
+					</div>
+
+					<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; font-size: 12px; margin-bottom: 20px;">
+						<div style="background: rgba(0,0,0,0.2); padding: 15px; border-radius: 8px;">
+							<b style="color: var(--accent-glow);">Pipeline de Execução:</b>
+							<ul style="color: var(--text-secondary); margin-top: 8px; padding-left: 15px; line-height: 1.6; list-style: none;">
+								<li>• <b>start:</b> Upload e document_id.</li>
+								<li>• <b>info:</b> Dimensões e coordenadas.</li>
+								<li>• <b>apply:</b> Annotations (carimbo).</li>
+								<li>• <b>finish:</b> Download do PDF assinado.</li>
+							</ul>
+						</div>
+						<div style="background: rgba(0,0,0,0.2); padding: 15px; border-radius: 8px;">
+							<b style="color: var(--accent-emerald);">Protocolo de validação:</b>
+							<ul style="color: var(--text-secondary); margin-top: 8px; padding-left: 15px; line-height: 1.6;">
+								<li><i class="fa-solid fa-file-pdf" style="color: var(--accent-emerald);"></i> PDF abre e assinatura/cadeia valida no leitor.</li>
+								<li><i class="fa-solid fa-triangle-exclamation" style="color: var(--accent-emerald);"></i> document_id inexistente retorna erro tratado.</li>
+							</ul>
+						</div>
+					</div>
+
+					<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; font-size: 12px;">
+						<div>
+							<b style="color: var(--text-primary);">Passos DEV:</b>
+							<ul style="color: var(--text-secondary); margin-top: 8px; padding-left: 15px;">
+								<li>Implementar métodos Service para as 4 etapas.</li>
+								<li>Tratar coordenadas dinâmicas baseadas no <code>info</code>.</li>
+								<li>Implementar fallback para assinatura sem annotations.</li>
+								<li>Expor método único <code>assinarPadesPipeline(...)</code>.</li>
+							</ul>
+						</div>
+						<div>
+							<b style="color: var(--text-primary);">Passos QA:</b>
+							<ul style="color: var(--text-secondary); margin-top: 8px; padding-left: 15px;">
+								<li>Decodificar base64 final e validar no Adobe Reader.</li>
+								<li>Testar multi-annotations (páginas diferentes).</li>
+								<li>Validar integridade do PDF final.</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+
+				<hr style="border: 0; border-top: 1px solid var(--border-glass); margin: 40px 0;">
+
+				<div style="margin-bottom: 40px; border-left: 4px solid var(--accent-glow); padding-left: 20px;">
+					<h3 style="color: var(--text-primary); font-size: 18px; margin-bottom: 15px;">PB-07.2 — signature_verify com Bearer app — 1,5 du</h3>
+					
+					<div style="background: rgba(255,255,255,0.02); padding: 15px; border-radius: 8px; border: 1px solid var(--border-glass); margin-bottom: 20px;">
+						<p style="font-size: 13px; color: var(--text-secondary);"><b>Objetivo:</b> validação server-side com token de aplicação, separado do token do titular.</p>
+					</div>
+
+					<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; font-size: 12px; margin-bottom: 20px;">
+						<div style="background: rgba(0,0,0,0.2); padding: 15px; border-radius: 8px;">
+							<b style="color: var(--accent-glow);">Mapeamento de Status:</b>
+							<ul style="color: var(--text-secondary); margin-top: 8px; padding-left: 15px; line-height: 1.6; list-style: none;">
+								<li>• <span style="color: #4ade80;">Valid</span></li>
+								<li>• <span style="color: #f87171;">Invalid</span></li>
+								<li>• <span style="color: #fbbf24;">Indeterminate</span></li>
+							</ul>
+						</div>
+						<div style="background: rgba(0,0,0,0.2); padding: 15px; border-radius: 8px;">
+							<b style="color: var(--accent-emerald);">Protocolo de validação:</b>
+							<ul style="color: var(--text-secondary); margin-top: 8px; padding-left: 15px; line-height: 1.6;">
+								<li><i class="fa-solid fa-gears" style="color: var(--accent-emerald);"></i> Fluxo de negócio usa o enum para decidir próximo passo.</li>
+							</ul>
+						</div>
+					</div>
+
+					<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; font-size: 12px;">
+						<div>
+							<b style="color: var(--text-primary);">Passos DEV:</b>
+							<ul style="color: var(--text-secondary); margin-top: 8px; padding-left: 15px;">
+								<li>Implementar cache de <code>client_token</code> (app) com expiração.</li>
+								<li>Criar endpoint <code>validarAssinatura</code> (file + signature).</li>
+								<li>Chamar PSC com Bearer do App Token.</li>
+								<li>Nunca logar arquivo completo (apenas hash opcional).</li>
+							</ul>
+						</div>
+						<div>
+							<b style="color: var(--text-primary);">Passos QA:</b>
+							<ul style="color: var(--text-secondary); margin-top: 8px; padding-left: 15px;">
+								<li>Caso válido → resultado Valid.</li>
+								<li>Caso adulterado → Invalid/Indeterminate.</li>
+								<li>Teste de regressão: Bearer user deve ser rejeitado.</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+
+				<hr style="border: 0; border-top: 1px solid var(--border-glass); margin: 40px 0;">
+
+				<div style="margin-bottom: 40px; border-left: 4px solid var(--accent-emerald); padding-left: 20px;">
+					<h3 style="color: var(--text-primary); font-size: 18px; margin-bottom: 15px;">PB-08.2 — Evidências, regressão final, auditoria de logs (Grep) — 2,0 du</h3>
+					
+					<div style="background: rgba(16, 185, 129, 0.05); padding: 15px; border-radius: 8px; border: 1px solid rgba(16, 185, 129, 0.2); margin-bottom: 20px;">
+						<p style="font-size: 13px; color: var(--text-secondary);"><b>Objetivo:</b> fechar homolog com pacote de evidências auditável.</p>
+					</div>
+
+					<div style="background: rgba(0,0,0,0.2); padding: 15px; border-radius: 8px; font-size: 12px; margin-bottom: 20px;">
+						<b style="color: var(--accent-glow);">Entrega formal (Relatório SAFEID_HOMOLOG_REPORT.md):</b>
+						<ul style="color: var(--text-secondary); margin-top: 8px; padding-left: 15px; line-height: 1.6;">
+							<li><b>Sumário:</b> Datas, versão e ambiente.</li>
+							<li><b>Tabela:</b> Caso | Resultado | Evidência | Executor.</li>
+							<li><b>Anexos:</b> Saída Newman ou Prints Postman.</li>
+							<li><b>Security Grep:</b> Output resumido "0 matches" para dados sensíveis.</li>
+						</ul>
+					</div>
+
+					<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; font-size: 12px;">
+						<div>
+							<b style="color: var(--text-primary);">Passos QA:</b>
+							<ul style="color: var(--text-secondary); margin-top: 8px; padding-left: 15px;">
+								<li>Executar matriz 100% obrigatória.</li>
+								<li>Anexar evidências por linha de teste.</li>
+								<li>Rodar grep de auditoria em logs PHP (homolog).</li>
+								<li>Lista: <code>access_token</code>, <code>client_secret</code>, <code>code_verifier</code>.</li>
+							</ul>
+						</div>
+						<div>
+							<b style="color: var(--accent-emerald);">Protocolo de validação:</b>
+							<ul style="color: var(--text-secondary); margin-top: 8px; padding-left: 15px; line-height: 1.6;">
+								<li><i class="fa-solid fa-square-check" style="color: var(--accent-emerald);"></i> 100% dos casos obrigatórios com status OK e evidência.</li>
+								<li><i class="fa-solid fa-shield" style="color: var(--accent-emerald);"></i> Logs: sem vazamento (grep limpo ou correções aplicadas).</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+
 			</div>
         </div>
     </main>
