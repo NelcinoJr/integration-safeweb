@@ -275,7 +275,7 @@
   <span><strong>target:</strong> dev.app · CodeIgniter</span>
   <span><strong>dev ceiling:</strong> 15 du (Teto Absoluto)</span>
   <span><a href="#s6">Ver DDL</a></span>
-  <span><a href="#s12">Malha Jira 15 du</a></span>
+  <span><a href="#s12">Malha Tarefas 15 du</a></span>
 </div></div>
 
 <div class="layout">
@@ -298,8 +298,8 @@
         <h4>Assinatura e Validação</h4>
         <ul>
           <li><strong>Motores PSC:</strong> Assinatura de Hash (RAW/CMS) e ICP (AD-RB / AD-RT).</li>
-          <li><strong>Pipeline PAdES:</strong> Fluxo completo (Start, Apply, Finish) com suporte a carimbo.</li>
-          <li><strong>Verify:</strong> Validação server-side de arquivos/assinaturas via Client Token.</li>
+          <li><strong>Pipeline PAdES:</strong> Fluxo completo (Start, Apply, Finish, Info) com suporte a carimbo.</li>
+          <li><strong>Verify:</strong> Validação server-side de arquivos/assinaturas via Client Token da aplicação.</li>
         </ul>
       </div>
     </div>
@@ -334,7 +334,7 @@
         <p><strong>CA (Aplicação Confiável)</strong><br/>Fluxo <em>authorize-ca</em> para uso recorrente pesado. Assinatura fluida e automatizada para o dia a dia.</p>
         <p><strong>Ganhos em relação ao Voucher:</strong></p>
         <ul class="compact">
-          <li>• <strong>Orquestração Nativa:</strong> Assinatura disparada e controlada 100% dentro do app.</li>
+          <li>• <strong>Orquestração Nativa:</strong> Assinatura disparada e controlled 100% dentro do app.</li>
           <li>• <strong>Pipeline PAdES:</strong> Automatização total de carimbos e informações visuais no PDF.</li>
           <li>• <strong>Verify Server-Side:</strong> Trava de segurança <em>Valid / Invalid</em> automática em cada documento.</li>
           <li>• <strong>Conformidade:</strong> Base ICP-Brasil integrada com trilha de auditoria completa.</li>
@@ -373,8 +373,8 @@
   </article>
 
   <header class="hero">
-    <h1>PSC SafeWeb — Documentação Técnico-Operacional</h1>
-    <p class="lead">Pacote único de engenharia: schema + OAuth 2 + <strong>PKCE</strong> + token só <strong>cifrado</strong>, hub/callback, motores completos de assinatura (RAW, ICP, PAdES), barramento CA, <strong>Postman</strong> e validação regressiva preventiva. Escopo blindado em orçamento linear imutável.</p>
+    <h1>PSC SafeWeb — Documentação Técnica</h1>
+    <p class="lead">Pacote único de engenharia: schema + OAuth 2 + <strong>PKCE</strong> + token só <strong>cifrado</strong> (<code>access_token_enc</code>), hub/callback, <strong>Postman</strong> e regressão sem derrubar A1/eNotas. Todo o planejamento técnico e os documentos correlacionados referem-se estritamente ao teto absoluto estabelecido.</p>
   </header>
 
   <nav class="toc" aria-label="Sumário">
@@ -391,27 +391,27 @@
       <li><a href="#s9">§9 eNotas / A1</a></li>
       <li><a href="#s10">§10 Postman</a></li>
       <li><a href="#s11">§11 Checklist GO</a></li>
-      <li><a href="#s12">§12 Malha de Tarefas Jira (15 du)</a></li>
+      <li><a href="#s12">§12 Malha de Tarefas (15 du)</a></li>
     </ul>
   </nav>
 
   <article id="s1" class="block">
     <h2><span class="num">§1</span>Convenção</h2>
     <ul class="compact">
-      <li><strong>du</strong> = dia útil (~8 h de esforço técnico real).</li>
-      <li><strong>15 du</strong> representam o teto absoluto e o limite linear da janela de implementação do ecossistema.</li>
+      <li><strong>du</strong> = dia útil (~8 h).</li>
+      <li><strong>15 du</strong> representam a alocação completa e linear da equipe técnica para esta entrega.</li>
     </ul>
-    <blockquote class="warn"><strong>Atenção:</strong> cron de refresh de background suspenso; padrão operacional estabelecido via UX ativa.</blockquote>
+    <blockquote class="warn"><strong>Atenção:</strong> sem cron de refresh salvo base contratual PSC; reautorização na UX.</blockquote>
   </article>
 
   <article id="s2" class="block">
     <h2><span class="num">§2</span>Arquitetura</h2>
     <pre><code>View → Controller → Service → Finder → Model</code></pre>
-    <p>Segredos e credenciais via <code>getenv()</code>. Proibido sob qualquer pretexto expor ou persistir em logs: <code>access_token</code>, <code>client_secret</code>, ou <code>code_verifier</code>.</p>
+    <p>Segredos via <code>getenv()</code>. Proibido logar token, <code>client_secret</code>, <code>code_verifier</code>.</p>
   </article>
 
   <article id="s3" class="block">
-    <h2><span class="num">§3</span>Fases de Desenvolvimento (Σ 15 du)</h2>
+    <h2><span class="num">§3</span>Fases (Σ 15 du)</h2>
     <table>
       <thead>
         <tr>
@@ -422,22 +422,22 @@
         </tr>
       </thead>
       <tbody>
-        <tr><td>F1</td><td>MySQL + Modelagem Relacional + DDL + Mappings + Finders</td><td class="num">2.5</td><td class="num">2.5</td></tr>
+        <tr><td>F1</td><td>MySQL + DDL + Modelagem Relacional + Mappings + Finders</td><td class="num">2.5</td><td class="num">2.5</td></tr>
         <tr><td>F2</td><td>Isolamento HTTP + Cifragem Simétrica + Handshake OAuth/PKCE + Canal Confiável (CA)</td><td class="num">5.0</td><td class="num">4.0</td></tr>
-        <tr><td>F3</td><td>Motores Core de Assinatura (RAW, ICP-Brasil) + Pipeline PAdES + Validador (Verify)</td><td class="num">4.5</td><td class="num">3.5</td></tr>
+        <tr><td>F3</td><td>Motores Core de Assinatura (RAW, ICP-Brasil) + Pipeline PAdES + Motor Validador (Verify)</td><td class="num">4.5</td><td class="num">3.5</td></tr>
         <tr><td>F4</td><td>Controladores Hub Portal Cliente + Callbacks + Validação Postman + Testes de Fumaça</td><td class="num">3.0</td><td class="num">2.0</td></tr>
-        <tr style="font-weight: bold; background: #f8fafc;"><td>TOTAL</td><td>Escopo Unificado, Reconciliado e Fechado</td><td class="num">15.0</td><td class="num">12.0</td></tr>
+        <tr style="font-weight: bold; background: #f8fafc;"><td>TOTAL</td><td>Escopo Unificado e Fechado</td><td class="num">15.0</td><td class="num">12.0</td></tr>
       </tbody>
     </table>
-    <p class="small">* Janela otimizada por concorrência técnica sem acréscimo na métrica nominal de esforço.</p>
+    <p class="small">* O paralelismo otimiza a janela de calendário de entrega, mas mantém a integridade da carga horária nominal de esforço técnico.</p>
   </article>
 
   <article id="s4" class="block">
     <h2><span class="num">§4</span>Portal PSC</h2>
     <ol class="compact">
-      <li>Registrar aplicação no ambiente corporativo SafeWeb.</li>
-      <li>Configurar Uri exata: <code>https://dev.app.contaagil.com.br/psc_oauth/callback</code>.</li>
-      <li>Armazenamento de chaves privadas estritamente em cofre de credenciais local.</li>
+      <li>Registrar app.</li>
+      <li>Redirect exact <code>https://dev.app.contaagil.com.br/psc_oauth/callback</code>.</li>
+      <li>Secrets só vault.</li>
     </ol>
   </article>
 
@@ -451,19 +451,19 @@
         </tr>
       </thead>
       <tbody>
-        <tr><td><code>PSC_SAFEWEB_BASE_URL</code></td><td>URL base das APIs de autenticação e motores de assinatura</td></tr>
-        <tr><td><code>PSC_CLIENT_ID</code></td><td>Identificador único do app junto ao PSC</td></tr>
-        <tr><td><code>PSC_CLIENT_SECRET</code></td><td>Chave secreta de autenticação do servidor</td></tr>
-        <tr><td><code>PSC_TOKEN_ENCRYPTION_KEY</code></td><td>Chave simétrica para cifragem em repouso (AES-256-GCM)</td></tr>
-        <tr><td><code>PSC_DEFAULT_OAUTH_SCOPE</code></td><td>Escopo padrão requisitado (ex: signature_session)</td></tr>
-        <tr><td><code>PSC_AUTHORIZE_LIFETIME_SEC</code></td><td>TTL limite de expiração do handshake provisório</td></tr>
+        <tr><td><code>PSC_SAFEWEB_BASE_URL</code></td><td>API OAuth base</td></tr>
+        <tr><td><code>PSC_CLIENT_ID</code></td><td>oauth id</td></tr>
+        <tr><td><code>PSC_CLIENT_SECRET</code></td><td>secret</td></tr>
+        <tr><td><code>PSC_TOKEN_ENCRYPTION_KEY</code></td><td>AEAD repouso</td></tr>
+        <tr><td><code>PSC_DEFAULT_OAUTH_SCOPE</code></td><td>ex signature_session</td></tr>
+        <tr><td><code>PSC_AUTHORIZE_LIFETIME_SEC</code></td><td>TTL authorize</td></tr>
       </tbody>
     </table>
   </article>
 
   <article id="s6" class="block">
-    <h2><span class="num">§6</span>DDL (Guia Oficial)</h2>
-    <blockquote class="note"><strong>Nota de Validação Técnica:</strong> Toda e qualquer coluna e restrição abaixo deve ser cruzada com o ambiente real de <code>mysql-dev</code> da ContaÁgil antes da consolidação do script final em ambiente de staging.</blockquote>
+    <h2><span class="num">§6</span>DDL (guia oficial)</h2>
+    <p class="small">Nota de Validação Técnica: Toda e qualquer coluna abaixo deve ser cruzada com o ambiente real de <code>mysql-dev</code> da ContaÁgil antes de aplicar em staging.</p>
     <pre><code>CREATE TABLE IF NOT EXISTS PscOAuthSessions (
   id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
   state VARCHAR(128) NOT NULL,
@@ -517,20 +517,21 @@ ALTER TABLE Certificados
   ADD COLUMN PscAuthorizedDocument VARCHAR(20) NULL DEFAULT NULL AFTER PscCertificateAlias,
   ADD COLUMN PscTokenExpiresAt DATETIME NULL DEFAULT NULL AFTER PscAuthorizedDocument,
   ADD COLUMN PscMetadadosJson TEXT NULL DEFAULT NULL AFTER PscTokenExpiresAt;</code></pre>
+    <blockquote class="note">A tabela <code>PscApiAudit</code> para auditoria técnica é obrigatória neste pacote de 15 du.</blockquote>
   </article>
 
   <article id="s7" class="block">
     <h2><span class="num">§7</span>OAuth + PKCE</h2>
     <ol class="compact">
-      <li>Persistir localmente em sessão de banco o <code>state</code> mapeado com o <code>verifier</code> e o <code>challenge</code> gerado via SHA-256.</li>
-      <li>Redirecionar o navegador do usuário ao fluxo do PSC.</li>
-      <li>Tratamento obrigatório do retorno do Callback: abortar transação imediatamente em cenários de rejeição pelo usuário (<code>user_denied</code>).</li>
-      <li>Efetuar requisição server-side `POST /oauth/token`; submeter o payload do token à cifragem criptográfica antes de persistir o registro no banco.</li>
+      <li>Persistir state + verifier + challenge (S256).</li>
+      <li>Redirect authorize PSC.</li>
+      <li>Callback: validar state; negar token se user_denied.</li>
+      <li>POST /oauth/token form; cifrar antes INSERT.</li>
     </ol>
   </article>
 
   <article id="s8" class="block">
-    <h2><span class="num">§8</span>Rotas Ativas</h2>
+    <h2><span class="num">§8</span>Rotas</h2>
     <table>
       <thead>
         <tr>
@@ -539,141 +540,148 @@ ALTER TABLE Certificados
         </tr>
       </thead>
       <tbody>
-        <tr><td><code>/certificado_psc</code></td><td>Portal do cliente logado (Dashboard, conexões e assinaturas)</td></tr>
-        <tr><td><code>/psc_oauth/callback</code></td><td>Endpoint público receptivo de webhook/callback de autenticação</td></tr>
+        <tr><td><code>/certificado_psc</code></td><td>Portal do cliente logado</td></tr>
+        <tr><td><code>/psc_oauth/callback</code></td><td>callback público OAuth (redirect_uri)</td></tr>
       </tbody>
     </table>
   </article>
 
   <article id="s9" class="block">
-    <h2><span class="num">§9</span>eNotas / Convivência A1</h2>
-    <p>Garantia operacional restrita à coexistência paralela de processos até o término da validação técnica em ambiente isolado. É mandatório isolar escopos para mitigar impactos inesperados na rotina de faturamento ativo da plataforma.</p>
+    <h2><span class="num">§9</span>eNotas / A1</h2>
+    <p>Convivência até spike 1.9; smoke documentado; não afirmar compatibilidade total sem evidência.</p>
   </article>
 
   <article id="s10" class="block">
-    <h2><span class="num">§10</span>Mapeamento de Cobertura do Postman</h2>
-    <p>A suíte de testes deve cobrir obrigatoriamente a totalidade dos endpoints expostos e operados no ciclo de 15 du:</p>
+    <h2><span class="num">§10</span>Postman</h2>
+    <p>Validação via Postman cobrindo a totalidade dos endpoints previstos no escopo dos 15 du:</p>
     <ul class="compact">
-      <li><code>GET /oauth/authorize</code> (Handshake, PKCE, validação de state)</li>
-      <li><code>POST /oauth/token</code> (Emissão de credencial de assinante via autorização externa)</li>
-      <li><code>POST /oauth/authorize-ca</code> (Autenticação baseada em Aplicação Confiável)</li>
-      <li><code>POST /oauth/pwd_authorize</code> (Handshake baseado em credencial estática e PIN)</li>
-      <li><code>POST /oauth/signature</code> (Assinatura base binária / Hashes estruturais RAW/CMS)</li>
-      <li><code>POST /oauth/signature-icp</code> (Assinatura digital padrão ICP-Brasil)</li>
-      <li><code>POST /oauth/pades-signature/start</code> (Abertura e registro do pipeline de documento PDF)</li>
-      <li><code>POST /oauth/pades-signature/apply</code> (Estampagem do carimbo visual e hash no PDF)</li>
-      <li><code>GET /oauth/pades-signature/finish</code> (Consolidação de escrita e fechamento do arquivo PDF)</li>
-      <li><code>GET /oauth/pades-signature/info</code> (Inspeção estrutural de integridade de assinatura em PDF)</li>
-      <li><code>GET /oauth/certificate-info</code> (Recuperação de metadados do par de chaves públicas)</li>
-      <li><code>GET /oauth/certificate-discovery</code> (Varredura e localização de PEMs e cadeias)</li>
-      <li><code>POST /oauth/user-discovery</code> (Checagem cadastral prévia do assinante por documento)</li>
-      <li><code>POST /oauth/client_token</code> (Autenticação do servidor ContaÁgil perante o ecossistema PSC)</li>
-      <li><code>POST /oauth/signature_verify</code> (Motor validador server-side de hashes e integridade)</li>
+      <li><code>GET /oauth/authorize</code> (Handshake, PKCE, state)</li>
+      <li><code>POST /oauth/token</code> (Troca de código por token do usuário)</li>
+      <li><code>POST /oauth/authorize-ca</code> (Abertura de canal confiável)</li>
+      <li><code>POST /oauth/pwd_authorize</code> (Handshake de senha da aplicação)</li>
+      <li><code>POST /oauth/signature</code> (Assinatura digital de hashes RAW/CMS)</li>
+      <li><code>POST /oauth/signature-icp</code> (Assinatura baseada em políticas)</li>
+      <li><code>POST /oauth/pades-signature/start</code> (Abertura de fluxo PDF)</li>
+      <li><code>POST /oauth/pades-signature/apply</code> (Vinculação de carimbo visual)</li>
+      <li><code>GET /oauth/pades-signature/finish</code> (Encerramento de fluxo PDF)</li>
+      <li><code>GET /oauth/pades-signature/info</code> (Metadados estruturais do arquivo)</li>
+      <li><code>GET /oauth/certificate-info</code> (Extração cadastral de chaves)</li>
+      <li><code>GET /oauth/certificate-discovery</code> (Localização de PEMs públicos)</li>
+      <li><code>POST /oauth/user-discovery</code> (Elegibilidade do assinante)</li>
+      <li><code>POST /oauth/client_token</code> (Geração de credencial do app)</li>
+      <li><code>POST /oauth/signature_verify</code> (Motor validador server-side)</li>
     </ul>
   </article>
 
   <article id="s11" class="block">
-    <h2><span class="num">§11</span>Checklist Operacional para Produção (GO)</h2>
-    <ul class="checklist">
-      <li>Validação prévia das colunas e constraints executadas no ambiente `mysql-dev`.</li>
-      <li>Garantia de perfeita equivalência de URLs de callback entre o ContaÁgil e o painel SafeWeb.</li>
-      <li>Isolamento absoluto de chaves e credenciais criptográficas fora de repositórios públicos e privados.</li>
-      <li>Salvaguarda e arquivo de relatórios de cobertura gerados pelas suítes automatizadas.</li>
-      <li>Garantia explícita de barramento completo de exibição de segredos em logs de erro ou depuração.</li>
+    <h2><span class="num">§11</span>Checklist GO</h2>
+    <ul class="compact">
+      <li>☐ DDL ok</li>
+      <li>☐ redirect igual PSC</li>
+      <li>☐ secrets fora repo</li>
+      <li>☐ evidências obrig.</li>
+      <li>☐ logs sem vazamento</li>
     </ul>
   </article>
 
   <article id="s12" class="block">
-    <h2><span class="num">§12</span>Malha Unificada de Tarefas Jira (Σ 15,0 du)</h2>
-    <p class="lead">Distribuição atômica de cartões operacionais mapeados para execução direta em IDEs e Cursor, garantindo correspondência total com as promessas do produto nos limites do orçamento de tempo.</p>
+    <h2><span class="num">§12</span>Malha Unificada de Tarefas (Σ 15,0 du)</h2>
+    <p class="lead">Distribuição atômica de cartões operacionais mapeados linearmente para execução em IDEs e Cursor.</p>
 
     <h3>F1 — Modelagem e Persistência de Dados (2,5 du)</h3>
     
     <div class="card">
       <p><span class="task-id">SAFE-101</span> · Inventário de Schema MySQL &amp; DESCRIBE · <span class="badge">0,5 du</span></p>
-      <p class="small"><strong>DoR:</strong> Acesso configurado ao barramento `mysql-dev` corporativo.</p>
-      <p><strong>Passos:</strong> Inspecionar a estrutura ativa da tabela <code>Certificados</code> para prevenção estrita de colisões.</p>
-      <p class="small"><strong>DoD:</strong> Documentação descritiva factual das constraints legadas anexadas ao ticket.</p>
+      <p class="small"><strong>DoR:</strong> Acesso ativo ao ambiente mysql-dev da ContaÁgil.</p>
+      <p><strong>Passos de Execução:</strong> Inspecionar a tabela legada <code>Certificados</code> para mapeamento e prevenção de colisões de tipos.</p>
+      <p class="small"><strong>DoD:</strong> Estrutura factual documentada no ticket.</p>
       <pre class="prompt"><code>Contexto: ContaÁgil CodeIgniter. Antes de qualquer DDL chama mysql-dev (regra utilizador).
-Tarefa: DESCRIBE Certificados; listar tabelas envolvendo certificado/empresa; produzir nota curta com nomes exatos de colunas FK. Não gere SQL final ainda — só relatório factual.
+Tarefa: DESCRIBE Certificados; listar tabelas envolvendo certificado/empresa; produzir nota curta com nomes exatos de colunas FK.
+Não gere SQL final ainda — só relatório factual.
 Arquitetura: sem mudar código ainda salvo já existir processo migrações.</code></pre>
     </div>
 
     <div class="card">
-      <p><span class="task-id">SAFE-102</span> · Aplicação do Schema DDL Estrutural e Scripts de Rollback · <span class="badge">1,0 du</span></p>
-      <p><strong>Passos:</strong> Executar a criação das tabelas de sessões, tokens, auditoria obrigatória e alteração do modelo legado.</p>
-      <pre class="prompt"><code>Implementar DDL conforme o bloco §6 DDL da documentação oficial. Criar tabelas PscOAuthSessions, PscAccessTokens, PscApiAudit e o ALTER TABLE na tabela Certificados com colunas totalmente nullable para não afetar o comportamento de certificados A1 ativos. Fornecer comandos de rollback drop comentados direcionados à base mysql-dev.</code></pre>
+      <p><span class="task-id">SAFE-102</span> · Execução de DDL Estrutural &amp; Script Rollback · <span class="badge">1,0 du</span></p>
+      <pre class="prompt"><code>Implementar DDL conforme o bloco §6 DDL da documentação oficial. Criar tabelas PscOAuthSessions, PscAccessTokens, PscApiAudit (obrigatória neste pacote) e o ALTER TABLE na tabela Certificados com colunas totalmente nullable para não quebrar o fluxo legado A1. Incluir comandos comentados de rollback drop na base mysql-dev.</code></pre>
     </div>
 
     <div class="card">
-      <p><span class="task-id">SAFE-103</span> · Desenvolvimento de Mappings, Models e Finders Relacionais · <span class="badge">1,0 du</span></p>
-      <pre class="prompt"><code>Criar os Models relacionais no CodeIgniter e atualizar o arquivo mapping.php com os novos campos mapeados da SafeWeb. Desenvolver os métodos Finder iniciais: findSessionByState e findActiveTokenByEmpresa sem acoplar regras de negócio na camada de View.</code></pre>
+      <p><span class="task-id">SAFE-103</span> · Criação de Mappings, Models e Finders Técnicos · <span class="badge">1,0 du</span></p>
+      <pre class="prompt"><code>Criar os Models relacionais no CodeIgniter e atualizar o arquivo mapping.php com os novos campos mapeados da SafeWeb. Desenvolver os métodos Finder iniciais: findSessionByState e findActiveTokenByEmpresa sem acoplar lógica na View.</code></pre>
     </div>
 
-    <h3>F2 — Barramento HTTP, Cifragem Segura e Fluxos Autenticadores (5,0 du)</h3>
+    <h3>F2 — Barramento HTTP, Integração e Handshakes de Autenticação (5,0 du)</h3>
 
     <div class="card">
-      <p><span class="task-id">SAFE-104</span> · Configuração de Escopo de Ambientes (ENV) e Fail-Fast Security Guard · <span class="badge">0,5 du</span></p>
+      <p><span class="task-id">SAFE-104</span> · Configuração de Ambientes (ENV) &amp; Fail-Fast Boot · <span class="badge">0,5 du</span></p>
       <pre class="prompt"><code>Configurar o isolamento das variáveis do bloco §5 no arquivo env-settings/getenv. Implementar uma validação rígida de boot para que a aplicação lance uma exceção e falhe imediatamente caso constantes essenciais como PSC_TOKEN_ENCRYPTION_KEY estejam ausentes no ambiente de Staging.</code></pre>
     </div>
 
     <div class="card">
-      <p><span class="task-id">SAFE-105</span> · Wrapper Cliente HTTP PSC &amp; Sanitização Estrita de Logs · <span class="badge">1,5 du</span></p>
+      <p><span class="task-id">SAFE-105</span> · Wrapper Cliente HTTP PSC &amp; Higienização de Logs · <span class="badge">1,5 du</span></p>
       <pre class="prompt"><code>Criar a classe PscSafeWebClient para centralizar as requisições GET/POST JSON e POST Form x-www-form-urlencoded usando cURL ou Guzzle existente. Mapear retornos HTTP status para exceções específicas do domínio e garantir mascaramento estrito em funções de depuração para nunca imprimir ou vazar tokens em claro nos logs.</code></pre>
     </div>
 
     <div class="card">
-      <p><span class="task-id">SAFE-106</span> · Camada de Cifragem Criptográfica Simétrica (AES-256-GCM) · <span class="badge">0,5 du</span></p>
+      <p><span class="task-id">SAFE-106</span> · Camada do Crypto Service (AES-256-GCM) · <span class="badge">0,5 du</span></p>
       <pre class="prompt"><code>Desenvolver métodos no Service para cifragem simétrica de tokens em repouso antes do INSERT na PscAccessTokens. O formato de armazenamento deve ser base64(iv+ciphertext+tag). Adicionar teste de negação lançando exceção controlada se o token gravado for intencionalmente adulterado ou a chave GCM for inválida.</code></pre>
     </div>
 
     <div class="card">
-      <p><span class="task-id">SAFE-107</span> · Engine de Handshake e Fluxo OAuth Inicial via PKCE · <span class="badge">1,5 du</span></p>
+      <p><span class="task-id">SAFE-107</span> · Orquestração do Handshake OAuth Inicial com PKCE · <span class="badge">1,5 du</span></p>
       <pre class="prompt"><code>Implementar no Service o método iniciarOAuthPKCE. Gerar code_verifier, code_challenge em S256 e state randômico. Persistir esses hashes temporários na tabela PscOAuthSessions vinculando a empresa e retornar a montagem exata da URL de redirect para o endpoint /oauth/authorize do PSC SafeWeb.</code></pre>
     </div>
 
     <div class="card">
-      <p><span class="task-id">SAFE-108</span> · Implementação do Canal de Aplicação Confiável (CA) · <span class="badge">1,0 du</span></p>
-      <pre class="prompt"><code>Desenvolver método autenticarAplicacaoConfiavel no Service. Consumir os endpoints /oauth/client_token e /oauth/authorize-ca. Processar o payload gerado a partir do identificador e da senha criptografada em vault, persistindo o token de repouso sob as mesmas regras AES-256-GCM do fluxo clássico.</code></pre>
+      <p><span class="task-id">SAFE-108</span> · Orquestração do Barramento CA (Aplicação Confiável) · <span class="badge">1,0 du</span></p>
+      <p class="small"><strong>DoR:</strong> SAFE-103 e chaves em homolog.</p>
+      <p><strong>Passos de Execução:</strong> Chamar <code>POST /oauth/authorize-ca</code> para receber o <code>identifierCA</code> e metadados. Capturar senha no POST server-side e realizar a concatenação exata <code>password = identifierCA + senhaCertificado</code> para disparar o handshake de recebimento de token via <code>POST /oauth/pwd_authorize</code>.</p>
+      <p class="small"><strong>DoD:</strong> Handshake CA operacional e token em repouso guardado de forma idêntica ao fluxo QR.</p>
+      <pre class="prompt"><code>Implementar o fluxo CA no Service: disparar POST /oauth/authorize-ca para obter o identifierCA (+ state, expirationDate, serialNumber). Guardar o identifierCA e em requisição POST server-side realizar a troca definitiva pelo token de acesso chamando POST /oauth/pwd_authorize passando username e a concatenação exata password = identifierCA + senhaDoCertificado (sem espaços). Persistir token de forma segura.</code></pre>
     </div>
 
-    <h3>F3 — Motores de Assinatura, Pipelines e Motor Validador (4,5 du)</h3>
+    <h3>F3 — Motores Core de Assinatura, Pipelines e Verificação (4,5 du)</h3>
 
     <div class="card">
-      <p><span class="task-id">SAFE-109</span> · Motor de Assinatura Core: Hashes Brutos (RAW/CMS) e ICP-Brasil · <span class="badge">1,5 du</span></p>
-      <pre class="prompt"><code>Construir no Service a lógica de processamento de assinaturas digitais. Implementar os métodos assinarHashBruto (/oauth/signature) e assinarDiretrizIcp (/oauth/signature-icp). Garantir o correto envio do alias do certificado em nuvem e a extração do payload de assinatura retornado, adicionando registro à tabela PscApiAudit.</code></pre>
-    </div>
-
-    <div class="card">
-      <p><span class="task-id">SAFE-110</span> · Pipeline Orquestrador de Assinatura Documental PAdES (PDF) · <span class="badge">2,0 du</span></p>
-      <pre class="prompt"><code>Desenvolver a máquina de estados para assinaturas em lotes e arquivos PDF no padrão PAdES. Implementar de forma linear e atômica o ciclo de chamadas tripartido da API SafeWeb: /pades-signature/start (registro de fluxo), /pades-signature/apply (aplicação do carimbo visual com metadados estruturais) e /pades-signature/finish (fechamento físico do documento).</code></pre>
+      <p><span class="task-id">SAFE-109</span> · Motores de Assinatura Core: Hashes Brutos (RAW/CMS) e ICP-Brasil · <span class="badge">1,5 du</span></p>
+      <pre class="prompt"><code>Implementar no Service os métodos para disparo de assinaturas digitais por lote de hashes consumindo a API SafeWeb (/oauth/signature) operando em formatos RAW ou CMS. Integrar o motor /oauth/signature-icp suportando as diretrizes normativas das políticas de certificação AD-RB e AD-RT, persistindo as telemetrias em PscApiAudit.</code></pre>
     </div>
 
     <div class="card">
-      <p><span class="task-id">SAFE-111</span> · Motor de Validação Server-Side e Descoberta (Verify / Discovery) · <span class="badge">1,0 du</span></p>
-      <pre class="prompt"><code>Implementar barramento de consumo para os endpoints de segurança do ecossistema SafeID: /oauth/signature_verify (verificação server-side da validade de hashes assinados), /oauth/certificate-info e /oauth/user-discovery. Retornar DTOs estruturados indicando o status factual (Valid/Invalid) do documento inspecionado.</code></pre>
+      <p><span class="task-id">SAFE-110</span> · Pipeline de Assinatura Documental PDF PAdES &amp; Inspeção de Páginas · <span class="badge">2,0 du</span></p>
+      <p><strong>Passos de Execução:</strong> Integrar chamadas em lote organizando o fluxo multipasso: /pades-signature/start, /pades-signature/info para resgatar dimensões da página, /pades-signature/apply aplicando carimbo e coordenadas visuais, e /pades-signature/finish para fechamento binário.</p>
+      <p class="small"><strong>DoD:</strong> PDF final íntegro, validável, contendo carimbo visual coerente com a inspeção de dimensões do arquivo.</p>
+      <pre class="prompt"><code>Construir no Service a máquina de estados para o pipeline PAdES: realizar POST /pades-signature/start para obter o documentId, consumir GET /pades-signature/info para capturar as dimensões reais de página e coordenadas do carimbo, acionar POST /pades-signature/apply injetando as annotations e finalizar o fluxo via GET /pades-signature/finish coletando o arquivo assinado.</code></pre>
     </div>
 
-    <h3>F4 — Controladores UX, Callbacks Públicos e Homologação Postman (3,0 du)</h3>
+    <div class="card">
+      <p><span class="task-id">SAFE-111</span> · Motor de Validação Server-Side, Discovery e Geração de Chave App · <span class="badge">1,0 du</span></p>
+      <p><strong>Passos de Execução:</strong> Criar fluxo para consumir <code>POST /oauth/client_token</code> (client_credentials) e cachear em memória. Chamar <code>POST /oauth/signature_verify</code> injetando o Bearer da aplicação para validação fim-a-fim, além dos endpoints complementares `GET /oauth/certificate-info`, `GET /oauth/certificate-discovery` e `POST /oauth/user-discovery`.</p>
+      <p class="small"><strong>DoD:</strong> Motor interpretando respostas de integridade de arquivos e chaves usando chaves de servidor de forma isolada.</p>
+      <pre class="prompt"><code>Implementar lógica no Service para obter e cachear o token corporativo da aplicação via POST /oauth/client_token (grant_type=client_credentials). Integrar a rota validadora POST /oauth/signature_verify assinada com o Bearer da aplicação para capturar status Valid/Invalid de assinaturas, além de implementar o consumo dos endpoints complementares GET /oauth/certificate-info, GET /oauth/certificate-discovery e POST /oauth/user-discovery.</code></pre>
+    </div>
+
+    <h3>F4 — Controladores UX, Callbacks e Homologação Postman (3,0 du)</h3>
 
     <div class="card">
-      <p><span class="task-id">SAFE-112</span> · Controller Callback Público, Validação de State e Captura de Negativas · <span class="badge">1,0 du</span></p>
+      <p><span class="task-id">SAFE-112</span> · Controller Callback Público &amp; Tratamento de Exceções · <span class="badge">1,0 du</span></p>
       <pre class="prompt"><code>Criar o Controller público /psc_oauth/callback. Adicionar isenção de guard de login no bootstrap do MY_Controller para esta rota específica. A lógica deve ler o code e state retornados, validar o state contra a sessão gravada no banco, tratar erros amigáveis se receber user_denied e realizar a troca pelo token definitivo chamando o POST /oauth/token no backend.</code></pre>
     </div>
 
     <div class="card">
-      <p><span class="task-id">SAFE-113</span> · Interface do Portal do Cliente, Estados Visuais e Revogação Ativa · <span class="badge">1,0 du</span></p>
-      <pre class="prompt"><code>Desenvolver a interface administrativa em application/views/pages/certificado_psc/. Mapear os estados visuais via jQuery e manipulação de DOM utilizando o DTO do Service: desconectado, conectado, expirado e erro. Incluir ação síncrona acionando o método de revogação local de chaves sem apagar os dados legados do A1. Rota alvo: /certificado_psc no Portal do Cliente.</code></pre>
+      <p><span class="task-id">SAFE-113</span> · Views do Hub no Portal Cliente (dev.app) e Revogação Ativa · <span class="badge">1,0 du</span></p>
+      <pre class="prompt"><code>Desenvolver as Views do hub no portal do cliente (dev.app) sob a rota /certificado_psc, sem lógica de negócio na View. Mapear os estados visuais via jQuery: desconectado, conectado, expirado e erro. Incluir gatilho AJAX acionando o método de revogação local de chaves sem afetar os metadados legados do A1.</code></pre>
     </div>
 
     <div class="card">
-      <p><span class="task-id">SAFE-114</span> · Suíte de Homologação Automatizada Postman (15 Endpoints) · <span class="badge">0,5 du</span> <span class="badge badge-qa">QA</span></p>
-      <pre class="prompt"><code>Configurar Coleção Postman parametrizada mapeando as chaves de ambiente para a totalidade dos 15 endpoints previstos no bloco §10. Garantir testes automatizados de asserção de código HTTP (200 OK / 401 Unauthorized) cobrindo caminhos felizes e comportamentos com injeção de dados corrompidos.</code></pre>
+      <p><span class="task-id">SAFE-114</span> · Suíte de Validação Postman (15 Endpoints Previstos) · <span class="badge">0,5 du</span> <span class="badge badge-qa">QA</span></p>
+      <pre class="prompt"><code>Configurar Coleção Postman parametrizada injetando variáveis de ambiente para a totalidade dos 15 endpoints previstos no bloco §10. Garantir asserções automáticas de status HTTP cobrindo o caminho feliz da esteira OAuth, handshakes CA, assinaturas digitais, pipeline PDF e motor de validação.</code></pre>
     </div>
 
     <div class="card">
-      <p><span class="task-id">SAFE-115</span> · Auditoria de Segurança de Logs (Grep Scan) &amp; Smoke Test Regressivo A1 · <span class="badge">0,5 du</span> <span class="badge badge-qa">QA</span></p>
-      <pre class="prompt"><code>Executar varredura automatizada ou via expressões regulares (grep) nos logs do ambiente de staging para certificar a não exposição de tokens. Realizar teste de fumaça (smoke test) simulando o fluxo de faturamento via eNotas em uma empresa fictícia parametrizada com certificado A1 herdado, gerando evidências de que o barramento PSC opera de forma isolada e sem efeitos colaterais.</code></pre>
+      <p><span class="task-id">SAFE-115</span> · Varredura de Segurança de Logs (Grep Scan) &amp; Smoke Test Regressivo · <span class="badge">0,5 du</span> <span class="badge badge-qa">QA</span></p>
+      <pre class="prompt"><code>Executar varredura por expressões regulares (grep) nos logs do ambiente de staging para atestar ausência de exposição de segredos. Realizar teste de fumaça (smoke test) estruturado simulando o fluxo de faturamento via eNotas em uma empresa fictícia parametrizada com certificado A1 herdado, gerando evidências empíricas da não interferência da nova camada.</code></pre>
     </div>
   </article>
 
@@ -691,20 +699,20 @@ Arquitetura: sem mudar código ainda salvo já existir processo migrações.</co
       </thead>
       <tbody>
         <tr><td>SAFE-101</td><td>Inventário de Schema MySQL &amp; DESCRIBE</td><td>F1 — Dados</td><td class="num">0.5</td><td>SRE / DEV</td></tr>
-        <tr><td>SAFE-102</td><td>Aplicação do Schema DDL Estrutural e Scripts de Rollback</td><td>F1 — Dados</td><td class="num">1.0</td><td>DBA / DEV</td></tr>
-        <tr><td>SAFE-103</td><td>Desenvolvimento de Mappings, Models e Finders Relacionais</td><td>F1 — Dados</td><td class="num">1.0</td><td>Back-End DEV</td></tr>
-        <tr><td>SAFE-104</td><td>Configuração de Ambientes (ENV) e Fail-Fast Security Guard</td><td>F2 — HTTP/Auth</td><td class="num">0.5</td><td>DevOps / DEV</td></tr>
-        <tr><td>SAFE-105</td><td>Wrapper Cliente HTTP PSC &amp; Sanitização Estrita de Logs</td><td>F2 — HTTP/Auth</td><td class="num">1.5</td><td>Back-End DEV</td></tr>
-        <tr><td>SAFE-106</td><td>Camada de Cifragem Criptográfica Simétrica (AES-256-GCM)</td><td>F2 — HTTP/Auth</td><td class="num">0.5</td><td>Security / DEV</td></tr>
-        <tr><td>SAFE-107</td><td>Engine de Handshake e Fluxo OAuth Inicial via PKCE</td><td>F2 — HTTP/Auth</td><td class="num">1.5</td><td>Back-End DEV</td></tr>
-        <tr><td>SAFE-108</td><td>Implementação do Canal de Aplicação Confiável (CA)</td><td>F2 — HTTP/Auth</td><td class="num">1.0</td><td>Back-End DEV</td></tr>
-        <tr><td>SAFE-109</td><td>Motor de Assinatura Core: Hashes Brutos (RAW/CMS) e ICP-Brasil</td><td>F3 — Motores</td><td class="num">1.5</td><td>Back-End DEV</td></tr>
-        <tr><td>SAFE-110</td><td>Pipeline Orquestrador de Assinatura Documental PAdES (PDF)</td><td>F3 — Motores</td><td class="num">2.0</td><td>Back-End DEV</td></tr>
-        <tr><td>SAFE-111</td><td>Motor de Validação Server-Side e Descoberta (Verify / Discovery)</td><td>F3 — Motores</td><td class="num">1.0</td><td>Back-End DEV</td></tr>
-        <tr><td>SAFE-112</td><td>Controller Callback Público, Validação de State e Captura de Negativas</td><td>F4 — UX/Control</td><td class="num">1.0</td><td>Full-Stack DEV</td></tr>
-        <tr><td>SAFE-113</td><td>Interface do Portal do Cliente, Estados Visuais e Revogação Ativa</td><td>F4 — UX/Control</td><td class="num">1.0</td><td>Front-End DEV</td></tr>
-        <tr><td>SAFE-114</td><td>Suíte de Homologação Automatizada Postman (15 Endpoints)</td><td>F4 — UX/Control</td><td class="num">0.5</td><td>QA Automation</td></tr>
-        <tr><td>SAFE-115</td><td>Auditoria de Segurança de Logs (Grep Scan) &amp; Smoke Test Regressivo A1</td><td>F4 — UX/Control</td><td class="num">0.5</td><td>QA Engineer</td></tr>
+        <tr><td>SAFE-102</td><td>Execução de DDL Estrutural &amp; Script Rollback</td><td>F1 — Dados</td><td class="num">1.0</td><td>DBA / DEV</td></tr>
+        <tr><td>SAFE-103</td><td>Criação de Mappings, Models e Finders Técnicos</td><td>F1 — Dados</td><td class="num">1.0</td><td>Back-End DEV</td></tr>
+        <tr><td>SAFE-104</td><td>Configuração de Ambientes (ENV) &amp; Fail-Fast Boot</td><td>F2 — handshakes</td><td class="num">0.5</td><td>DevOps / DEV</td></tr>
+        <tr><td>SAFE-105</td><td>Wrapper Cliente HTTP PSC &amp; Higienização de Logs</td><td>F2 — handshakes</td><td class="num">1.5</td><td>Back-End DEV</td></tr>
+        <tr><td>SAFE-106</td><td>Camada do Crypto Service (AES-256-GCM)</td><td>F2 — handshakes</td><td class="num">0.5</td><td>Security / DEV</td></tr>
+        <tr><td>SAFE-107</td><td>Orquestração do Handshake OAuth Inicial com PKCE</td><td>F2 — handshakes</td><td class="num">1.5</td><td>Back-End DEV</td></tr>
+        <tr><td>SAFE-108</td><td>Orquestração do Barramento CA (Aplicação Confiável)</td><td>F2 — handshakes</td><td class="num">1.0</td><td>Back-End DEV</td></tr>
+        <tr><td>SAFE-109</td><td>Motores de Assinatura Core: Hashes Brutos (RAW/CMS) e ICP-Brasil</td><td>F3 — Motores</td><td class="num">1.5</td><td>Back-End DEV</td></tr>
+        <tr><td>SAFE-110</td><td>Pipeline de Assinatura Documental PDF PAdES &amp; Inspeção de Páginas</td><td>F3 — Motores</td><td class="num">2.0</td><td>Back-End DEV</td></tr>
+        <tr><td>SAFE-111</td><td>Motor de Validação Server-Side, Discovery e Geração de Chave App</td><td>F3 — Motores</td><td class="num">1.0</td><td>Back-End DEV</td></tr>
+        <tr><td>SAFE-112</td><td>Controller Callback Público &amp; Tratamento de Exceções</td><td>F4 — UX/Control</td><td class="num">1.0</td><td>Full-Stack DEV</td></tr>
+        <tr><td>SAFE-113</td><td>Views do Hub no Portal Cliente (dev.app) e Revogação Ativa</td><td>F4 — UX/Control</td><td class="num">1.0</td><td>Front-End DEV</td></tr>
+        <tr><td>SAFE-114</td><td>Suíte de Validação Postman (15 Endpoints Previstos)</td><td>F4 — UX/Control</td><td class="num">0.5</td><td>QA Automation</td></tr>
+        <tr><td>SAFE-115</td><td>Varredura de Segurança de Logs (Grep Scan) &amp; Smoke Test Regressivo</td><td>F4 — UX/Control</td><td class="num">0.5</td><td>QA Engineer</td></tr>
         <tr style="font-weight: bold; background: #f6f8fa;">
           <td colspan="3">SOMA GLOBAL CRONOMETRADA (TETO ABSOLUTO EXIGIDO)</td>
           <td class="num">15.0</td>
@@ -715,14 +723,12 @@ Arquitetura: sem mudar código ainda salvo já existir processo migrações.</co
   </article>
 
   <footer class="meta">
-    <p>Tudo que está no projeto PSC SafeWeb para esta entrega está <strong>dentro de 15 du</strong>. Não há segundo pacote nem 37 du; o planejamento e os documentos técnicos referem-se de forma exclusiva a esse teto absoluto.</p>
-    <p><strong>links de dependência:</strong>
+    <p>Tudo que está no projeto PSC SafeWeb para esta entrega está <strong>dentro de 15 du</strong>. Não há segundo pacote nem 37 du; o planejamento e os documentos referem-se estritamente a esse teto absoluto. Links históricos — ignorar estimativas antigas.</p>
+    <p><strong>links:</strong>
       <a href="./PSC_SAFEWEB_GUIA_IMPLEMENTACAO_FUTURA.md">GUIA</a>
-      <a href="./PSC_SAFEWEB_EAP_VISAO_MACRO.md">MACRO</a>
-      <a href="./PSC_SAFEWEB_EAP_APRESENTACAO.html">EAP_HTML</a>
       <a href="./PROMPT_DESENVOLVEDOR_SAFEWEB_FASE1.md">PROMPT_DEV</a>
     </p>
-    <p>Ctrl+P para PDF · Restrito · ContaÁgil — Documento de Engenharia Unificado</p>
+    <p>Ctrl+P PDF · Interno · ContaÁgil — Uso confidencial</p>
   </footer>
 </div>
 </body>
