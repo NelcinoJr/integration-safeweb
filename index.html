@@ -50,6 +50,7 @@
       display: flex;
       flex-wrap: wrap;
       gap: 12px 24px;
+      align-items: center;
     }
 
     .doc-bar strong { color: #58a6ff; }
@@ -242,7 +243,7 @@
       border: 1px solid var(--border);
       border-radius: 6px;
       padding: 1.25rem;
-      margin: 1rem 0;
+      margin: 1.25rem 0;
     }
 
     .task-id { color: #238636; font-weight: 700; font-family: monospace; font-size: 1.05em; }
@@ -250,8 +251,10 @@
     .badge-qa { background: #8957e5; }
 
     .checklist { list-style: none; padding: 0; margin: 1rem 0; }
-    .checklist li { padding: 0.45rem 0 0.45rem 1.75rem; position: relative; border-bottom: 1px dashed var(--border); }
-    .checklist li::before { content: "☐"; position: absolute; left: 0; color: var(--accent); font-size: 1.15rem; line-height: 1; font-weight: bold; }
+    .checklist > li { margin-bottom: 0.75rem; border-bottom: 1px dashed var(--border); padding-bottom: 0.75rem; }
+    .checklist ul { list-style: none; padding-left: 1.25rem; margin: 0.25rem 0; }
+    .checklist li li { padding: 0.2rem 0 0.2rem 1.5rem; position: relative; }
+    .checklist li li::before { content: "☐"; position: absolute; left: 0; color: var(--accent); font-weight: bold; }
 
     footer.meta { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); font-size: 0.85rem; color: var(--muted); line-height: 1.6; }
     footer.meta p { margin: 0 0 0.5rem 0; }
@@ -272,10 +275,11 @@
 
 <div class="doc-bar"><div class="doc-bar-inner">
   <span><strong>paths:</strong> contaagil/docs/SAFEWEB</span>
-  <span><strong>target:</strong> dev.app · CodeIgniter</span>
+  <span><strong>target:</strong> dev.app (Escopo UX Exclusivo)</span>
   <span><strong>dev ceiling:</strong> 15 du (Teto Absoluto)</span>
+  <span><a href="https://pscsafeweb.safewebpss.com.br/Docs/" target="_blank" rel="noopener"><strong>Doc PSC SafeWeb (Oficial)</strong></a></span>
   <span><a href="#s6">Ver DDL</a></span>
-  <span><a href="#s12">Malha Tarefas 15 du</a></span>
+  <span><a href="#s12">Malha Trello 15 du</a></span>
 </div></div>
 
 <div class="layout">
@@ -283,6 +287,9 @@
   <article class="block" style="border-top: 4px solid var(--navy);">
     <h3>Definição do Projeto</h3>
     <p>Conectar o app <strong>ContaÁgil</strong> (PHP CodeIgniter + jQuery) ao <strong>PSC SafeWeb / SafeID</strong>, permitindo ao cliente autorizar certificados na nuvem, armazenar tokens com segurança e utilizar a API PSC para assinaturas. O projeto cobre os dois modelos de integração (QRCode e Aplicação Confiável/CA) e os tipos de assinatura previstos (RAW/CMS, ICP, PAdES com carimbo), com validação via Postman restrita ao escopo fechado desta entrega de 15 du.</p>
+    <blockquote class="note">
+      <strong>Alinhamento de Escopo Regulatório:</strong> QR Code (SAFE-107) e CA (SAFE-108) são entregáveis obrigatórios deste pacote de 15 du. O escopo de experiência do usuário estende-se exclusivamente ao ecossistema do cliente (<code>dev.app</code>). Alterações na retaguarda administrativa (<code>dev.admin</code>) não afetam a convivência nem a estrutura do certificado A1 herdado.
+    </blockquote>
 
     <h3>Funcionalidades do Produto (User Experience)</h3>
     <div class="grid-2">
@@ -298,7 +305,7 @@
         <h4>Assinatura e Validação</h4>
         <ul>
           <li><strong>Motores PSC:</strong> Assinatura de Hash (RAW/CMS) e ICP (AD-RB / AD-RT).</li>
-          <li><strong>Pipeline PAdES:</strong> Fluxo completo (Start, Apply, Finish, Info) com suporte a carimbo.</li>
+          <li><strong>Pipeline PAdES:</strong> Fluxo completo (Start, Info, Apply, Finish) com suporte a carimbo.</li>
           <li><strong>Verify:</strong> Validação server-side de arquivos/assinaturas via Client Token da aplicação.</li>
         </ul>
       </div>
@@ -330,7 +337,7 @@
 
       <div class="feature-box" style="border-left: 3px solid #238636;">
         <h4>Com Integração SafeID/PSC (Estado Desejado)</h4>
-        <p><strong>QRCode (OAuth + PKCE)</strong><br/>Autorização via celular gera token de usuário instantâneo. Fim da dependência de drivers e certificados na máquina.</p>
+        <p><strong>QRCode (OAuth + PKCE)</strong><br/>Autorização via celular gera token de usuário instantâneo Fim da dependência de drivers e certificados na máquina.</p>
         <p><strong>CA (Aplicação Confiável)</strong><br/>Fluxo <em>authorize-ca</em> para uso recorrente pesado. Assinatura fluida e automatizada para o dia a dia.</p>
         <p><strong>Ganhos em relação ao Voucher:</strong></p>
         <ul class="compact">
@@ -391,7 +398,7 @@
       <li><a href="#s9">§9 eNotas / A1</a></li>
       <li><a href="#s10">§10 Postman</a></li>
       <li><a href="#s11">§11 Checklist GO</a></li>
-      <li><a href="#s12">§12 Malha de Tarefas (15 du)</a></li>
+      <li><a href="#s12">§12 Malha de Tarefas Trello (15 du)</a></li>
     </ul>
   </nav>
 
@@ -418,14 +425,15 @@
           <th>ID</th>
           <th>Bloco Canônico de Desenvolvimento</th>
           <th class="num">du</th>
+          <th class="num">par.*</th>
         </tr>
       </thead>
       <tbody>
-        <tr><td>F1</td><td>MySQL + DDL + Modelagem Relacional + Mappings + Finders</td><td class="num">2.5</td>></tr>
-        <tr><td>F2</td><td>Isolamento HTTP + Cifragem Simétrica + Handshake OAuth/PKCE + Canal Confiável (CA)</td><td class="num">5.0</td></tr>
-        <tr><td>F3</td><td>Motores Core de Assinatura (RAW, ICP-Brasil) + Pipeline PAdES + Motor Validador (Verify)</td><td class="num">4.5</td></tr>
-        <tr><td>F4</td><td>Controladores Hub Portal Cliente + Callbacks + Validação Postman + Testes de Fumaça</td><td class="num">3.0</td></tr>
-        <tr style="font-weight: bold; background: #f8fafc;"><td>TOTAL</td><td>Escopo Unificado e Fechado</td><td class="num">15.0</td></tr>
+        <tr><td>F1</td><td>MySQL + DDL + Modelagem Relacional + Mappings + Finders</td><td class="num">2.5</td><td class="num">2.5</td></tr>
+        <tr><td>F2</td><td>Isolamento HTTP + Cifragem Simétrica + Handshake OAuth/PKCE + Canal Confiável (CA)</td><td class="num">5.0</td><td class="num">4.0</td></tr>
+        <tr><td>F3</td><td>Motores Core de Assinatura (RAW, ICP-Brasil) + Pipeline PAdES + Motor Validador (Verify)</td><td class="num">4.5</td><td class="num">3.5</td></tr>
+        <tr><td>F4</td><td>Controladores Hub Portal Cliente + Callbacks + Validação Postman + Testes de Fumaça</td><td class="num">3.0</td><td class="num">2.0</td></tr>
+        <tr style="font-weight: bold; background: #f8fafc;"><td>TOTAL</td><td>Escopo Unificado e Fechado</td><td class="num">15.0</td><td class="num">12.0</td></tr>
       </tbody>
     </table>
     <p class="small">* O paralelismo otimiza a janela de calendário de entrega, mas mantém a integridade da carga horária nominal de esforço técnico.</p>
@@ -441,7 +449,7 @@
   </article>
 
   <article id="s5" class="block">
-    <h2><span class="num">§5</span>Variáveis</h2>
+    <h2><span class="num">§5</span>Variáveis (ENV)</h2>
     <table>
       <thead>
         <tr>
@@ -450,19 +458,25 @@
         </tr>
       </thead>
       <tbody>
-        <tr><td><code>PSC_SAFEWEB_BASE_URL</code></td><td>API OAuth base</td></tr>
-        <tr><td><code>PSC_CLIENT_ID</code></td><td>oauth id</td></tr>
-        <tr><td><code>PSC_CLIENT_SECRET</code></td><td>secret</td></tr>
-        <tr><td><code>PSC_TOKEN_ENCRYPTION_KEY</code></td><td>AEAD repouso</td></tr>
-        <tr><td><code>PSC_DEFAULT_OAUTH_SCOPE</code></td><td>ex signature_session</td></tr>
-        <tr><td><code>PSC_AUTHORIZE_LIFETIME_SEC</code></td><td>TTL authorize</td></tr>
+        <tr><td><code>PSC_SAFEWEB_BASE_URL</code></td><td>API OAuth / REST endpoint base de barramento</td></tr>
+        <tr><td><code>ComfyUI_Clean</code></td><td>oauth client id gerado no portal da SafeWeb</td></tr>
+        <tr><td><code>PSC_CLIENT_SECRET</code></td><td>oauth secret de aplicação corporativa</td></tr>
+        <tr><td><code>PSC_REDIRECT_URI</code></td><td>URL de retorno exata (Deve bater com o configurado no §4)</td></tr>
+        <tr><td><code>PSC_OAUTH_AUTHORIZE_URL</code></td><td>Endpoint canônico da API para redirecionamento do handshake (/oauth/authorize)</td></tr>
+        <tr><td><code>PSC_OAUTH_TOKEN_URL</code></td><td>Endpoint canônico de troca de código por token (/oauth/token)</td></tr>
+        <tr><td><code>PSC_TOKEN_ENCRYPTION_KEY</code></td><td>Chave simétrica de criptografia para persistência em repouso (GCM)</td></tr>
+        <tr><td><code>PSC_DEFAULT_OAUTH_SCOPE</code></td><td>Escopo padrão do token (ex: signature_session)</td></tr>
+        <tr><td><code>PSC_AUTHORIZE_LIFETIME_SEC</code></td><td>TTL da sessão temporária do authorize em banco</td></tr>
+        <tr><td><code>PSC_APP_ENV</code></td><td>Identificador de contexto de barramento: homolog / production (chaveia endpoints)</td></tr>
       </tbody>
     </table>
   </article>
 
   <article id="s6" class="block">
     <h2><span class="num">§6</span>DDL (guia oficial)</h2>
-    <p class="small">Nota de Validação Técnica: Toda e qualquer coluna abaixo deve ser cruzada com o ambiente real de <code>mysql-dev</code> da ContaÁgil antes de aplicar em staging.</p>
+    <blockquote class="warn">
+      <strong>Nota Crítica de Validação Técnica:</strong> A coluna referenciada na cláusula <code>AFTER Api</code> é provisória e assume o mapeamento estrutural legado. O desenvolvedor deve obrigatoriamente realizar o cruzamento e confirmar a posição estrutural real via <code>DESCRIBE Certificados</code> durante o cumprimento do ticket **SAFE-101** antes de rodar o script no ambiente de staging.
+    </blockquote>
     <pre><code>CREATE TABLE IF NOT EXISTS PscOAuthSessions (
   id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
   state VARCHAR(128) NOT NULL,
@@ -530,17 +544,20 @@ ALTER TABLE Certificados
   </article>
 
   <article id="s8" class="block">
-    <h2><span class="num">§8</span>Rotas</h2>
+    <h2><span class="num">§8</span>Rotas da Aplicação</h2>
     <table>
       <thead>
         <tr>
           <th>Rota</th>
-          <th>Função</th>
+          <th>Função Operacional no Ciclo</th>
         </tr>
       </thead>
       <tbody>
-        <tr><td><code>/certificado_psc</code></td><td>Portal do cliente logado</td></tr>
-        <tr><td><code>/psc_oauth/callback</code></td><td>callback público OAuth (redirect_uri)</td></tr>
+        <tr><td><code>/certificado_psc</code></td><td>Hub / Portal principal de controle do cliente autenticado</td></tr>
+        <tr><td><code>/certificado_psc/conectar</code></td><td>Gera parâmetros, persiste PKCE e despacha redirect para OAuth da SafeWeb (SAFE-107)</td></tr>
+        <tr><td><code>/certificado_psc/conectar-ca</code></td><td>Captura senha em POST, dispara handshake server-side da Aplicação Confiável (SAFE-108)</td></tr>
+        <tr><td><code>/psc_oauth/callback</code></td><td>Callback público exposto para receber os parâmetros de code e state da SafeWeb (SAFE-112)</td></tr>
+        <tr><td><code>/certificado_psc/revogar</code></td><td>Endpoint assíncrono acionado via AJAX para remoção e invalidação local de tokens (SAFE-113)</td></tr>
       </tbody>
     </table>
   </article>
@@ -551,24 +568,24 @@ ALTER TABLE Certificados
   </article>
 
   <article id="s10" class="block">
-    <h2><span class="num">§10</span>Postman</h2>
-    <p>Validação via Postman cobrindo a totalidade dos endpoints previstos no escopo dos 15 du:</p>
+    <h2><span class="num">§10</span>Suíte Postman (15 Endpoints Canônicos)</h2>
+    <p>Mapeamento e ordenação sequencial da suíte de testes de integração técnica para validação em Staging:</p>
     <ul class="compact">
-      <li><code>GET /oauth/authorize</code> (Handshake, PKCE, state)</li>
-      <li><code>POST /oauth/token</code> (Troca de código por token do usuário)</li>
-      <li><code>POST /oauth/authorize-ca</code> (Abertura de canal confiável)</li>
-      <li><code>POST /oauth/pwd_authorize</code> (Handshake de senha da aplicação)</li>
-      <li><code>POST /oauth/signature</code> (Assinatura digital de hashes RAW/CMS)</li>
-      <li><code>POST /oauth/signature-icp</code> (Assinatura baseada em políticas)</li>
-      <li><code>POST /oauth/pades-signature/start</code> (Abertura de fluxo PDF)</li>
-      <li><code>POST /oauth/pades-signature/apply</code> (Vinculação de carimbo visual)</li>
-      <li><code>GET /oauth/pades-signature/finish</code> (Encerramento de fluxo PDF)</li>
-      <li><code>GET /oauth/pades-signature/info</code> (Metadados estruturais do arquivo)</li>
-      <li><code>GET /oauth/certificate-info</code> (Extração cadastral de chaves)</li>
-      <li><code>GET /oauth/certificate-discovery</code> (Localização de PEMs públicos)</li>
-      <li><code>POST /oauth/user-discovery</code> (Elegibilidade do assinante)</li>
-      <li><code>POST /oauth/client_token</code> (Geração de credencial do app)</li>
-      <li><code>POST /oauth/signature_verify</code> (Motor validador server-side)</li>
+      <li><code>GET /oauth/authorize</code> <span style="color: var(--muted); font-size: 0.9em;">(Nota: Endpoint não executável end-to-end via requisição Postman direta. Requer inicialização via browser do usuário para fluxo visual do QR Code; utilizar no Postman estritamente para simulação e teste sintático de parâmetros do cabeçalho)</span></li>
+      <li><code>POST /oauth/token</code> (Troca de código por token de acesso do usuário)</li>
+      <li><code>POST /oauth/authorize-ca</code> (Abertura de canal confiável para fluxo de aplicação confiável)</li>
+      <li><code>POST /oauth/pwd_authorize</code> (Handshake de senha server-side corporativo)</li>
+      <li><code>POST /oauth/signature</code> (Assinatura digital corporativa de hashes RAW ou CMS)</li>
+      <li><code>POST /oauth/signature-icp</code> (Assinatura baseada em diretrizes de políticas públicas ICP)</li>
+      <li><code>POST /oauth/pades-signature/start</code> (Inicialização e abertura de fluxo para arquivos PDF)</li>
+      <li><code>GET /oauth/pades-signature/info</code> (Resgata metadados estruturais e dimensões físicas da página do PDF)</li>
+      <li><code>POST /oauth/pades-signature/apply</code> (Vinculação de carimbo gráfico visual nas coordenadas inspecionadas)</li>
+      <li><code>GET /oauth/pades-signature/finish</code> (Encerramento do fluxo com gravação do binário assinado)</li>
+      <li><code>GET /oauth/certificate-info</code> (Extração de dados cadastrais das chaves x509 públicas)</li>
+      <li><code>GET /oauth/certificate-discovery</code> (Localização e download de PEMs e cadeias ICP)</li>
+      <li><code>POST /oauth/user-discovery</code> (Verificação automatizada de elegibilidade cadastral do assinante)</li>
+      <li><code>POST /oauth/client_token</code> (Autenticação interna corporativa via client_credentials)</li>
+      <li><code>POST /oauth/signature_verify</code> (Motor validador server-side alimentado pelo Bearer do app)</li>
     </ul>
   </article>
 
@@ -578,58 +595,446 @@ ALTER TABLE Certificados
       <li>☐ DDL ok</li>
       <li>☐ redirect igual PSC</li>
       <li>☐ secrets fora repo</li>
-      <li>☐ evidências obrig.</li>
+      <li>☐ evidencias obrig.</li>
       <li>☐ logs sem vazamento</li>
     </ul>
   </article>
 
   <article id="s12" class="block">
-    <h2><span class="num">§12</span>Malha Unificada de Tarefas (Σ 15,0 du)</h2>
+    <h2><span class="num">§12</span>Malha Unificada de Tarefas Trello (Σ 15,0 du)</h2>
     <p class="lead">Distribuição atômica de cartões operacionais mapeados linearmente para execução em IDEs e Cursor.</p>
 
     <h3>F1 — Modelagem e Persistência de Dados (2,5 du)</h3>
     
     <div class="card">
       <p><span class="task-id">SAFE-101</span> · Inventário de Schema MySQL &amp; DESCRIBE · <span class="badge">0,5 du</span></p>
-      <p class="small"><strong>DoR:</strong> Acesso ativo ao ambiente mysql-dev da ContaÁgil.</p>
-      <p><strong>Passos de Execução:</strong> Inspecionar a tabela legada <code>Certificados</code> para mapeamento e prevenção de colisões de tipos.</p>
-      <p class="small"><strong>DoD:</strong> Estrutura factual documentada no ticket.</p>
-      <pre class="prompt"><code>Contexto: ContaÁgil CodeIgniter. Antes de qualquer DDL chama mysql-dev (regra utilizador).
-Tarefa: DESCRIBE Certificados; listar tabelas envolvendo certificado/empresa; produzir nota curta com nomes exatos de colunas FK.
-Não gere SQL final ainda — só relatório factual.
-Arquitetura: sem mudar código ainda salvo já existir processo migrações.</code></pre>
+      
+      <h4>Critérios de Aceitação</h4>
+      <ul class="checklist">
+        <li><strong>1 Inspeção Read-Only do Banco</strong>
+          <ul>
+            <li>1.1 Toda a inspeção deve ocorrer no ambiente mysql-dev exclusivamente em modo leitura.</li>
+            <li>1.2 Nenhum DDL ou DML pode ser executado nesta etapa.</li>
+          </ul>
+        </li>
+        <li><strong>2 Mapeamento da Tabela Certificados</strong>
+          <ul>
+            <li>2.1 Deve ser produzido DESCRIBE da tabela Certificados com nomes exatos de colunas, tipos e nulidade.</li>
+            <li>2.2 Deve ser listada a chave primária e o conjunto de índices existentes.</li>
+          </ul>
+        </li>
+        <li><strong>3 Mapeamento das Tabelas Relacionadas</strong>
+          <ul>
+            <li>3.1 Devem ser listadas as tabelas que se relacionam com Certificados por chave estrangeira explícita ou implícita.</li>
+            <li>3.2 Para cada tabela relacionada, devem constar as colunas FK reais e o tipo de relacionamento (1:N, 1:1).</li>
+          </ul>
+        </li>
+        <li><strong>4 Entrega Documental</strong>
+          <ul>
+            <li>4.1 O resultado deve ser anexado ao ticket como nota factual em texto, não como SQL final.</li>
+            <li>4.2 A nota deve evidenciar nomes exatos de colunas para prevenir colisão de tipos em etapas posteriores.</li>
+          </ul>
+        </li>
+      </ul>
+
+      <h4>Prompt do Cursor / IDE</h4>
+      <pre class="prompt"><code>Você é um engenheiro sênior PHP/MySQL no projeto ContaÁgil (CodeIgniter, arquitetura View → Controller → Service → Finder → Model).
+Referência da integração PSC SafeWeb:
+https://pscsafeweb.safewebpss.com.br/Docs/
+Tarefa: SAFE-101 — Inventário de Schema MySQL & DESCRIBE
+Objetivo:
+Antes de qualquer DDL, inspecionar o banco real via MCP mysql-dev (read-only) e produzir relatório factual sobre a tabela legada Certificados e tabelas relacionadas a certificado/empresa.
+Regras obrigatórias:
+- NÃO inventar nomes de colunas/tabelas
+- NÃO gerar SQL final de produção nesta etapa
+- NÃO alterar código da aplicação
+- Usar exclusivamente mysql-dev para inspection
+Passos:
+1. DESCRIBE Certificados
+2. SHOW CREATE TABLE Certificados
+3. Listar tabelas relacionadas (FK explícita ou implícita com Empresas/Certificados)
+4. Para cada tabela relacionada: DESCRIBE + identificar colunas FK e cardinalidade
+5. Documentar riscos de colisão de tipos para futuras colunas PSC
+Critérios de Aceitação:
+1.1 Inspeção 100% read-only em mysql-dev
+1.2 Relatório com nomes exatos de colunas, tipos e nulidade
+1.3 PK e índices de Certificados documentados
+1.4 Tabelas relacionadas listadas com FK reais
+1.5 Entrega em markdown anexável ao ticket (sem SQL final)
+Entregável:
+- Nota markdown curta e factual pronta para anexar no ticket SAFE-101</code></pre>
     </div>
 
     <div class="card">
       <p><span class="task-id">SAFE-102</span> · Execução de DDL Estrutural &amp; Script Rollback · <span class="badge">1,0 du</span></p>
-      <pre class="prompt"><code>Implementar DDL conforme o bloco §6 DDL da documentação oficial. Criar tabelas PscOAuthSessions, PscAccessTokens, PscApiAudit (obrigatória neste pacote) e o ALTER TABLE na tabela Certificados com colunas totalmente nullable para não quebrar o fluxo legado A1. Incluir comandos comentados de rollback drop na base mysql-dev.</code></pre>
+      
+      <h4>Critérios de Aceitação</h4>
+      <ul class="checklist">
+        <li><strong>1 Aderência à Documentação Oficial</strong>
+          <ul>
+            <li>1.1 A DDL executada deve ser idêntica à definida no §6 da documentação SafeID/PSC.</li>
+          </ul>
+        </li>
+        <li><strong>2 Criação de Tabelas Novas</strong>
+          <ul>
+            <li>2.1 Devem ser criadas as tabelas PscOAuthSessions, PscAccessTokens e PscApiAudit.</li>
+            <li>2.2 As três tabelas devem estar presentes no SHOW TABLES do mysql-dev ao fim da execução.</li>
+          </ul>
+        </li>
+        <li><strong>3 Extensão da Tabela Certificados</strong>
+          <ul>
+            <li>3.1 O ALTER TABLE Certificados deve adicionar exclusivamente colunas nullable.</li>
+            <li>3.2 Nenhuma coluna existente pode ser alterada, renomeada ou removida.</li>
+            <li>3.3 O fluxo legado de certificado A1 deve continuar operando sem alteração funcional.</li>
+          </ul>
+        </li>
+        <li><strong>4 Rollback Versionado</strong>
+          <ul>
+            <li>4.1 O script deve incluir comandos DROP TABLE e ALTER TABLE DROP COLUMN comentados.</li>
+            <li>4.2 O rollback deve cobrir 100% das mudanças aplicadas no item 2 e 3.</li>
+          </ul>
+        </li>
+        <li><strong>5 Evidência de Execução</strong>
+          <ul>
+            <li>5.1 Deve ser anexada saída de SHOW CREATE TABLE de cada objeto criado/alterado.</li>
+          </ul>
+        </li>
+      </ul>
+
+      <h4>Prompt do Cursor / IDE</h4>
+      <pre class="prompt"><code>Você é um engenheiro sênior PHP/MySQL no projeto ContaÁgil (CodeIgniter).
+Referência da integração PSC SafeWeb (§6 DDL):
+https://pscsafeweb.safewebpss.com.br/Docs/
+Tarefa: SAFE-102 — Execução de DDL Estrutural & Script Rollback
+Objetivo:
+Implementar DDL conforme documentação oficial SafeID/PSC, com rollback comentado, sem quebrar fluxo legado A1.
+DDL esperada:
+- CREATE TABLE PscOAuthSessions
+- CREATE TABLE PscAccessTokens
+- CREATE TABLE PscApiAudit
+- ALTER TABLE Certificados (somente colunas NULLABLE, sem alterar/remover colunas existentes)
+Regras:
+- Inspecionar mysql-dev ANTES (DESCRIBE Certificados)
+- Não quebrar certificado A1 legado
+- Incluir rollback comentado (DROP TABLE + ALTER DROP COLUMN)
+- Seguir padrão de migrations/processos do repo, se existir
+Critérios de Aceitação:
+2.1 DDL aderente ao §6 da doc PSC
+2.2 Tabelas novas criadas e verificáveis via SHOW TABLES
+2.3 ALTER em Certificados apenas com colunas nullable
+2.4 Fluxo A1 legado intacto
+2.5 Script com rollback comentado cobrindo 100% das mudanças
+2.6 Evidência com SHOW CREATE TABLE anexável
+Entregável:
+- Arquivo(s) de migration/DDL versionado(s)
+- Bloco rollback comentado
+- Resumo do que foi aplicado</code></pre>
     </div>
 
     <div class="card">
       <p><span class="task-id">SAFE-103</span> · Criação de Mappings, Models e Finders Técnicos · <span class="badge">1,0 du</span></p>
-      <pre class="prompt"><code>Criar os Models relacionais no CodeIgniter e atualizar o arquivo mapping.php com os novos campos mapeados da SafeWeb. Desenvolver os métodos Finder iniciais: findSessionByState e findActiveTokenByEmpresa sem acoplar lógica na View.</code></pre>
+      
+      <h4>Critérios de Aceitação</h4>
+      <ul class="checklist">
+        <li><strong>1 Models Relacionais</strong>
+          <ul>
+            <li>1.1 Devem ser criados os Models do CodeIgniter correspondentes a PscOAuthSessions, PscAccessTokens e PscApiAudit.</li>
+            <li>1.2 Os Models não devem conter regra de negócio — apenas definição de entidade.</li>
+          </ul>
+        </li>
+        <li><strong>2 Atualização do Mapping</strong>
+          <ul>
+            <li>2.1 O arquivo mapping.php deve ser updated com os novos campos provenientes da integração SafeWeb.</li>
+            <li>2.2 Os campos devem estar disponíveis para uso pelos Finders.</li>
+          </ul>
+        </li>
+        <li><strong>3 Finders Iniciais</strong>
+          <ul>
+            <li>3.1 Devem ser implementados os métodos findSessionByState e findActiveTokenByEmpresa.</li>
+            <li>3.2 Os Finders devem retornar instâncias dos Models — nunca dados brutos para a View.</li>
+          </ul>
+        </li>
+        <li><strong>4 Separação de Camadas</strong>
+          <ul>
+            <li>4.1 Nenhum método novo pode acessar $this->db fora dos Finders.</li>
+            <li>4.2 Nenhuma lógica de negócio pode ser introduzida em Controllers ou Views nesta tarefa.</li>
+          </ul>
+        </li>
+      </ul>
+
+      <h4>Prompt do Cursor / IDE</h4>
+      <pre class="prompt"><code>Você é um engenheiro sênior PHP no projeto ContaÁgil (CodeIgniter, MY_Model, Finders).
+Referência da integração PSC SafeWeb:
+https://pscsafeweb.safewebpss.com.br/Docs/
+Tarefa: SAFE-103 — Criação de Mappings, Models e Finders Técnicos
+Pré-requisito:
+- SAFE-102 concluído (tabelas PscOAuthSessions, PscAccessTokens, PscApiAudit existentes)
+Objetivo:
+Criar camada de persistência técnica PSC sem lógica de negócio na View/Controller.
+Implementar:
+1. Models: PscOAuthSession, PscAccessToken, PscApiAudit (ou nomenclatura padrão do projeto)
+2. Atualizar mapping.php com campos SafeWeb
+3. Finders:
+   - findSessionByState($state)
+   - findActiveTokenByEmpresa($codEmpresa)
+Regras de arquitetura:
+- Acesso a DB somente via Finders
+- Models sem regra de negócio
+- Reutilizar padrões existentes (CertificadosFinder, MY_Model, etc.)
+- Inspecionar mysql-dev antes de codar queries
+Critérios de Aceitação:
+3.1 Models criados para as 3 tabelas PSC
+3.2 mapping.php atualizado
+3.3 Finders retornam entidades, não arrays soltos para View
+3.4 Zero lógica de negócio em Controller/View nesta tarefa
+Entregável:
+- Models + Finders + mapping atualizado
+- Exemplo de uso dos Finders (sem acoplar à UI)</code></pre>
     </div>
 
     <h3>F2 — Barramento HTTP, Integração e Handshakes de Autenticação (5,0 du)</h3>
 
     <div class="card">
       <p><span class="task-id">SAFE-104</span> · Configuração de Ambientes (ENV) &amp; Fail-Fast Boot · <span class="badge">0,5 du</span></p>
-      <pre class="prompt"><code>Configurar o isolamento das variáveis do bloco §5 no arquivo env-settings/getenv. Implementar uma validação rígida de boot para que a aplicação lance uma exceção e falhe imediatamente caso constantes essenciais como PSC_TOKEN_ENCRYPTION_KEY estejam ausentes no ambiente de Staging.</code></pre>
+      
+      <h4>Critérios de Aceitação</h4>
+      <ul class="checklist">
+        <li><strong>1 Isolamento de Variáveis</strong>
+          <ul>
+            <li>1.1 Todas as variáveis do §5 da documentação devem ser registradas no env-settings/getenv.</li>
+            <li>1.2 Nenhuma chave de configuração pode ser hardcoded no código.</li>
+          </ul>
+        </li>
+        <li><strong>2 Validação de Boot</strong>
+          <ul>
+            <li>2.1 No bootstrap da aplicação deve haver verificação rígida das constantes essenciais.</li>
+            <li>2.2 A constante PSC_TOKEN_ENCRYPTION_KEY deve ser obrigatória.</li>
+          </ul>
+        </li>
+        <li><strong>3 Comportamento Fail-Fast</strong>
+          <ul>
+            <li>3.1 A aplicação deve lançar exceção e abortar a inicialização caso qualquer constante essencial esteja ausente.</li>
+            <li>3.2 A mensagem de exceção deve identificar o nome exato da variável ausente.</li>
+          </ul>
+        </li>
+        <li><strong>4 Ambiente de Staging</strong>
+          <ul>
+            <li>4.1 O comportamento fail-fast deve ser validado em Staging.</li>
+          </ul>
+        </li>
+      </ul>
+
+      <h4>Prompt do Cursor / IDE</h4>
+      <pre class="prompt"><code>Você é um engenheiro sênior PHP no projeto ContaÁgil.
+Referência da integração PSC SafeWeb (§5 variáveis de ambiente):
+https://pscsafeweb.safewebpss.com.br/Docs/
+Tarefa: SAFE-104 — Configuração de Ambientes (ENV) & Fail-Fast Boot
+Objetivo:
+Isolar variáveis PSC no env-settings/getenv e falhar cedo se constantes críticas estiverem ausentes.
+Implementar:
+1. Registrar variáveis do §5 (client_id, client_secret, redirect_uri, base_url PSC, PSC_TOKEN_ENCRYPTION_KEY, etc.)
+2. Validação rígida no boot da aplicação
+3. Exceção clara indicando variável ausente (ex.: PSC_TOKEN_ENCRYPTION_KEY)
+Regras:
+- Nunca hardcodar segredos
+- Seguir padrão existente de env-settings.php
+- Mensagem de erro deve ser operacional (nome exato da env faltante)
+Critérios de Aceitação:
+1.1 Variáveis §5 registradas via getenv/env-settings
+1.2 Boot valida constantes essenciais
+1.3 App aborta com exceção se env crítica ausente
+1.4 Comportamento validado em staging
+Entregável:
+- env-settings/.env.example atualizado
+- Classe/helper de validação de boot PSC
+- Documentação curta das variáveis obrigatórias</code></pre>
     </div>
 
     <div class="card">
       <p><span class="task-id">SAFE-105</span> · Wrapper Cliente HTTP PSC &amp; Higienização de Logs · <span class="badge">1,5 du</span></p>
-      <pre class="prompt"><code>Criar a classe PscSafeWebClient para centralizar as requisições GET/POST JSON e POST Form x-www-form-urlencoded usando cURL ou Guzzle existente. Mapear retornos HTTP status para exceções específicas do domínio e garantir mascaramento estrito em funções de depuração para nunca imprimir ou vazar tokens em claro nos logs.</code></pre>
+      
+      <h4>Critérios de Aceitação</h4>
+      <ul class="checklist">
+        <li><strong>1 Classe Centralizadora</strong>
+          <ul>
+            <li>1.1 Deve existir a classe PscSafeWebClient como ponto único de acesso à API SafeWeb.</li>
+            <li>1.2 Nenhum outro arquivo do projeto pode fazer requisições diretas à API.</li>
+          </ul>
+        </li>
+        <li><strong>2 Métodos de Requisição</strong>
+          <ul>
+            <li>2.1 A classe deve expor GET JSON, POST JSON e POST Form x-www-form-urlencoded.</li>
+            <li>2.2 A camada HTTP deve reutilizar a biblioteca já existente no projeto (cURL ou Guzzle), sem introduzir nova dependência.</li>
+          </ul>
+        </li>
+        <li><strong>3 Tratamento de Erros</strong>
+          <ul>
+            <li>3.1 Cada status HTTP relevante deve ser mapeado para uma exceção específica do domínio PSC.</li>
+            <li>3.2 Status de sucesso (2xx) deve retornar o payload normalizado.</li>
+          </ul>
+        </li>
+        <li><strong>4 Higienização de Logs</strong>
+          <ul>
+            <li>4.1 Nenhuma rotina de debug pode imprimir, gravar ou retornar tokens em claro.</li>
+            <li>4.2 Tokens devem ser mascarados em todos os pontos de logging.</li>
+            <li>4.3 Deve haver verificação automatizada confirmando ausência de vazamento em saídas de log.</li>
+          </ul>
+        </li>
+      </ul>
+
+      <h4>Prompt do Cursor / IDE</h4>
+      <pre class="prompt"><code>Você é um engenheiro sênior PHP no projeto ContaÁgil.
+Referência da integração PSC SafeWeb (endpoints OAuth/REST):
+https://pscsafeweb.safewebpss.com.br/Docs/
+Tarefa: SAFE-105 — Wrapper Cliente HTTP PSC & Higienização de Logs
+Objetivo:
+Centralizar chamadas HTTP à SafeWeb em uma única classe PscSafeWebClient.
+Implementar PscSafeWebClient com:
+- GET JSON
+- POST JSON
+- POST application/x-www-form-urlencoded
+- Timeout, headers padrão, tratamento de erro HTTP → exceções de domínio PSC
+- Mascaramento de tokens/segredos em logs (nunca logar em claro)
+Regras:
+- Reutilizar cURL/Guzzle já existente no projeto (não criar dependência nova sem necessidade)
+- Nenhum outro arquivo deve chamar a API PSC diretamente
+- Seguir arquitetura Service → Client (Client é infra, Service é negócio)
+Critérios de Aceitação:
+1.1 Classe PscSafeWebClient como ponto único de acesso
+1.2 Suporte GET JSON, POST JSON, POST form-urlencoded
+1.3 Status HTTP mapeados para exceções específicas
+1.4 Logs higienizados (tokens/chaves mascarados)
+1.5 Teste/grep confirmando ausência de vazamento em debug
+Entregável:
+- PscSafeWebClient.php
+- Exceções de domínio PSC (PscHttpException, etc.)
+- Helper de log seguro</code></pre>
     </div>
 
     <div class="card">
       <p><span class="task-id">SAFE-106</span> · Camada do Crypto Service (AES-256-GCM) · <span class="badge">0,5 du</span></p>
-      <pre class="prompt"><code>Desenvolver métodos no Service para cifragem simétrica de tokens em repouso antes do INSERT na PscAccessTokens. O formato de armazenamento deve ser base64(iv+ciphertext+tag). Adicionar teste de negação lançando exceção controlada se o token gravado for intencionalmente adulterado ou a chave GCM for inválida.</code></pre>
+      
+      <h4>Critérios de Aceitação</h4>
+      <ul class="checklist">
+        <li><strong>1 Cifragem em Repouso</strong>
+          <ul>
+            <li>1.1 Tokens devem ser cifrados antes do INSERT na PscAccessTokens.</li>
+            <li>1.2 O algoritmo utilizado deve ser AES-256-GCM.</li>
+          </ul>
+        </li>
+        <li><strong>2 Formato de Armazenamento</strong>
+          <ul>
+            <li>2.1 O valor persistido deve seguir o formato base64(iv + ciphertext + tag).</li>
+            <li>2.2 IV e tag devem ser gerados por chamada e nunca reutilizados.</li>
+          </ul>
+        </li>
+        <li><strong>3 Decifragem</strong>
+          <ul>
+            <li>3.1 O Service deve oferecer método de decifragem que retorne o token em claro apenas em memória.</li>
+            <li>3.2 O token decifrado nunca deve ser persistido em log ou arquivo.</li>
+          </ul>
+        </li>
+        <li><strong>4 Teste de Integridade</strong>
+          <ul>
+            <li>4.1 Deve existir teste de negação simulando adulteração do ciphertext.</li>
+            <li>4.2 Deve existir teste de negação com chave GCM inválida.</li>
+            <li>4.3 Ambos os testes devem lançar exceção controlada e não retornar dado.</li>
+          </ul>
+        </li>
+      </ul>
+
+      <h4>Prompt do Cursor / IDE</h4>
+      <pre class="prompt"><code>Você é um engenheiro sênior PHP no projeto ContaÁgil.
+Referência da integração PSC SafeWeb:
+https://pscsafeweb.safewebpss.com.br/Docs/
+Tarefa: SAFE-106 — Camada Crypto Service (AES-256-GCM)
+Objetivo:
+Cifrar tokens PSC em repouso antes do INSERT em PscAccessTokens.
+Implementar no Service:
+- encryptToken(plain): base64(iv + ciphertext + tag)
+- decryptToken(stored): plain em memória apenas
+- Chave via PSC_TOKEN_ENCRYPTION_KEY (env)
+Testes obrigatórios:
+- Decrypt de token válido funciona
+- Ciphertext adulterado → exceção controlada
+- Chave inválida → exceção controlada
+Regras:
+- IV único por operação
+- Token decifrado nunca vai para log/arquivo
+- Integrar com Finder PscAccessToken (SAFE-103)
+Critérios de Aceitação:
+1.1 AES-256-GCM implementado
+1.2 Formato base64(iv+ciphertext+tag)
+1.3 Decrypt só em memória
+1.4 Testes de negação (tamper + chave inválida)
+Entregável:
+- PscCryptoService (ou equivalente no padrão do projeto)
+- Testes unitários
+- Exemplo de persistência cifrada via Finder</code></pre>
     </div>
 
     <div class="card">
       <p><span class="task-id">SAFE-107</span> · Orquestração do Handshake OAuth Inicial com PKCE · <span class="badge">1,5 du</span></p>
-      <pre class="prompt"><code>Implementar no Service o método iniciarOAuthPKCE. Gerar code_verifier, code_challenge em S256 e state randômico. Persistir esses hashes temporários na tabela PscOAuthSessions vinculando a empresa e retornar a montagem exata da URL de redirect para o endpoint /oauth/authorize do PSC SafeWeb.</code></pre>
+      
+      <h4>Critérios de Aceitação</h4>
+      <ul class="checklist">
+        <li><strong>1 Geração de Parâmetros PKCE</strong>
+          <ul>
+            <li>1.1 Deve ser gerado code_verifier aleatório seguindo a especificação RFC 7636.</li>
+            <li>1.2 Deve ser gerado code_challenge via método S256.</li>
+            <li>1.3 Deve ser gerado state aleatório por sessão.</li>
+          </ul>
+        </li>
+        <li><strong>2 Persistência Temporária</strong>
+          <ul>
+            <li>2.1 Os hashes devem ser gravados em PscOAuthSessions vinculados à empresa de origem.</li>
+            <li>2.2 A linha de sessão deve ter prazo de expiração compatível com o tempo de fluxo OAuth.</li>
+          </ul>
+        </li>
+        <li><strong>3 URL de Redirect</strong>
+          <ul>
+            <li>3.1 O método iniciarOAuthPKCE deve retornar a URL completa para /oauth/authorize do PSC SafeWeb.</li>
+            <li>3.2 A URL deve incluir client_id, response_type, redirect_uri, code_challenge, code_challenge_method=S256 e state.</li>
+          </ul>
+        </li>
+        <li><strong>4 Camadas</strong>
+          <ul>
+            <li>4.1 O método deve residir no Service.</li>
+            <li>4.2 Nenhuma lógica de geração de hash pode estar no Controller.</li>
+          </ul>
+        </li>
+      </ul>
+
+      <h4>Prompt do Cursor / IDE</h4>
+      <pre class="prompt"><code>Você é um engenheiro sênior PHP no projeto ContaÁgil.
+Referência da integração PSC SafeWeb (OAuth /oauth/authorize, PKCE):
+https://pscsafeweb.safewebpss.com.br/Docs/
+Tarefa: SAFE-107 — Orquestração Handshake OAuth Inicial com PKCE
+Objetivo:
+Implementar iniciarOAuthPKCE($codEmpresa) no Service.
+Fluxo:
+1. Gerar code_verifier (RFC 7636)
+2. Gerar code_challenge S256
+3. Gerar state aleatório
+4. Persistir em PscOAuthSessions (Finder SAFE-103)
+5. Retornar URL completa de redirect para /oauth/authorize
+Parâmetros da URL (conforme doc PSC):
+- client_id, response_type, redirect_uri
+- code_challenge, code_challenge_method=S256
+- state
+Regras:
+- Lógica no Service, não no Controller
+- state vinculado à empresa
+- Sessão com expiração compatível com fluxo OAuth
+Critérios de Aceitação:
+1.1 PKCE S256 gerado corretamente
+1.2 Sessão persistida em PscOAuthSessions
+1.3 URL de redirect montada conforme doc PSC
+1.4 Controller apenas chama Service e redireciona
+Entregável:
+- Método iniciarOAuthPKCE no Service
+- Teste unitário de geração PKCE
+- Exemplo de URL gerada (sem expor segredos)</code></pre>
     </div>
 
     <div class="card">
@@ -637,50 +1042,545 @@ Arquitetura: sem mudar código ainda salvo já existir processo migrações.</co
       <p class="small"><strong>DoR:</strong> SAFE-103 e chaves em homolog.</p>
       <p><strong>Passos de Execução:</strong> Chamar <code>POST /oauth/authorize-ca</code> para receber o <code>identifierCA</code> e metadados. Capturar senha no POST server-side e realizar a concatenação exata <code>password = identifierCA + senhaCertificado</code> para disparar o handshake de recebimento de token via <code>POST /oauth/pwd_authorize</code>.</p>
       <p class="small"><strong>DoD:</strong> Handshake CA operacional e token em repouso guardado de forma idêntica ao fluxo QR.</p>
-      <pre class="prompt"><code>Implementar o fluxo CA no Service: disparar POST /oauth/authorize-ca para obter o identifierCA (+ state, expirationDate, serialNumber). Guardar o identifierCA e em requisição POST server-side realizar a troca definitiva pelo token de acesso chamando POST /oauth/pwd_authorize passando username e a concatenação exata password = identifierCA + senhaDoCertificado (sem espaços). Persistir token de forma segura.</code></pre>
+      
+      <h4>Critérios de Aceitação</h4>
+      <ul class="checklist">
+        <li><strong>1 Pré-requisitos</strong>
+          <ul>
+            <li>1.1 SAFE-103 concluído.</li>
+            <li>1.2 Chaves de homologação configuradas no ambiente.</li>
+          </ul>
+        </li>
+        <li><strong>2 Solicitação do identifierCA</strong>
+          <ul>
+            <li>2.1 Deve ser chamado POST /oauth/authorize-ca para obter identifierCA, state, expirationDate e serialNumber.</li>
+            <li>2.2 O identifierCA deve ser guardado no escopo da sessão de troca.</li>
+          </ul>
+        </li>
+        <li><strong>3 Captura da Senha</strong>
+          <ul>
+            <li>3.1 A senha do certificado deve ser capturada apenas em requisição POST server-side.</li>
+            <li>3.2 A senha não pode trafegar em GET, URL ou log.</li>
+          </ul>
+        </li>
+        <li><strong>4 Concatenação para Handshake</strong>
+          <ul>
+            <li>4.1 O campo password enviado ao endpoint de troca deve ser exatamente identifierCA + senhaCertificado, sem espaços.</li>
+            <li>4.2 A concatenação deve ser feita em memória e descartada após o uso.</li>
+          </ul>
+        </li>
+        <li><strong>5 Troca por Token</strong>
+          <ul>
+            <li>5.1 Deve ser executado POST /oauth/pwd_authorize com username e password construídos conforme o item 4.</li>
+            <li>5.2 O token retornado deve ser persistido seguindo a mesma rotina do fluxo QR (SAFE-106).</li>
+          </ul>
+        </li>
+        <li><strong>6 Definition of Done</strong>
+          <ul>
+            <li>6.1 Handshake CA operacional em Staging.</li>
+            <li>6.2 Token gravado de forma idêntica ao fluxo QR, indistinguível na tabela PscAccessTokens.</li>
+          </ul>
+        </li>
+      </ul>
+
+      <h4>Prompt do Cursor / IDE</h4>
+      <pre class="prompt"><code>Você é um engenheiro sênior PHP no projeto ContaÁgil.
+Referência da integração PSC SafeWeb (CA: /oauth/authorize-ca, /oauth/pwd_authorize):
+https://pscsafeweb.safewebpss.com.br/Docs/
+Tarefa: SAFE-108 — Orquestração Barramento CA (Aplicação Confiável)
+Pré-requisitos:
+- SAFE-103 (Finders)
+- SAFE-105 (PscSafeWebClient)
+- SAFE-106 (Crypto)
+- Chaves configuradas em homolog
+Objetivo:
+Implementar fluxo CA server-side equivalente ao QR, persistindo token cifrado igual.
+Fluxo:
+1. POST /oauth/authorize-ca → capturar identifierCA, state, expirationDate, serialNumber
+2. Capturar senha do certificado APENAS via POST server-side
+3. Montar password = identifierCA + senhaCertificado (sem espaços)
+4. POST /oauth/pwd_authorize com username + password
+5. Persistir access_token cifrado (mesmo fluxo do QR)
+Regras:
+- Senha nunca em GET/URL/log
+- Concatenação exata sem espaços
+- Token em repouso idêntico ao fluxo QR (PscAccessTokens)
+Critérios de Aceitação:
+1.1 authorize-ca retorna identifierCA persistido
+1.2 pwd_authorize executado com concatenação correta
+1.3 Token cifrado gravado em PscAccessTokens
+1.4 Handshake CA operacional em staging
+Entregável:
+- Método iniciarHandshakeCA + finalizarHandshakeCA no Service
+- Integração com certificado A1 legado (CertificadosFinder)
+- Evidência de token persistido (sem expor valor)</code></pre>
     </div>
 
     <h3>F3 — Motores Core de Assinatura, Pipelines e Verificação (4,5 du)</h3>
 
     <div class="card">
       <p><span class="task-id">SAFE-109</span> · Motores de Assinatura Core: Hashes Brutos (RAW/CMS) e ICP-Brasil · <span class="badge">1,5 du</span></p>
-      <pre class="prompt"><code>Implementar no Service os métodos para disparo de assinaturas digitais por lote de hashes consumindo a API SafeWeb (/oauth/signature) operando em formatos RAW ou CMS. Integrar o motor /oauth/signature-icp suportando as diretrizes normativas das políticas de certificação AD-RB e AD-RT, persistindo as telemetrias em PscApiAudit.</code></pre>
+      
+      <h4>Critérios de Aceitação</h4>
+      <ul class="checklist">
+        <li><strong>1 Motor de Hashes Brutos</strong>
+          <ul>
+            <li>1.1 Deve haver método no Service para disparo em lote de assinaturas via /oauth/signature.</li>
+            <li>1.2 O método deve suportar os formatos RAW e CMS.</li>
+          </ul>
+        </li>
+        <li><strong>2 Motor ICP-Brasil</strong>
+          <ul>
+            <li>2.1 Deve haver método dedicado consumindo /oauth/signature-icp.</li>
+            <li>2.2 Devem ser suportadas as políticas AD-RB e AD-RT.</li>
+          </ul>
+        </li>
+        <li><strong>3 Telemetria</strong>
+          <ul>
+            <li>3.1 Cada chamada deve gerar registro em PscApiAudit.</li>
+            <li>3.2 O registro deve conter empresa, endpoint, status HTTP, duração e identificador da requisição.</li>
+          </ul>
+        </li>
+        <li><strong>4 Camadas</strong>
+          <ul>
+            <li>4.1 Toda a lógica deve residir no Service.</li>
+            <li>4.2 Controller apenas orquestra requisição e resposta.</li>
+          </ul>
+        </li>
+      </ul>
+
+      <h4>Prompt do Cursor / IDE</h4>
+      <pre class="prompt"><code>Você é um engenheiro sênior PHP no projeto ContaÁgil.
+Referência da integração PSC SafeWeb (/oauth/signature, /oauth/signature-icp):
+https://pscsafeweb.safewebpss.com.br/Docs/
+Tarefa: SAFE-109 — Motores de Assinatura Core (RAW/CMS e ICP-Brasil)
+Objetivo:
+Implementar assinatura digital em lote via API SafeWeb com auditoria.
+Implementar no Service:
+1. assinarHashesLote($empresa, $hashes, $formato) → POST /oauth/signature (RAW ou CMS)
+2. assinarIcpBrasil($empresa, $payload, $politica) → POST /oauth/signature-icp (AD-RB, AD-RT)
+3. Registrar cada chamada em PscApiAudit (endpoint, status, duração, empresa)
+Regras:
+- Usar token ativo da empresa (Finder SAFE-103 + decrypt SAFE-106)
+- Usar PscSafeWebClient (SAFE-105)
+- Lógica no Service, Controller fino
+Critérios de Aceitação:
+1.1 Assinatura RAW/CMS em lote funcional
+1.2 Assinatura ICP-Brasil AD-RB e AD-RT funcional
+1.3 Telemetria em PscApiAudit por chamada
+1.4 Erros mapeados para exceções de domínio
+Entregável:
+- PscSignatureService (ou métodos no Service PSC)
+- Registros de auditoria
+- Exemplo de request/response sanitizado</code></pre>
     </div>
 
     <div class="card">
       <p><span class="task-id">SAFE-110</span> · Pipeline de Assinatura Documental PDF PAdES &amp; Inspeção de Páginas · <span class="badge">2,0 du</span></p>
       <p><strong>Passos de Execução:</strong> Integrar chamadas em lote organizando o fluxo multipasso: /pades-signature/start, /pades-signature/info para resgatar dimensões da página, /pades-signature/apply aplicando carimbo e coordenadas visuais, e /pades-signature/finish para fechamento binário.</p>
       <p class="small"><strong>DoD:</strong> PDF final íntegro, validável, contendo carimbo visual coerente com a inspeção de dimensões do arquivo.</p>
-      <pre class="prompt"><code>Construir no Service a máquina de estados para o pipeline PAdES: realizar POST /pades-signature/start para obter o documentId, consumir GET /pades-signature/info para capturar as dimensões reais de página e coordenadas do carimbo, acionar POST /pades-signature/apply injetando as annotations e finalizar o fluxo via GET /pades-signature/finish coletando o arquivo assinado.</code></pre>
+      
+      <h4>Critérios de Aceitação</h4>
+      <ul class="checklist">
+        <li><strong>1 Máquina de Estados</strong>
+          <ul>
+            <li>1.1 O Service deve implementar máquina de estados cobrindo start → info → apply → finish.</li>
+            <li>1.2 A máquina deve falhar de forma controlada se uma etapa intermediária retornar erro.</li>
+          </ul>
+        </li>
+        <li><strong>2 Etapa Start</strong>
+          <ul>
+            <li>2.1 Deve ser executado POST /pades-signature/start.</li>
+            <li>2.2 O documentId retornado deve ser persistido durante todo o pipeline.</li>
+          </ul>
+        </li>
+        <li><strong>3 Etapa Info</strong>
+          <ul>
+            <li>3.1 Deve ser executado GET /pades-signature/info para captura de dimensões reais da página.</li>
+            <li>3.2 As coordenadas do carimbo visual devem ser calculadas com base nessas dimensões.</li>
+          </ul>
+        </li>
+        <li><strong>4 Etapa Apply</strong>
+          <ul>
+            <li>4.1 Deve ser executado POST /pades-signature/apply com as annotations e coordenadas calculadas.</li>
+            <li>4.2 O carimbo visual deve ser coerente com as dimensões inspecionadas.</li>
+          </ul>
+        </li>
+        <li><strong>5 Etapa Finish</strong>
+          <ul>
+            <li>5.1 Deve ser executado GET /pades-signature/finish para coleta do arquivo assinado.</li>
+            <li>5.2 O binário final deve ser retornado íntegro e validável.</li>
+          </ul>
+        </li>
+        <li><strong>6 Definition of Done</strong>
+          <ul>
+            <li>6.1 PDF assinado abre em validador externo (Adobe Reader / iText) como assinatura válida.</li>
+            <li>6.2 Carimbo visual aparece nas coordenadas esperadas.</li>
+          </ul>
+        </li>
+      </ul>
+
+      <h4>Prompt do Cursor / IDE</h4>
+      <pre class="prompt"><code>Você é um engenheiro sênior PHP no projeto ContaÁgil.
+Referência da integração PSC SafeWeb (PAdES: start, info, apply, finish):
+https://pscsafeweb.safewebpss.com.br/Docs/
+Tarefa: SAFE-110 — Pipeline Assinatura Documental PDF PAdES
+Objetivo:
+Implementar máquina de estados PAdES no Service.
+Fluxo multipasso:
+1. POST /pades-signature/start → documentId
+2. GET /pades-signature/info → dimensões reais da página + coordenadas
+3. POST /pades-signature/apply → annotations + carimbo visual
+4. GET /pades-signature/finish → PDF assinado (binário)
+Regras:
+- documentId persistido durante todo o pipeline
+- Coordenadas do carimbo baseadas no info real da página
+- Falha em etapa intermediária → exceção controlada (não continuar pipeline)
+- Auditoria em PscApiAudit
+Critérios de Aceitação:
+1.1 Máquina de estados start→info→apply→finish
+1.2 Carimbo visual coerente com dimensões inspecionadas
+1.3 PDF final íntegro e validável externamente
+1.4 Pipeline auditado
+Entregável:
+- PscPadesService com máquina de estados
+- Método assinarPdfPades($empresa, $pdfPath, $opcoesCarimbo)
+- Evidência de PDF assinado (path ou base64, sem expor segredos)</code></pre>
     </div>
 
     <div class="card">
       <p><span class="task-id">SAFE-111</span> · Motor de Validação Server-Side, Discovery e Geração de Chave App · <span class="badge">1,0 du</span></p>
       <p><strong>Passos de Execução:</strong> Criar fluxo para consumir <code>POST /oauth/client_token</code> (client_credentials) e cachear em memória. Chamar <code>POST /oauth/signature_verify</code> injetando o Bearer da aplicação para validação fim-a-fim, além dos endpoints complementares `GET /oauth/certificate-info`, `GET /oauth/certificate-discovery` e `POST /oauth/user-discovery`.</p>
       <p class="small"><strong>DoD:</strong> Motor interpretando respostas de integridade de arquivos e chaves usando chaves de servidor de forma isolada.</p>
-      <pre class="prompt"><code>Implementar lógica no Service para obter e cachear o token corporativo da aplicação via POST /oauth/client_token (grant_type=client_credentials). Integrar a rota validadora POST /oauth/signature_verify assinada com o Bearer da aplicação para capturar status Valid/Invalid de assinaturas, além de implementar o consumo dos endpoints complementares GET /oauth/certificate-info, GET /oauth/certificate-discovery e POST /oauth/user-discovery.</code></pre>
+      
+      <h4>Critérios de Aceitação</h4>
+      <ul class="checklist">
+        <li><strong>1 Token Corporativo</strong>
+          <ul>
+            <li>1.1 Deve haver método consumindo POST /oauth/client_token com grant_type=client_credentials.</li>
+            <li>1.2 O token corporativo deve ser cacheado em memória respeitando o expires_in retornado.</li>
+          </ul>
+        </li>
+        <li><strong>2 Validação de Assinatura</strong>
+          <ul>
+            <li>2.1 Deve ser integrado POST /oauth/signature_verify assinado com o Bearer da aplicação.</li>
+            <li>2.2 O método deve retornar status Valid ou Invalid interpretado de forma isolada do fluxo de usuário.</li>
+          </ul>
+        </li>
+        <li><strong>3 Endpoints Complementares</strong>
+          <ul>
+            <li>3.1 Deve haver consumo de GET /oauth/certificate-info.</li>
+            <li>3.2 Deve haver consumo de GET /oauth/certificate-discovery.</li>
+            <li>3.3 Deve haver consumo de POST /oauth/user-discovery.</li>
+          </ul>
+        </li>
+        <li><strong>4 Isolamento</strong>
+          <ul>
+            <li>4.1 As chamadas do servidor não devem depender de token de usuário.</li>
+            <li>4.2 O cache do token corporativo deve estar isolado em memória do processo.</li>
+          </ul>
+        </li>
+      </ul>
+
+      <h4>Prompt do Cursor / IDE</h4>
+      <pre class="prompt"><code>Você é um engenheiro sênior PHP no projeto ContaÁgil.
+Referência da integração PSC SafeWeb (client_token, signature_verify, certificate-info, certificate-discovery, user-discovery):
+https://pscsafeweb.safewebpss.com.br/Docs/
+Tarefa: SAFE-111 — Motor Validação Server-Side, Discovery e Chave App
+Objetivo:
+Implementar chamadas server-to-server com token corporativo cacheado.
+Implementar:
+1. obterTokenCorporativo() → POST /oauth/client_token (grant_type=client_credentials)
+2. Cache em memória respeitando expires_in
+3. validarAssinatura($arquivo) → POST /oauth/signature_verify (Bearer app)
+4. obterInfoCertificado() → GET /oauth/certificate-info
+5. descobrirCertificados() → GET /oauth/certificate-discovery
+6. descobrirUsuario() → POST /oauth/user-discovery
+Regras:
+- Token corporativo isolado do token de usuário
+- Cache não persiste em disco
+- Auditoria PscApiAudit
+Critérios de Aceitação:
+1.1 client_token cacheado com TTL
+1.2 signature_verify retorna Valid/Invalid interpretado
+1.3 Endpoints complementares integrados
+1.4 Isolamento server-side (sem depender de sessão de usuário)
+Entregável:
+- PscValidationService + cache de app token
+- Métodos de discovery
+- Exemplo de validação com resposta sanitizada</code></pre>
     </div>
 
     <h3>F4 — Controladores UX, Callbacks e Homologação Postman (3,0 du)</h3>
 
     <div class="card">
       <p><span class="task-id">SAFE-112</span> · Controller Callback Público &amp; Tratamento de Exceções · <span class="badge">1,0 du</span></p>
-      <pre class="prompt"><code>Criar o Controller público /psc_oauth/callback. Adicionar isenção de guard de login no bootstrap do MY_Controller para esta rota específica. A lógica deve ler o code e state retornados, validar o state contra a sessão gravada no banco, tratar erros amigáveis se receber user_denied e realizar a troca pelo token definitivo chamando o POST /oauth/token no backend.</code></pre>
+      
+      <h4>Critérios de Aceitação</h4>
+      <ul class="checklist">
+        <li><strong>1 Rota Pública</strong>
+          <ul>
+            <li>1.1 Deve existir o Controller público /psc_oauth/callback.</li>
+            <li>1.2 A rota deve estar isenta do guard de login no MY_Controller.</li>
+          </ul>
+        </li>
+        <li><strong>2 Validação de Sessão</strong>
+          <ul>
+            <li>2.1 O state retornado deve ser comparado contra o registro persistido em PscOAuthSessions.</li>
+            <li>2.2 Em caso de divergência, a requisição deve ser rejeitada com mensagem amigável.</li>
+          </ul>
+        </li>
+        <li><strong>3 Tratamento de user_denied</strong>
+          <ul>
+            <li>3.1 Quando o PSC SafeWeb retornar user_denied, deve ser exibida tela amigável ao usuário.</li>
+            <li>3.2 Nenhum stack trace pode aparecer para o usuário final.</li>
+          </ul>
+        </li>
+        <li><strong>4 Troca pelo Token Definitivo</strong>
+          <ul>
+            <li>4.1 Após validação de state e code, deve ser chamado POST /oauth/token.</li>
+            <li>4.2 O token resultante deve ser persistido cifrado conforme SAFE-106.</li>
+          </ul>
+        </li>
+        <li><strong>5 Camadas</strong>
+          <ul>
+            <li>5.1 Toda lógica de negócio deve residir no Service correspondente.</li>
+            <li>5.2 O Controller deve apenas orquestrar a requisição e resposta.</li>
+          </ul>
+        </li>
+      </ul>
+
+      <h4>Prompt do Cursor / IDE</h4>
+      <pre class="prompt"><code>Você é um engenheiro sênior PHP no projeto ContaÁgil (CodeIgniter).
+Referência da integração PSC SafeWeb (callback OAuth, /oauth/token):
+https://pscsafeweb.safewebpss.com.br/Docs/
+Tarefa: SAFE-112 — Controller Callback Público & Tratamento de Exceções
+Objetivo:
+Criar rota pública /psc_oauth/callback para retorno do OAuth SafeWeb.
+Implementar:
+1. Controller Psc_oauth (ou padrão do projeto)
+2. Isenção de login no MY_Controller para /psc_oauth/callback
+3. Ler code + state da querystring
+4. Validar state contra PscOAuthSessions (Finder)
+5. Tratar user_denied com mensagem amigável
+6. Trocar code por token via POST /oauth/token (Service)
+7. Persistir token cifrado (SAFE-106)
+Regras:
+- Controller fino, lógica no Service
+- Nunca exibir stack trace ao usuário
+- state inválido → rejeitar com mensagem clara
+Critérios de Aceitação:
+1.1 Rota pública /psc_oauth/callback funcional
+1.2 Guard de login bypassado só nesta rota
+1.3 state validado contra banco
+1.4 user_denied tratado amigavelmente
+1.5 Token persistido cifrado após troca
+Entregável:
+- Controller + rota
+- Ajuste MY_Controller (whitelist callback)
+- View/mensagem de sucesso/erro amigável</code></pre>
     </div>
 
     <div class="card">
       <p><span class="task-id">SAFE-113</span> · Views do Hub no Portal Cliente (dev.app) e Revogação Ativa · <span class="badge">1,0 du</span></p>
-      <pre class="prompt"><code>Desenvolver as Views do hub no portal do cliente (dev.app) sob a rota /certificado_psc, sem lógica de negócio na View. Mapear os estados visuais via jQuery: desconectado, conectado, expirado e erro. Incluir gatilho AJAX acionando o método de revogação local de chaves sem afetar os metadados legados do A1.</code></pre>
+      
+      <h4>Critérios de Aceitação</h4>
+      <ul class="checklist">
+        <li><strong>1 Rota do Hub</strong>
+          <ul>
+            <li>1.1 Deve existir a rota /certificado_psc no portal cliente (dev.app).</li>
+            <li>1.2 A View não pode conter lógica de negócio.</li>
+          </ul>
+        </li>
+        <li><strong>2 Estados Visuais</strong>
+          <ul>
+            <li>2.1 A View deve mapear via jQuery os estados: Desconectado, Conectado, Expirado e Erro.</li>
+            <li>2.2 A transição entre estados deve ser dinâmica, sem reload completo da página.</li>
+          </ul>
+        </li>
+        <li><strong>3 Indicação Visual</strong>
+          <ul>
+            <li>3.1 O estado atual deve ter indicação clara (cor, ícone e texto).</li>
+            <li>3.2 Deve haver mensagem complementar explicando o que cada estado significa para o usuário.</li>
+          </ul>
+        </li>
+        <li><strong>4 Revogação Ativa</strong>
+          <ul>
+            <li>4.1 Deve haver gatilho AJAX para revogar a chave PSC do cliente.</li>
+            <li>4.2 A revogação não pode afetar metadados do certificado A1 herdado.</li>
+            <li>4.3 Após revogação, a View deve transitar automaticamente para o estado Desconectado.</li>
+          </ul>
+        </li>
+      </ul>
+
+      <h4>Prompt do Cursor / IDE</h4>
+      <pre class="prompt"><code>Você é um engenheiro frontend/backend no projeto ContaÁgil (dev.app, CodeIgniter, jQuery).
+Referência da integração PSC SafeWeb:
+https://pscsafeweb.safewebpss.com.br/Docs/
+Tarefa: SAFE-113 — Views Hub no Portal Cliente (dev.app) & Revogação Ativa
+Objetivo:
+Criar hub visual em /certificado_psc no portal do cliente.
+Implementar:
+1. View sem lógica de negócio (só apresentação)
+2. Controller fino chamando Service para status da conexão PSC
+3. Estados visuais via jQuery:
+   - Desconectado
+   - Conectado
+   - Expirado
+   - Erro
+4. Indicação visual clara do estado ativo
+5. Botão revogar → AJAX → Service revoga token PSC localmente
+6. Revogação NÃO afeta metadados A1 legado
+Regras:
+- View → Controller → Service → Finder
+- Transição de estado sem reload completo
+- Após revogação, UI volta para Desconectado
+Critérios de Aceitação:
+1.1 Rota /certificado_psc no dev.app
+1.2 4 estados visuais mapeados
+1.3 Revogação via AJAX funcional
+1.4 Metadados A1 legado intactos após revogação
+Entregável:
+- View + JS + Controller
+- Endpoint AJAX de revogação
+- Screenshots dos 4 estados (opcional)</code></pre>
     </div>
 
     <div class="card">
       <p><span class="task-id">SAFE-114</span> · Suíte de Validação Postman (15 Endpoints Previstos) · <span class="badge">0,5 du</span> <span class="badge badge-qa">QA</span></p>
-      <pre class="prompt"><code>Configurar Coleção Postman parametrizada injetando variáveis de ambiente para a totalidade dos 15 endpoints previstos no bloco §10. Garantir asserções automáticas de status HTTP cobrindo o caminho feliz da esteira OAuth, handshakes CA, assinaturas digitais, pipeline PDF e motor de validação.</code></pre>
+      
+      <h4>Critérios de Aceitação</h4>
+      <ul class="checklist">
+        <li><strong>1 Coleção Parametrizada</strong>
+          <ul>
+            <li>1.1 Deve existir coleção Postman cobrindo os 15 endpoints listados no §10 da documentação.</li>
+            <li>1.2 Todos os parâmetros sensíveis devem vir de variáveis de ambiente da coleção.</li>
+          </ul>
+        </li>
+        <li><strong>2 Cobertura de Fluxos</strong>
+          <ul>
+            <li>2.1 A coleção deve cobrir o caminho feliz da esteira OAuth.</li>
+            <li>2.2 Devem ser cobertos os handshakes CA.</li>
+            <li>2.3 Devem ser cobertas as assinaturas RAW, CMS e ICP-Brasil.</li>
+            <li>2.4 Deve ser coberto o pipeline PAdES completo.</li>
+            <li>2.5 Deve ser coberto o motor de validação server-side.</li>
+          </ul>
+        </li>
+        <li><strong>3 Asserções Automáticas</strong>
+          <ul>
+            <li>3.1 Cada requisição deve ter teste automático verificando status HTTP esperado.</li>
+            <li>3.2 Em falha de asserção, a coleção deve interromper o fluxo sequencial.</li>
+          </ul>
+        </li>
+        <li><strong>4 Entregável</strong>
+          <ul>
+            <li>4.1 A coleção deve ser exportada em arquivo .json versionado no repositório.</li>
+          </ul>
+        </li>
+      </ul>
+
+      <h4>Prompt do Cursor / IDE</h4>
+      <pre class="prompt"><code>Você é QA/engenheiro de integração no projeto ContaÁgil.
+Referência da integração PSC SafeWeb (§10 — 15 endpoints):
+https://pscsafeweb.safewebpss.com.br/Docs/
+Tarefa: SAFE-114 — Suíte de Validação Postman (15 Endpoints)
+Objetivo:
+Criar coleção Postman parametrizada cobrindo os 15 endpoints previstos no §10.
+Cobrir caminho feliz:
+- OAuth PKCE (authorize + token)
+- Handshake CA (authorize-ca + pwd_authorize)
+- Assinaturas RAW, CMS, ICP-Brasil
+- Pipeline PAdES (start, info, apply, finish)
+- Validação server-side (client_token, signature_verify)
+- Discovery (certificate-info, certificate-discovery, user-discovery)
+Regras:
+- Variáveis de ambiente para base_url, client_id, client_secret, tokens
+- Asserções automáticas de status HTTP em cada request
+- Falha de asserção interrompe fluxo sequencial
+- Exportar .json versionado no repo
+Critérios de Aceitação:
+1.1 15 endpoints cobertos
+1.2 Variáveis de ambiente parametrizadas
+1.3 Asserções HTTP automáticas
+1.4 Coleção exportada e versionada
+Entregável:
+- postman/PSC-SafeWeb.postman_collection.json
+- postman/PSC-SafeWeb.postman_environment.json
+- README curto de como rodar a coleção</code></pre>
     </div>
 
     <div class="card">
       <p><span class="task-id">SAFE-115</span> · Varredura de Segurança de Logs (Grep Scan) &amp; Smoke Test Regressivo · <span class="badge">0,5 du</span> <span class="badge badge-qa">QA</span></p>
-      <pre class="prompt"><code>Executar varredura por expressões regulares (grep) nos logs do ambiente de staging para atestar ausência de exposição de segredos. Realizar teste de fumaça (smoke test) estruturado simulando o fluxo de faturamento via eNotas em uma empresa fictícia parametrizada com certificado A1 herdado, gerando evidências empíricas da não interferência da nova camada.</code></pre>
+      
+      <h4>Critérios de Aceitação</h4>
+      <ul class="checklist">
+        <li><strong>1 Varredura por Expressões Regulares</strong>
+          <ul>
+            <li>1.1 Deve ser executado grep nos logs do ambiente Staging.</li>
+            <li>1.2 A varredura deve cobrir padrões de tokens, chaves AES e senhas de certificado.</li>
+          </ul>
+        </li>
+        <li><strong>2 Resultado da Varredura</strong>
+          <ul>
+            <li>2.1 Nenhum segredo pode aparecer em claro nos logs.</li>
+            <li>2.2 O resultado da varredura deve ser anexado ao ticket como evidência.</li>
+          </ul>
+        </li>
+        <li><strong>3 Smoke Test Regressivo</strong>
+          <ul>
+            <li>3.1 Deve ser realizado teste de fumaça simulando o fluxo de faturamento via eNotas.</li>
+            <li>3.2 O teste deve usar empresa fictícia configurada com certificado A1 herdado.</li>
+          </ul>
+        </li>
+        <li><strong>4 Comprovação de Não Interferência</strong>
+          <ul>
+            <li>4.1 O fluxo legado A1 deve continuar funcionando sem qualquer regressão.</li>
+            <li>4.2 Deve ser anexada evidência empírica (print/log) da execução íntegra do fluxo.</li>
+          </ul>
+        </li>
+      </ul>
+
+      <h4>Prompt do Cursor / IDE</h4>
+      <pre class="prompt"><code>Você é QA/engenheiro de segurança no projeto ContaÁgil.
+Referência da integração PSC SafeWeb:
+https://pscsafeweb.safewebpss.com.br/Docs/
+Tarefa: SAFE-115 — Varredura Segurança de Logs (Grep Scan) & Smoke Test Regressivo
+Objetivo:
+Garantir que a camada PSC não vaza segredos e não quebra fluxo A1 legado.
+Parte 1 — Grep Scan:
+- Varrer logs de staging com regex para tokens, chaves AES, senhas, client_secret
+- Confirmar zero ocorrências em claro
+- Anexar evidência ao ticket
+Parte 2 — Smoke Test Regressivo:
+- Simular fluxo de faturamento eNotas com empresa fictícia
+- Empresa deve usar certificado A1 legado (sem PSC conectado)
+- Confirmar que fluxo legado funciona idêntico ao antes da camada PSC
+Critérios de Aceitação:
+1.1 Grep scan executado em staging
+1.2 Zero segredos em claro nos logs
+1.3 Smoke test eNotas + A1 executado
+1.4 Evidência empírica de não interferência anexada
+Entregável:
+- Script de grep (ou comando documentado)
+- Relatório markdown com resultados
+- Evidência do smoke test (log/print)</code></pre>
+    </div>
+
+    <div class="card" style="border-left: 4px solid var(--accent); background: #f0f7ff;">
+      <h4>Como o time deve usar esta malha</h4>
+      <ol>
+        <li>Abra uma atividade no Trello</li>
+        <li>Copie o prompt correspondente (SAFE-101 a SAFE-115) contido no bloco escuro.</li>
+        <li>Cole no <strong>Cursor / Chat de IA</strong> enviando o comando: <em>"Execute este prompt completo"</em>.</li>
+        <li>A IA inspecionará o repositório local, utilizará o <code>mysql-dev</code> para as tabelas e gerará a entrega em conformidade estrita com os Critérios de Aceitação descritos.</li>
+      </ol>
+      <p class="small"><strong>Ordem de dependência sugerida:</strong><br/>
+      <code>SAFE-101 → SAFE-102 → SAFE-103</code><br/>
+      <code>↳ SAFE-104 → SAFE-105 → SAFE-106</code><br/>
+      <code>↳ SAFE-107 (QR) ou SAFE-108 (CA) [Paralelos]</code><br/>
+      <code>↳ SAFE-109 → SAFE-110 → SAFE-111</code><br/>
+      <code>↳ SAFE-112 → SAFE-113</code><br/>
+      <code>↳ SAFE-114 → SAFE-115 (QA final)</code></p>
     </div>
   </article>
 
@@ -722,11 +1622,8 @@ Arquitetura: sem mudar código ainda salvo já existir processo migrações.</co
   </article>
 
   <footer class="meta">
-    <p>Tudo que está no projeto PSC SafeWeb para esta entrega está <strong>dentro de 15 du</strong>. Não há segundo pacote nem 37 du; o planejamento e os documentos referem-se estritamente a esse teto absoluto. Links históricos — ignorar estimativas antigas.</p>
-    <p><strong>links:</strong>
-      <a href="./PSC_SAFEWEB_GUIA_IMPLEMENTACAO_FUTURA.md">GUIA</a>
-      <a href="./PROMPT_DESENVOLVEDOR_SAFEWEB_FASE1.md">PROMPT_DEV</a>
-    </p>
+    <p>Tudo que está no projeto PSC SafeWeb para esta entrega está <strong>dentro de 15 du</strong>.O planejamento e os documentos referem-se estritamente a esse teto absoluto.</p>
+    <p>Nota do Ciclo: Links de documentações complementares internas desativados nesta revisão. Use esta malha HTML unificada como referência única operacional do repositório.</p>
     <p>Ctrl+P PDF · Interno · ContaÁgil — Uso confidencial</p>
   </footer>
 </div>
