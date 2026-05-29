@@ -795,34 +795,33 @@ Entregável:
     <h3>F2 — Barramento HTTP, Integração e Handshakes de Autenticação (5,0 du)</h3>
 
     <div class="card">
-      <p><span class="task-id">SAFE-104</span> · Configuração de Ambientes (ENV) &amp; Fail-Fast Boot · <span class="badge">0,5 du</span></p>
-      
-      <h4>Critérios de Aceitação</h4>
-      <ul class="checklist">
-        <li><strong>1 Isolamento de Variáveis</strong>
-          <ul>
-            <li>1.1 Todas as variáveis do §5 da documentação devem ser registradas no env-settings/getenv.</li>
-            <li>1.2 Nenhuma chave de configuração pode ser hardcoded no código.</li>
-          </ul>
-        </li>
-        <li><strong>2 Validação de Boot</strong>
-          <ul>
-            <li>2.1 No bootstrap da aplicação deve haver verificação rígida das constantes essenciais.</li>
-            <li>2.2 A constante PSC_TOKEN_ENCRYPTION_KEY deve ser obrigatória.</li>
-          </ul>
-        </li>
-        <li><strong>3 Comportamento Fail-Fast</strong>
-          <ul>
-            <li>3.1 A aplicação deve lançar exceção e abortar a inicialização caso qualquer constante essencial esteja ausente.</li>
-            <li>3.2 A mensagem de exceção deve identificar o nome exato da variável ausente.</li>
-          </ul>
-        </li>
-        <li><strong>4 Ambiente de Staging</strong>
-          <ul>
-            <li>4.1 O comportamento fail-fast deve ser validado em Staging.</li>
-          </ul>
-        </li>
-      </ul>
+     <p><span class="task-id">SAFE-104</span> · Configuração PSC por Ambiente e Validação na Subida · <span class="badge">0,5 du</span></p>
+<h4>Critérios de Aceitação</h4>
+<ul class="checklist">
+  <li><strong>1 Isolamento de Variáveis</strong>
+    <ul>
+      <li>1.1 Todas as variáveis do §5 da documentação devem ser registradas no env-settings/getenv.</li>
+      <li>1.2 Nenhuma chave de configuração pode ser hardcoded no código.</li>
+    </ul>
+  </li>
+  <li><strong>2 Validação na Inicialização</strong>
+    <ul>
+      <li>2.1 Na inicialização da aplicação (index.php, após env-settings.php) deve haver verificação das constantes essenciais do módulo PSC.</li>
+      <li>2.2 A constante PSC_TOKEN_ENCRYPTION_KEY deve ser obrigatória.</li>
+    </ul>
+  </li>
+  <li><strong>3 Interrupção na Subida por Configuração Incompleta</strong>
+    <ul>
+      <li>3.1 A aplicação deve lançar exceção e abortar a inicialização caso qualquer constante essencial esteja ausente.</li>
+      <li>3.2 A mensagem de exceção deve identificar o nome exato da variável ausente.</li>
+    </ul>
+  </li>
+  <li><strong>4 Ambiente de Staging</strong>
+    <ul>
+      <li>4.1 O comportamento de interrupção na subida deve ser validado em Staging.</li>
+    </ul>
+  </li>
+</ul>
 
       <h4>Prompt do  IDE</h4>
       <pre class="prompt"><code>Você é um engenheiro sênior PHP no projeto ContaÁgil.
